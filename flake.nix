@@ -12,7 +12,15 @@
   outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      nonfreepkgs = import "${nixpkgs}" {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs = import "${nixpkgs}" {
+        inherit system;
+        overlays = [ (final: prev:{ slack = nonfreepkgs.slack; }) ];
+      };
+
     in {
       homeConfigurations.jbury = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
