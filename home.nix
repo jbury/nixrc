@@ -14,6 +14,7 @@
     git
     slack
     ripgrep
+    keepass
   ];
 
   home.activation = {
