@@ -8,13 +8,13 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    vim
     curl
-    zsh
     git
-    slack
-    ripgrep
     keepass
+    ripgrep
+    slack
+    vim
+    zsh
   ];
 
   home.activation = {
