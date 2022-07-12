@@ -15,6 +15,9 @@
     slack
     ripgrep
     keepass
+    kubectl
+    istioctl
+#    kubernetes-helm
   ];
 
   home.activation = {
