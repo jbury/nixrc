@@ -21,6 +21,7 @@
         overlays = [ (final: prev:{
             slack = nonfreepkgs.slack;
             sublime4 = nonfreepkgs.sublime4;
+            spotify = nonfreepkgs.spotify;
         }) ];
       };
 

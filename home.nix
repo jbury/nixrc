@@ -25,13 +25,16 @@
     tree
     jq
     yq-go
-    go_1_18
+    go_1_19
     sublime4
     kubernetes-helm #Helm 3
     rename
     shellcheck
     yamllint
     ruby_2_7
+    fd
+    krew
+    spotify
   ];
 
   home.activation = {
