@@ -1,0 +1,17 @@
+diff --git a/wayland.c b/wayland.c
+index 42eb0d1..08f9e68 100644
+--- a/wayland.c
++++ b/wayland.c
+@@ -999,8 +999,10 @@ update_size(struct wayland *wayl)
+     wayl->width /= scale; wayl->width *= scale;
+     wayl->height /= scale; wayl->height *= scale;
+ 
+-    zwlr_layer_surface_v1_set_size(
+-        wayl->layer_surface, wayl->width / scale, wayl->height / scale);
++    /* zwlr_layer_surface_v1_set_size( */
++    /*     wayl->layer_surface, wayl->width / scale, wayl->height / scale); */
++
++    zwlr_layer_surface_v1_set_size(wayl->layer_surface, wayl->width, wayl->height);
+ 
+     /* Trigger a 'configure' event, after which we'll have the actual width+height */
+     wl_surface_commit(wayl->surface);

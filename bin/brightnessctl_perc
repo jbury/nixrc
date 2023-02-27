@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+brightnessctl | awk '/Current/ { gsub(/\(|\)|%/, "", $4); print $4 }'

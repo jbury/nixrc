@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+fuzzel \
+    -p ' ' \
+    -I \
+    -w 60 \
+    --show-actions

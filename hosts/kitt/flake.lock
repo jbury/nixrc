@@ -1,0 +1,155 @@
+{
+  "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1641576265,
+        "narHash": "sha256-G4W39k5hdu2kS13pi/RhyTOySAo7rmrs7yMUZRH0OZI=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "08b9c96878b2f9974fc8bde048273265ad632357",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
+    "cachix": {
+      "locked": {
+        "lastModified": 1642244250,
+        "narHash": "sha256-vWpUEqQdVP4srj+/YLJRTN9vjpTs4je0cdWKXPbDItc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0fd9ee1aa36ce865ad273f4f07fdc093adeb5c00",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "emacs-overlay": {
+      "locked": {
+        "lastModified": 1643020612,
+        "narHash": "sha256-19Brzzu2M7AvufZ+MU0m6jUXYl7+IX6NR0nM0OEx+5w=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "dcdd04c92e9175c82087536fcde3daae21837a75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1642882610,
+        "narHash": "sha256-pmdgeJ9v6y+T0UfNQ/Z+Hdv5tPshFFra5JLF/byUA/Y=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "c47c350f6518ed39c2a16e4fadf9137b6c559ddc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "master",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1641965797,
+        "narHash": "sha256-AfxfIzAZbt9aAzpVBn0Bwhd/M4Wix7G91kEjm9H6FPo=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "87a35a0d58f546dc23f37b4f6af575d0e4be6a7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1642903813,
+        "narHash": "sha256-0lNfGW8sNfyTrixoQhVG00Drl/ECaf5GbfKAQ1ZDoyE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "689b76bcf36055afdeb2e9852f5ecdd2bf483f87",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1643045837,
+        "narHash": "sha256-zB7NLbgaLQhnhJTVXy2xaPY0E+0teNjyzGo30+vzApg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a782293ae8dc043f593ab23ebff6fda076f17960",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "master",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs-wayland": {
+      "inputs": {
+        "cachix": "cachix",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1643028459,
+        "narHash": "sha256-iXXNubXSBvHl4J7IUc4+Aw7js2CY5EihC4+DM3d5rbM=",
+        "owner": "nix-community",
+        "repo": "nixpkgs-wayland",
+        "rev": "5d57591e8de9f0c71a97fd7cbcae357123950592",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs-wayland",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "agenix": "agenix",
+        "emacs-overlay": "emacs-overlay",
+        "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-wayland": "nixpkgs-wayland"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

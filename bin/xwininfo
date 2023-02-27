@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+function window_geom() {
+    geom=()
+
+    IFS=" " read -r -a geom <<< "$(swaywindow -g "$1" 2>/dev/null | jq -r '@text "\(.x) \(.y) \(.width) \(.height)"')"
+
+    x=${geom[0]}
+    y=${geom[1]}
+    width=${geom[2]}
+    height=${geom[3]}
+
+    echo -e "\nxwininfo: Window id: $1 \"titlegoeshere\"\n"
+    echo "  Absolute upper-left X: $x"
+    echo "  Absolute upper-left Y: $y"
+    echo "  Relative upper-left X: $x"
+    echo "  Relative upper-left Y: $y"
+    echo "  Width: $width"
+    echo "  Height: $height"
+}
+
+case $1 in
+    "-id")
+        window_geom $2
+        ;;
+    *)
+        echo "Not implemented"
+        exit 1
+esac

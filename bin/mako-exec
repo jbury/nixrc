@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pkill mako
+
+exec mako --default-timeout 5000

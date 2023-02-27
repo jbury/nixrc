@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\t\n'
+
+printf "Making you dangerous again..."
+if [ -f ~/.kube/config.realenvs ]
+then
+    mv ~/.kube/config.realenvs ~/.kube/config
+    printf "done\n"
+else
+    printf "\n\nYou're already dangerous!\n"
+fi
+
+printf "kubectl config current-context:\n"
+kubectl config current-context

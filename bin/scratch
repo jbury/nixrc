@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Toggle a scratch terminal window. A scratch terminal is a disposable terminal
+# for one-off, quick commands that don't warrant a dedicated terminal.
+
+SCRID=scratch
+CMD=${1:-'tmux new-session -A -s scratch -n scratch'}
+
+swaymsg "[app_id=$SCRID con_id=__focused__] kill" || \
+    swaymsg "[app_id=$SCRID]" focus || \
+    foot --app-id=$SCRID $CMD
