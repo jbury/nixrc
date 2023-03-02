@@ -66,18 +66,6 @@ super + ctrl + {Left,Down,Up,Right}
 
 
 #
-## Desktops
-
-# Switch to numbered desktop
-super + {1-9,0}
-	bspc desktop -f {1-9,10};
-
-# On shift = move current node to numbered desktop
-super + shift + {1-9,0}
-	bspc node -d {1-9,10};
-
-
-#
 ## Media keys
 
 # screenshot region
