@@ -18,9 +18,8 @@ alias kccc="kubectl config current-context"
 alias tfdiff="jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'"
 
 # Nix Reloaded
-alias renix="home-manager switch --flake '/home/jbury/.nixrc#jbury'"
-alias reflake="nix flake update ~/.nixrc/flake.nix"
-alias rezsh="source ~/.zshrc"
+alias reflake="nix flake update /home/jbury/.nixrc/flake.nix"
+alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
 
 # CDs
 alias ws="cd ~/workspace/"
@@ -52,3 +51,4 @@ function r {
   local time=$1; shift
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
+
