@@ -34,3 +34,7 @@ __pycache__/
 *.o
 *.pyc
 *.elc
+
+.gitlab-ci-local/
+.cache/
+# renn*  I don't remember why I had this now.

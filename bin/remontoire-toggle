@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-if pgrep remontoire
-then
-    pkill remontoire
-else
-    remontoire -c ~/.config/sway/config &
-fi

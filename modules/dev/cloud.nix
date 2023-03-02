@@ -1,6 +1,7 @@
 # modules/dev/cloud.nix
 #
 # Packages for various cloud services
+
 { config, options, lib, pkgs, ... }:
 with lib;
 with lib.my;
@@ -34,27 +35,26 @@ in {
     (mkIf cfg.enable {
       user = {
         packages = with pkgs; [
-          unstable.terraform
-          unstable.kubectl
-          unstable.minikube
-          unstable.k9s
-          unstable.kubernetes-helm
-          krew
-          unstable.open-policy-agent
-          istioctl
-          unstable.kind
-          my.kustomize
-          go-jsonnet
-          hadolint
-          kube3d
-          tilt
-          stern
-          my.sloth
-          # my.google-cloud-sdk-gke-gcloud-auth-plugin
+          # Kubernetes
+          kubectl         # Talk at my kubernet pls
+          k9s             # Like kubectl, but _fancy_
+          krew            # Plugin manager
+          kubernetes-helm # Bane of my existence
+          kind            # Local kluster
+          kustomize       # We don't mess with the kubectl-bundled version
+
+          # Kubernet-curious apps
+          open-policy-agent # Policies and such
+          istioctl          # TLS?  I've never met her!
+          tilt              # gottagofast
+
+          terraform
+
+          # stern really ought to be installed via krew
         ];
       };
 
-      modules.shell.zsh.aliases.k = "kubectl";
+      modules.shell.zsh.aliases.kc = "kubectl";
       env.PATH = [ "$HOME/.krew/bin" ];
     })
   ];

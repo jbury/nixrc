@@ -1,5 +1,4 @@
-# When I'm stuck in the terminal or don't have access to Emacs, (neo)vim is my
-# go-to. I am a vimmer at heart, after all.
+# When I don't want to risk my disk quota being reduced by 100K
 
 { config, options, lib, pkgs, ... }:
 
@@ -14,15 +13,11 @@ in {
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       editorconfig-core-c
-      unstable.neovim-unwrapped
+      neovim
     ];
-
-    # This is for non-neovim, so it loads my nvim config
-    # env.VIMINIT = "let \\$MYVIMRC='\\$XDG_CONFIG_HOME/nvim/init.vim' | source \\$MYVIMRC";
 
     environment.shellAliases = {
       vim = "nvim";
-      v   = "nvim";
     };
   };
 }

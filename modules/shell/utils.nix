@@ -11,67 +11,27 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      # for calculations
-      bc
-
-      # for watching networks
-      bwm_ng
-
-      # for guessing mime-types
-      file
-
-      # for checking out block devices
-      hdparm
-
-      # for checking in on block devices
-      iotop
-
-      # for understanding who has what open
-      lsof
-
-      # for running commands repeatedly
-      unstable.entr
-
-      # for downloading things rapidly
-      axel
-
-      # for monitoring
-      unstable.bottom
-
-      # for json parsing
-      unstable.jq
-
-      # for yaml parsing
-      yq-go
-
-      # for pretty du
-      unstable.du-dust
-
-      # dig
+      # Networking
       bind
-
-      # sound
-      pavucontrol
-      pamixer
-
-      # network
+      iw
       mtr
-
-      # zips
-      unzip
-
-      # certs/keys
       openssl
 
-      # wireless
-      iw
-
-      # notify-send
-      libnotify
-
-      wl-clipboard-x11
-
+      # Basic utils
+      bat
+      exa
+      fd
+      jq
       envsubst
+      file
+      lsof
+      libnotify
+      ripgrep
+      tldr
+      tree
+      unzip
+      wl-clipboard-x11
+      yq-go
     ];
   };
 }

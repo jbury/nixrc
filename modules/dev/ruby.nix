@@ -1,8 +1,6 @@
-# modules/dev/python.nix --- https://godotengine.org/
+# modules/dev/ruby.nix
 #
-# Python's ecosystem repulses me. The list of environment "managers" exhausts
-# me. The Py2->3 transition make trainwrecks jealous. But SciPy, NumPy, iPython
-# and Jupyter can have my babies. Every single one.
+# Sometimes you just can't be bothered to rewrite the whole thing from scratch _again_.
 
 { config, options, lib, pkgs, my, ... }:
 

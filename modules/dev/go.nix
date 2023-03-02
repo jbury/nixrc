@@ -1,4 +1,6 @@
 # modules/dev/go.nix
+#
+# Go?  More like GO AWAY lolol gotem
 
 { config, options, lib, pkgs, my, ... }:
 

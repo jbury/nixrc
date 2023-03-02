@@ -26,11 +26,6 @@ in {
   config = mkIf cfg.enable {
     users.defaultUserShell = pkgs.zsh;
 
-    home-manager.users.${config.user.name}.programs = {
-      direnv.enable = true;
-      direnv.nix-direnv.enable = true;
-    };
-
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -44,19 +39,11 @@ in {
     user.packages = with pkgs; [
       zsh
       nix-zsh-completions
-      bat
-      exa
-      fasd
-      fd
-      fzf
-      jq
-      ripgrep
-      tldr
     ];
 
     env = {
-      ZDOTDIR     = "$XDG_CONFIG_HOME/zsh";
-      ZSH_CACHE   = "$XDG_CACHE_HOME/zsh";
+      ZDOTDIR   = "$XDG_CONFIG_HOME/zsh";
+      ZSH_CACHE = "$XDG_CACHE_HOME/zsh";
       ZGEN_DIR  = "$XDG_DATA_HOME/zgenom";
     };
 

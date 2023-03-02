@@ -9,7 +9,7 @@ with lib.my; {
       dir = mkOpt path
         (removePrefix "/mnt"
           (findFirst pathExists (toString ../.) [
-            "/home/jboyens/.config/dotfiles"
+            "/home/jbury/.nixrc"
             "/mnt/etc/dotfiles"
             "/etc/dotfiles"
           ]));
@@ -40,11 +40,11 @@ with lib.my; {
   config = {
     user =
       let user = builtins.getEnv "USER";
-          name = if elem user [ "" "root" ] then "jboyens" else user;
+          name = if elem user [ "" "root" ] then "jbury" else user;
     in {
       inherit name;
       description = "The primary user account";
-      extraGroups = [ "wheel" "networkmanager" "video" "atd" "input" ];
+      extraGroups = [ "wheel" "networkmanager" "docker" ];
       isNormalUser = true;
       home = "/home/${name}";
       group = "users";
@@ -58,12 +58,12 @@ with lib.my; {
 
       # I only need a subset of home-manager's capabilities. That is, access to
       # its home.file, home.xdg.configFile and home.xdg.dataFile so I can deploy
-      # files easily to my $HOME, but 'home-manager.users.jboyens.home.file.*'
+      # files easily to my $HOME, but 'home-manager.users.jbury.home.file.*'
       # is much too long and harder to maintain, so I've made aliases in:
       #
-      #   home.file        ->  home-manager.users.jboyens.home.file
-      #   home.configFile  ->  home-manager.users.jboyens.home.xdg.configFile
-      #   home.dataFile    ->  home-manager.users.jboyens.home.xdg.dataFile
+      #   home.file        ->  home-manager.users.jbury.home.file
+      #   home.configFile  ->  home-manager.users.jbury.home.xdg.configFile
+      #   home.dataFile    ->  home-manager.users.jbury.home.xdg.dataFile
       users.${config.user.name} = {
         home = {
           file = mkAliasDefinitions options.home.file;

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-IFS=$'\t\n'
-
-echo "Synchronizing..."
-git fetch --prune --progress
-
-git pull --rebase --autostash

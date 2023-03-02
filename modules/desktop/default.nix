@@ -24,27 +24,11 @@ in {
     ];
 
     user.packages = with pkgs; [
-      #feh       # image viewer
-      # xclip
-      # xdotool
-      # xorg.xwininfo
-      # my.ydotool
-      unstable.ydotool
-      libqalculate  # calculator cli w/ currency conversion
-      (makeDesktopItem {
-        name = "scratch-calc";
-        desktopName = "Calculator";
-        icon = "calc";
-        exec = ''scratch "${tmux}/bin/tmux new-session -s calc -n calc qalc"'';
-        categories = ["Development"];
-      })
-      xfce.thunar
-      xfce.thunar-volman
-      xfce.tumbler
-      qgnomeplatform        # QPlatformTheme for a better Qt application inclusion in GNOME
+      keepass
+      xclip
+      qgnomeplatform                   # QPlatformTheme for a better Qt application inclusion in GNOME
       libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
       xdg-utils
-      paper-icon-theme
     ];
 
     fonts = {
@@ -54,7 +38,6 @@ in {
       fonts = with pkgs; [
         ubuntu_font_family
         dejavu_fonts
-        symbola
         noto-fonts
         noto-fonts-emoji
         noto-fonts-cjk
@@ -63,7 +46,6 @@ in {
         inconsolata
         curie
         scientifica
-        ttf-envy-code-r
         fira
         fira-code
         fira-mono
@@ -79,8 +61,6 @@ in {
     };
 
     ## Apps/Services
-    services.xserver.displayManager.lightdm.greeters.mini.user = config.user.name;
-
     services.picom = {
       backend = "glx";
       vSync = true;
@@ -100,8 +80,8 @@ in {
         "99:_NET_WM_STATE@:32a = '_NET_WM_STATE_FULLSCREEN'"
       ];
       shadowExclude = [
-        # Put shadows on notifications, the scratch popup and rofi only
-        "! name~='(rofi|scratch|Dunst)$'"
+        # Put shadows on notifications, rofi only
+        "! name~='(rofi|Dunst)$'"
       ];
       settings = {
         blur-background-exclude = [
@@ -122,11 +102,6 @@ in {
         # with blur-background. My tests show a 15% performance boost.
         # Recommended.
         glx-no-stencil = true;
-
-        # Use X Sync fence to sync clients' draw calls, to make sure all draw
-        # calls are finished before picom starts drawing. Needed on
-        # nvidia-drivers with GLX backend for some users.
-        xrender-sync-fence = true;
       };
     };
 

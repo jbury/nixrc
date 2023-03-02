@@ -1,6 +1,4 @@
-# Emacs is my main driver. I'm the author of Doom Emacs
-# https://github.com/hlissner/doom-emacs. This module sets it up to meet my
-# particular Doomy needs.
+# One day I'll learn how to drive this thing
 
 { config, lib, pkgs, inputs, ... }:
 
@@ -10,13 +8,6 @@ let
   cfg = config.modules.editors.emacs;
   configDir = config.dotfiles.configDir;
   myEmacs = pkgs.emacsPgtk;
-  # myEmacs = (pkgs.emacsGit.override {
-  #   withSQLite3 = true;
-  #   withWebP = true;
-  #   withPgtk = true;
-  # });
-  # myEmacs = (pkgs.emacs.override { nativeComp = true; withPgtk = true; });
-  # myEmacs = pkgs.emacs;
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
@@ -50,7 +41,6 @@ in {
       python3 # for treemacs
 
       ## Module dependencies
-      # :checkers spell
       (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
       # :checkers grammar
       languagetool
@@ -65,7 +55,7 @@ in {
       # fava
       # :lang rust
       rustfmt
-      unstable.rust-analyzer
+      rust-analyzer
       (makeDesktopItem {
         name = "org-protocol";
         desktopName = "org-protocol";

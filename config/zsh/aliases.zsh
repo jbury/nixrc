@@ -1,81 +1,51 @@
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias -- -='cd -'
+# Short Hands
+alias sl="ls" # gottogofast
 
-alias q=exit
-alias clr=clear
-alias sudo='sudo '
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias mkdir='mkdir -pv'
-alias wget='wget -c'
-alias path='echo -e ${PATH//:/\\n}'
-alias ports='netstat -tulanp'
+alias c="cd .."
+alias cc="cd ../.."
+alias ccc="cd ../../.."
+alias cccc="cd ../../../.."
 
-alias mk=make
-alias gurl='curl --compressed'
+alias l="ls"
+alias cls="clear && ls"
+alias gcl="gitlab-ci-local"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias sshconf="vim ~/.ssh/config"
+alias kc="kubectl"
+alias k="kubectl"
+alias kccc="kubectl config current-context"
+alias tfdiff="jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'"
 
-alias shutdown='sudo shutdown'
-alias reboot='sudo reboot'
+# Nix Reloaded
+alias renix="home-manager switch --flake '/home/jbury/.nixrc#jbury'"
+alias reflake="nix flake update ~/.nixrc/flake.nix"
+alias rezsh="source ~/.zshrc"
 
-# An rsync that respects gitignore
-rcp() {
-  # -a = -rlptgoD
-  #   -r = recursive
-  #   -l = copy symlinks as symlinks
-  #   -p = preserve permissions
-  #   -t = preserve mtimes
-  #   -g = preserve owning group
-  #   -o = preserve owner
-  # -z = use compression
-  # -P = show progress on transferred file
-  # -J = don't touch mtimes on symlinks (always errors)
-  rsync -azPJ \
-    --include=.git/ \
-    --filter=':- .gitignore' \
-    --filter=":- $XDG_CONFIG_HOME/git/ignore" \
-    "$@"
-}; compdef rcp=rsync
-alias rcpd='rcp --delete --delete-after'
-alias rcpu='rcp --chmod=go='
-alias rcpdu='rcpd --chmod=go='
+# CDs
+alias ws="cd ~/workspace/"
+alias nixrc="cd ~/.nixrc"
 
-alias y='xclip -selection clipboard -in'
-alias p='xclip -selection clipboard -out'
+# Flag Aliases
+alias ls="ls --color -F"
+alias df="df -BG"
+alias grep="grep --color=never"
+alias grap="grep --color=always"
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+alias mkdir="mkdir -pv"
+alias wget="wget -c"
+alias ports="netstat -tulanp"
 
-alias jc='journalctl -xe'
-alias sc=systemctl
-alias ssc='sudo systemctl'
+alias y="xclip -selection clipboard -in"
+alias p="xclip -selection clipboard -out"
 
-if (( $+commands[exa] )); then
-  alias exa="exa --group-directories-first --git";
-  alias l="exa -blF";
-  alias ll="exa -abghilmu";
-  alias llm='ll --sort=modified'
-  alias la="LC_COLLATE=C exa -ablF";
-  alias tree='exa --tree'
-fi
-
-if (( $+commands[fasd] )); then
-  # fuzzy completion with 'z' when called without args
-  unalias z 2>/dev/null
-  function z {
-    [ $# -gt 0 ] && _z "$*" && return
-    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
-  }
-fi
+alias jc="journalctl -xe"
+alias sc="systemctl"
+alias ssc="sudo systemctl"
 
 autoload -U zmv
-
-function take {
-  mkdir "$1" && cd "$1";
-}; compdef take=mkdir
-
-function zman {
-  PAGER="less -g -I -s '+/^       "$1"'" man zshall;
-}
 
 # Create a reminder with human-readable durations, e.g. 15m, 1h, 40s, etc
 function r {

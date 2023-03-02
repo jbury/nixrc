@@ -1,6 +1,7 @@
 # modules/dev/db.nix
 #
-# Packages for various cloud services
+# Packages for various db memes
+
 { config, options, lib, pkgs, ... }:
 with lib;
 with lib.my;

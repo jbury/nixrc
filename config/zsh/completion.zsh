@@ -8,6 +8,9 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 # Expand partial paths, e.g. cd f/b/z == cd foo/bar/baz (assuming no ambiguity)
 zstyle ':completion:*:paths' path-completion yes
 
+# Colors pls
+zstyle ':completion:*:paths' list-colors "${(@s.:.)LS_COLORS}"
+
 # Fix slow one-by-one character pasting when bracketed-paste-magic is on. See
 # zsh-users/zsh-syntax-highlighting#295
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
@@ -17,12 +20,7 @@ setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt PATH_DIRS           # Perform path search even on command names with slashes.
 setopt AUTO_MENU           # Show completion menu on a successive tab press.
 setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-# setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
-# setopt AUTO_PARAM_KEYS
-# setopt FLOW_CONTROL        # Disable start/stop characters in shell editor.
-unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
-unsetopt COMPLETE_ALIASES  # Completion for aliases
-# unsetopt ALWAYS_TO_END     # Move cursor to the end of a completed word.
+unsetopt ALWAYS_TO_END     # Move cursor to the end of a completed word.
 unsetopt CASE_GLOB
 
 # Fuzzy match mistyped completions.

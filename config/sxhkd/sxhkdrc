@@ -1,46 +1,19 @@
-super + t
-	bspc desktop -l next
+alt + {_,shift +} Tab
+        bspc node -f {next,prev}
 
 super + w; super + b
 	bspc window -s last
 
-# Attach to a detached session. If none is available create a new one, rather
-# than attach to one that is already attached to elsewhere.
-super + Return
-	xst -e bash -c "(tmux ls | grep -qEv 'attached|scratch' && tmux at) || tmux"
 # Start a plain ol' terminal
-super + ctrl + Return
-	xst
-super + ctrl + alt + Return
+super + Return
+	alacritty
+ctrl + alt + Return
 	xterm
 
-# Open a disposable, floating terminal window, for quick shell commands.
-super + grave
-	scratch
-
-# Open a disposable scratch buffer in a floating Emacs window, to run arbitrary
-# code or quickly note something down.
-super + shift + grave
-	emacsclient --eval "(open-scratch-frame)"
 
 # Invoke emacs-everywhere at point.
 super + e
     emacsclient --eval "(emacs-everywhere)"
-
-super + space
-	$DOTFILES_BIN/rofi/appmenu
-
-super + Tab
-	$DOTFILES_BIN/rofi/windowmenu
-
-super + p
-	$DOTFILES_BIN/rofi/bwmenu
-
-super + shift + p
-	$DOTFILES_BIN/rofi/bwmenu -r
-
-super + slash
-	$DOTFILES_BIN/rofi/filemenu -x
 
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -109,22 +82,3 @@ super + Print
 # screencast region to gif
 super + ctrl + Print
 	scrrec -s ~/recordings/$(date +%F-%T).gif
-
-XF86MonBrightnessUp
-	light -A 5
-XF86MonBrightnessDown
-	light -U 5
-
-XF86AudioMute
-	amixer -q set Master toggle
-XF86AudioLowerVolume
-	amixer -q set Master 10%- unmute
-XF86AudioRaiseVolume
-	amixer -q set Master 10%+ unmute
-
-XF86Audio{Play,Pause}
-	spt-send toggle
-XF86AudioNext
-	spt-send next
-XF86AudioPrev
-	spt-send prev

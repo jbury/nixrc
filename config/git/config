@@ -1,27 +1,22 @@
 [user]
-	name = JR Boyens
-	email = jboyens@fooninja.org
-	signingkey = 785C9CAE60A7B23F
-[commit]
-	gpgsign = true
-[core]
-	whitespace = trailing-space
+	name = Jason Bury
+	email = jason.bury@flexe.com
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [github]
-	user = jboyens
+	user = jbury
 [gitlab]
-    user = jr.boyens
+    user = jason.bury
 [gitlab "gitlab.com/api"]
-    user = jr.boyens
+    user = jason.bury
 [gitlab "gitlab.com/api/v4"]
-    user = jr.boyens
+    user = jason.bury
 [rebase]
 	autoSquash = true
     autoStash = true
 [push]
 	default = current
-	gpgSign = if-asked
+    authoSetupRemote = true
 [pull]
     rebase = true
     twohead = ort
@@ -29,47 +24,16 @@
 	algorithm = histogram
 [alias]
 	unadd = reset HEAD
-	# data analysis
-	ranked-authors = !git authors | sort | uniq -c | sort -n
-	emails = !git log --format="%aE" | sort -u
-	email-domains = !git log --format="%aE" | awk -F'@' '{print $2}' | sort -u
-	st = status
-[filter "lfs"]
-	required = true
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	clean = git-lfs clean -- %f
-[url "https://github.com/"]
-    insteadOf = gh:
+    undo-commit = reset --soft HEAD~1
 [url "git@github.com:"]
-    insteadOf = ssh+gh:
-[url "git@github.com:jboyens/"]
-    insteadOf = gh:/
-[url "https://gitlab.com/"]
+    insteadOf = gh:
+[url "git@gitlab.com:"]
     insteadOf = gl:
-[url "https://gist.github.com/"]
-    insteadOf = gist:
-[url "https://bitbucket.org/"]
-    insteadOf = bb:
-[url "https://git.v0.com"]
-    insteadOf = v0:
-[url "https://git.henrik.io"]
-    insteadOf = my:
-[pager]
-    diff = diff-so-fancy | less --tabs=1,5 -RFX
-    show = diff-so-fancy | less --tabs=1,5 -RFX
-    log = diff-so-fancy | less --tabs=1,5 -RFX
+[url "git@gitlab.com"]
+    insteadOf = https://gitlab.com
 [protocol]
 	version = 2
-[diff "lisp"]
-	xfuncname = "^(((;;;+ )|\\(|([ \t]+\\(((cl-|el-patch-)?def(un|var|macro|method|custom)|gb/))).*)$"
 [diff "org"]
 	xfuncname = "^(\\*+ +.*)$"
-[credential "https://github.com"]
-	helper =
-	helper = !gh auth git-credential
-[credential "https://gist.github.com"]
-	helper =
-	helper = !gh auth git-credential
 [rerere]
 	enabled = true

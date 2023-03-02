@@ -29,8 +29,6 @@ buildGo119Module rec {
 
   postInstall = ''
     installShellCompletion --cmd kustomize \
-      --bash <($out/bin/kustomize completion bash) \
-      --fish <($out/bin/kustomize completion fish) \
       --zsh <($out/bin/kustomize completion zsh)
   '';
 

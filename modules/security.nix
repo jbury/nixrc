@@ -2,9 +2,6 @@
 
 {
   ## System security tweaks
-  # sets hidepid=2 on /proc (make process info visible only to owning user)
-  # NOTE Was removed on nixpkgs-unstable because it doesn't do anything
-  # security.hideProcessInformation = true;
   # Prevent replacing the running kernel w/o reboot
   security.protectKernelImage = true;
 
@@ -60,10 +57,6 @@
     "net.core.default_qdisc" = "cake";
   };
   boot.kernelModules = [ "tcp_bbr" ];
-
-  # Change me later!
-  user.initialPassword = "nixos";
-  users.users.root.initialPassword = "nixos";
 
   # So we don't have to do this later...
   security.acme.acceptTerms = true;

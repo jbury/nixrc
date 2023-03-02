@@ -12,9 +12,9 @@ in {
     user.packages = with pkgs; [
       slack
       (makeDesktopItem {
-        name = "slack-wayland";
-        desktopName = "Slack (Wayland)";
-        genericName = "Open Slack as a Wayland app";
+        name = "slack";
+        desktopName = "Slack";
+        genericName = "Open Slack";
         icon = "slack";
         exec = "${slack}/bin/slack --ozone-platform-hint=auto";
         categories = ["Network"];
