@@ -10,6 +10,13 @@ super + Return
 ctrl + alt + Return
 	xterm
 
+# Appalacations
+super + s
+	slack
+super + f
+	firefox
+
+
 
 # Invoke emacs-everywhere at point.
 super + e
