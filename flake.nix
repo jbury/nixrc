@@ -73,15 +73,6 @@
 
       devShells."${system}".default = import ./shell.nix { inherit pkgs; };
 
-      templates = {
-        full = {
-          path = ./.;
-          description = "A grossly incandescent nixos config";
-        };
-      } // import ./templates // {
-        default = self.templates.full;
-      };
-
       apps."${system}" = {
         default = {
           type = "app";

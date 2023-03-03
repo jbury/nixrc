@@ -9,6 +9,7 @@ with lib.my; {
     # All my personal modules
     ++ (mapModulesRec' (toString ./modules) import);
 
+
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
@@ -41,6 +42,9 @@ with lib.my; {
   # here. Per-interface useDHCP will be mandatory in the future, so we enforce
   # this default behavior here.
   networking.useDHCP = mkDefault true;
+
+  # A root fileSystem is needed to appease the nix flake check gods
+  fileSystems."/".device = mkDefault "/dev/disk/by-label/nixos";
 
   home-manager.useGlobalPkgs = true;
 
