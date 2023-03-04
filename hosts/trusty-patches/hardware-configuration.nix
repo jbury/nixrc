@@ -37,7 +37,15 @@
     [ { device = "/dev/disk/by-uuid/6baa910c-71dc-4ab1-8461-6c4ad74f800b"; }
     ];
 
-  services.xserver.libinput.enable = true;
+  services.xserver = {
+    libinput.enable = true;
+    xrandrHeads = [
+      { output = "EDP-1"; primary = true; } # eDP-1 connected primary 1920x1200+0+0 (normal left inverted right x axis y axis) 336mm x 210mm 1920x1200     59.95*+  59.88    47.96
+      { output = "DP-3-1"; } # DP-3-2 connected 1920x1080+1920+0 (normal left inverted right x axis y axis) 531mm x 299mm 1920x1080     60.00*+ 144.00   119.98    99.93    84.90    50.00    59.94
+      { output = "DP-3-3"; } # DP-3-3 connected 3440x1440+3840+0 (normal left inverted right x axis y axis) 819mm x 346mm 3440x1440     59.97*+  99.98    84.96    29.99
+    ];
+
+  };
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
