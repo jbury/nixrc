@@ -26,6 +26,7 @@ in {
     ];
 
     services = {
+      autorandr.enable = true;
       picom.enable = true;
       xserver = {
         enable = true;

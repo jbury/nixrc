@@ -28,6 +28,7 @@ in {
       qgnomeplatform                   # QPlatformTheme for a better Qt application inclusion in GNOME
       libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
       xdg-utils
+      arandr                           # Beautiful xrandr GUI layout tool for generating monitor layout configs
     ];
 
     fonts = {
