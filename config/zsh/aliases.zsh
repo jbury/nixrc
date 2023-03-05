@@ -41,6 +41,8 @@ alias jc="journalctl -xe"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 
+alias steelseriesmouse="usb-reload 1038 1361"
+
 autoload -U zmv
 
 # Create a reminder with human-readable durations, e.g. 15m, 1h, 40s, etc
@@ -49,3 +51,7 @@ function r {
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
 
+function usb-reload {
+  sudo udevadm trigger -t subsystems -c remove -s usb -a "idVendor=${1}" -a "idProduct=${2}"
+  sudo udevadm trigger -t subsystems -c add -s usb -a "idVendor=${1}" -a "idProduct=${2}"
+}

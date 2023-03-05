@@ -73,7 +73,7 @@ in {
 
     system.userActivationScripts.cleanupZgen = ''
       rm -rf $ZSH_CACHE
-      rm -fv $ZGEN_DIR/init.zsh{,.zwc}
+      rm -fv $ZGEN_DIR/init.zsh
     '';
   };
 }
