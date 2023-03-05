@@ -41,6 +41,7 @@ alias jc="journalctl -xe"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 
+# Sometimes I need to unplug and re-plug my mouse to actually get loonix to notice it.
 alias steelseriesmouse="usb-reload 1038 1361"
 
 autoload -U zmv
@@ -51,6 +52,7 @@ function r {
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
 
+# Why unplug it and plug it again, when I can just tell the tech support I did it?
 function usb-reload {
   sudo udevadm trigger -t subsystems -c remove -s usb -a "idVendor=${1}" -a "idProduct=${2}"
   sudo udevadm trigger -t subsystems -c add -s usb -a "idVendor=${1}" -a "idProduct=${2}"
