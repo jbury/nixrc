@@ -57,3 +57,7 @@ function usb-reload {
   sudo udevadm trigger -t subsystems -c remove -s usb -a "idVendor=${1}" -a "idProduct=${2}"
   sudo udevadm trigger -t subsystems -c add -s usb -a "idVendor=${1}" -a "idProduct=${2}"
 }
+
+function reui {
+  autorandr && ~/.config/bspwm/bspwmrc && reloadTheme;
+}
