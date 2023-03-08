@@ -67,6 +67,7 @@ with lib.my; {
   # It's dangerous to pull yourself up by your bootstraps alone, take these:
   environment.systemPackages = with pkgs; [
     bind
+    cached-nix-shell
     curl
     git
     gnumake

@@ -13,6 +13,8 @@ ctrl + alt + Return
 # Appalacations
 super + s
 	slack
+super + s; super + s
+	signal-desktop
 super + f
 	firefox
 
