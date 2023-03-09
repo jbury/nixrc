@@ -16,7 +16,12 @@ in {
     '';
 
     userChrome  = mkOpt' lines "" "CSS Styles for Firefox's interface";
-    userContent = mkOpt' lines "" "Global CSS Styles for websites";
+    userContent = mkOpt' lines "" ''
+      Global CSS Styles for websites
+      #webrtcIndicator {
+        display: none;
+      }
+    '';
   };
 
   config = mkIf cfg.enable (mkMerge [

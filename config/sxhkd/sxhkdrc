@@ -11,9 +11,9 @@ ctrl + alt + Return
 	xterm
 
 # Appalacations
-super + s
+super + s; super + l
 	slack
-super + s; super + s
+super + s; super + i
 	signal-desktop
 super + f
 	firefox
