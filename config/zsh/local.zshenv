@@ -17,3 +17,5 @@ alias warehouser="cd ~/workspace/warehouser"
 alias shipyard="cd ~/workspace/shipyard"
 alias infrastructure="cd ~/workspace/infrastructure/"
 alias argocd-pipelines="cd ~/workspace/argocd-pipelines/"
+
+alias moms="momus"
