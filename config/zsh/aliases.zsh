@@ -59,5 +59,5 @@ function usb-reload {
 }
 
 function reui {
-  autorandr && ~/.config/bspwm/bspwmrc && reloadTheme;
+  autorandr -c && reloadTheme;
 }
