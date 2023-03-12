@@ -18,7 +18,7 @@ alias kccc="kubectl config current-context"
 alias tfdiff="jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'"
 
 # Nix Reloaded
-alias reflake="nix flake update /home/jbury/.nixrc/flake.nix"
+alias reflake="nix flake update /home/jbury/.nixrc"
 alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
 
 # CDs
