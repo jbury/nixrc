@@ -9,9 +9,7 @@ with lib.my; {
       dir = mkOpt path
         (removePrefix "/mnt"
           (findFirst pathExists (toString ../.) [
-            "/home/jbury/.nixrc"
-            "/mnt/etc/dotfiles"
-            "/etc/dotfiles"
+            "/etc/nixos"
           ]));
       binDir     = mkOpt path "${config.dotfiles.dir}/bin";
       configDir  = mkOpt path "${config.dotfiles.dir}/config";
