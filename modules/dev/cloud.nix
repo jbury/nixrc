@@ -55,6 +55,11 @@ in {
       };
 
       modules.shell.zsh.aliases.kc = "kubectl";
+      modules.shell.zsh.aliases.k = "kubectl";
+      modules.shell.zsh.aliases.kccc = "kubectl config current-context";
+
+      modules.shell.zsh.aliases.tfdiff = "jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'";
+
       env.PATH = [ "$HOME/.krew/bin" ];
     })
   ];

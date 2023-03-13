@@ -31,6 +31,9 @@ in {
       arandr                           # Beautiful xrandr GUI layout tool for generating monitor layout configs
     ];
 
+    modules.shell.zsh.aliases.y = "xclip -selection clipboard -in";
+    modules.shell.zsh.aliases.p = "xclip -selection clipboard -out";
+
     fonts = {
       fontDir.enable = true;
       enableGhostscriptFonts = true;

@@ -12,7 +12,6 @@ in {
   config = mkIf cfg.enable {
     modules.theme.onReload.bspwm = ''
       ${pkgs.bspwm}/bin/bspc wm -r
-      autorandr -c
       source $XDG_CONFIG_HOME/bspwm/bspwmrc
     '';
 

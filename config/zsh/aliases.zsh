@@ -13,9 +13,6 @@ alias zshrc="vim ~/.nixrc/config/zsh/"
 alias rezsh="source ~/.config/zsh/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias sshconf="vim ~/.ssh/config"
-alias kc="kubectl"
-alias k="kubectl"
-alias kccc="kubectl config current-context"
 alias tfdiff="jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'"
 
 # Nix Reloaded
@@ -24,7 +21,7 @@ alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
 
 # CDs
 alias ws="cd ~/workspace/"
-alias nixrc="cd ~/.nixrc"
+alias nixrc="pushd ~/.nixrc"
 
 # Flag Aliases
 alias ls="ls --color -F"

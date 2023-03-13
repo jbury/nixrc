@@ -75,7 +75,6 @@
   # profiles[*].config generated via arandr
 
   services.autorandr = {
-    enable = true;
     defaultTarget = "multi";
     profiles = {
       "multi" = {
