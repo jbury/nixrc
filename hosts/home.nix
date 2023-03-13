@@ -4,6 +4,8 @@ with builtins;
 with lib;
 let
 in {
+  programs.home-manager.enable = true;
+
   time.timeZone = mkDefault "America/Los_Angeles";
 
   i18n = {
