@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.enable {
     modules.theme.onReload.bspwm = ''
       ${pkgs.bspwm}/bin/bspc wm -r
+      autorandr -c
       source $XDG_CONFIG_HOME/bspwm/bspwmrc
     '';
 
@@ -40,13 +41,19 @@ in {
       };
     };
 
-    systemd.user.services."dunst" = {
-      enable = true;
-      description = "";
-      wantedBy = [ "default.target" ];
-      serviceConfig.Restart = "always";
-      serviceConfig.RestartSec = 2;
-      serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
+    systemd.user.services = {
+      dunst = {
+        enable = true;
+        description = "";
+        wantedBy = [ "default.target" ];
+        serviceConfig.Restart = "always";
+        serviceConfig.RestartSec = 2;
+        serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
+      };
+      xsetroot = {
+        wantedBy = [ "default.target" ];
+        serviceConfig.ExecStart = "${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr";
+      };
     };
 
     # link recursively so other modules can link files in their folders
