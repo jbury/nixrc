@@ -13,7 +13,6 @@ alias zshrc="vim ~/.nixrc/config/zsh/"
 alias rezsh="source ~/.config/zsh/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias sshconf="vim ~/.ssh/config"
-alias tfdiff="jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'"
 
 # Nix Reloaded
 alias reflake="nix flake update /home/jbury/.nixrc"
@@ -31,9 +30,6 @@ alias grap="grep --color=always"
 alias mkdir="mkdir -pv"
 alias wget="wget -c"
 alias ports="netstat -tulanp"
-
-alias y="xclip -selection clipboard -in"
-alias p="xclip -selection clipboard -out"
 
 alias jc="journalctl -xe"
 alias sc="systemctl"

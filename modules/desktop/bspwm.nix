@@ -49,10 +49,6 @@ in {
         serviceConfig.RestartSec = 2;
         serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
       };
-      xsetroot = {
-        wantedBy = [ "default.target" ];
-        serviceConfig.ExecStart = "${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr";
-      };
     };
 
     # link recursively so other modules can link files in their folders

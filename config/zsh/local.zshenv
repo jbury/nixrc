@@ -9,6 +9,11 @@ source ${FLEXE_SHELL_CONFIG}/prod-cluster-helpers.sh
 source ${FLEXE_SHELL_CONFIG}/kustomize-aliases.bash
 source ${FLEXE_SHELL_CONFIG}/argocd-helpers.zsh
 
+alias kb="kustbuild"
+alias kbd="kustdiff"
+alias kbp="kustprint"
+alias kbad="kustapply"
+
 # CDs
 alias provisioner="cd ~/workspace/provisioner/"
 alias prov="cd ~/workspace/provisioner/"
