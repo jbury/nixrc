@@ -29,6 +29,8 @@ in {
       libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
       xdg-utils
       arandr                           # Beautiful xrandr GUI layout tool for generating monitor layout configs
+      scrot
+      optipng                          # I take a _lot_ of screenshots, so making them small is nice
     ];
 
     modules.shell.zsh.aliases.y = "xclip -selection clipboard -in";
