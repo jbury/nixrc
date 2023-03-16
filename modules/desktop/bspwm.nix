@@ -40,15 +40,34 @@ in {
       };
     };
 
-    systemd.user.services = {
-      dunst = {
-        enable = true;
-        description = "";
-        wantedBy = [ "default.target" ];
-        serviceConfig.Restart = "always";
-        serviceConfig.RestartSec = 2;
-        serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
-      };
+    systemd = {
+      user = {
+        services = {
+          dunst = {
+	    enable = true;
+            description = "";
+            wantedBy = [ "default.target" ];
+            serviceConfig.Restart = "always";
+            serviceConfig.RestartSec = 2;
+            serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
+          };
+
+          work-screenshot = {
+            script = "work_screenshot";
+            serviceConfig.Type = "oneshot";
+          };
+        }; # end of services
+
+        timers = {
+          work-screenshot = {
+            wantedBy = [ "timers.target" ];
+	    timerConfig = {
+	      OnCalendar = "*:00/15:00";
+	      Unit = "work-screenshot.service";
+	    };
+	  };
+	}; # end of timers
+      }; 
     };
 
     # link recursively so other modules can link files in their folders
