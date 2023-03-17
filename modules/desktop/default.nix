@@ -23,6 +23,7 @@ in {
     ];
 
     user.packages = with pkgs; [
+      feh
       keepass
       xclip
       qgnomeplatform                   # QPlatformTheme for a better Qt application inclusion in GNOME

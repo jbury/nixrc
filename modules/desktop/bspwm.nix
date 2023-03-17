@@ -53,7 +53,7 @@ in {
           };
 
           work-screenshot = {
-            script = "work_screenshot";
+            script = "${config.dotfiles.binDir}/work_screenshot";
             serviceConfig.Type = "oneshot";
           };
         }; # end of services
