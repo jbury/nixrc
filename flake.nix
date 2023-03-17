@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/master";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
@@ -24,7 +23,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, flake-utils, emacs-overlay, ... }:
+  outputs = inputs@{ self, nixpkgs, emacs-overlay, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -49,8 +48,6 @@
         ];
       };
 
-      pkgs' = import "${nixpkgs-unstable}" { inherit system; };
-
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
           inherit pkgs inputs;
@@ -58,10 +55,7 @@
         };
       });
     in {
-      overlays.default = final: prev: {
-        unstable = pkgs';
-        my = self.packages."${system}";
-      };
+      lib = lib.my;
 
       packages."${system}" = mapModules ./packages (p: pkgs.callPackage p { });
 
@@ -73,19 +67,5 @@
 
       devShells."${system}".default = import ./shell.nix { inherit pkgs; };
 
-      apps."${system}" = {
-        default = {
-          type = "app";
-          program = ./bin/hey;
-        };
-        repl = flake-utils.lib.mkApp {
-          drv = pkgs.writeShellScriptBin "repl" ''
-            confnix=$(mktemp)
-            echo "builtins.getFlake (toString $(git rev-parse --show-toplevel))" >$confnix
-            trap "rm $confnix" EXIT
-            nix repl $confnix
-          '';
-        };
-      };
     };
 }
