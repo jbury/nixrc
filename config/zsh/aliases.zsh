@@ -21,6 +21,7 @@ alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
 # CDs
 alias ws="cd ~/workspace/"
 alias nixrc="pushd ~/.nixrc"
+alias ssw="cd ~/Pictures/Screenshots/Work"
 
 # Flag Aliases
 alias ls="ls --color -F"
@@ -31,7 +32,7 @@ alias mkdir="mkdir -pv"
 alias wget="wget -c"
 alias ports="netstat -tulanp"
 
-alias jc="journalctl -xe"
+alias jc="journalctl -e"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 

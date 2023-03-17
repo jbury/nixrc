@@ -2,7 +2,7 @@
 #! nix-shell -p optipng scrot
 set -eu
 
-DIR=$(date +"~/Pictures/Screenshots/Work/%Y/%m/%d")
+DIR=$(date +"${HOME}/Pictures/Screenshots/Work/%Y/%m/%d")
 FILE=$(date +"%H:%M.png")
-mkdir -p ${DIR}
+mkdir -p "${DIR}"
 scrot "${DIR}/${FILE}" -e 'optipng $f'
