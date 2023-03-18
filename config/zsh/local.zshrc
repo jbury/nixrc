@@ -1,2 +1,2 @@
-autoload -U colors && colors
-eval `dircolors "${HOME}/.dircolors"`
+# autoload -U colors && colors
+# eval `dircolors "${HOME}/.dircolors"`
