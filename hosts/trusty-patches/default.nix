@@ -35,6 +35,7 @@
       cloud.enable        = true;
       cloud.google.enable = true;
       go.enable           = true;
+      java.enable         = true;
       shell.enable        = true;
       db.postgres.enable  = true;
     };
