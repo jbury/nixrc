@@ -15,8 +15,16 @@ in {
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       openjdk17
-      idea-community
+      (kotlin.override { jre = pkgs.openjdk17; })
+      jetbrains.idea-community
       maven
     ];
+
+    # Because I guess we can't have nice things by default in Java.
+    # Maybe nice things aren't backwards compatible?
+    env._JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
+
+    # Otherwise Java application popups are FULL SCREEN APPLICATIONS
+    env._JAVA_AWT_WM_NONREPARENTING = "1";
   };
 }
