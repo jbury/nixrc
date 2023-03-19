@@ -23,13 +23,16 @@
 [diff]
     algorithm = histogram
 [alias]
-    unadd = reset HEAD
-    undo-commit = reset --soft HEAD~1
-    restore-file = checkout HEAD -- 
+    unadd = "reset HEAD"
+    undo-commit = "reset --soft HEAD~1"
+    restore-file = "checkout HEAD --"
+    get = "!git clone glf/$1"
 [url "git@github.com:"]
     insteadOf = gh:
 [url "git@gitlab.com:"]
     insteadOf = gl:
+[url "git@gitlab.com:flexe"]
+    insteadOf = glf
 [url "git@gitlab.com"]
     insteadOf = https://gitlab.com
 [protocol]
