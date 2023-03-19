@@ -1,10 +1,10 @@
 [user]
-	name = Jason Bury
-	email = jason.bury@flexe.com
+    name = Jason Bury
+    email = jason.bury@flexe.com
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [github]
-	user = jbury
+    user = jbury
 [gitlab]
     user = jason.bury
 [gitlab "gitlab.com/api"]
@@ -12,19 +12,20 @@
 [gitlab "gitlab.com/api/v4"]
     user = jason.bury
 [rebase]
-	autoSquash = true
+    autoSquash = true
     autoStash = true
 [push]
-	default = current
-    authoSetupRemote = true
+    default = current
+    autoSetupRemote = true
 [pull]
     rebase = true
     twohead = ort
 [diff]
-	algorithm = histogram
+    algorithm = histogram
 [alias]
-	unadd = reset HEAD
+    unadd = reset HEAD
     undo-commit = reset --soft HEAD~1
+    restore-file = checkout HEAD -- 
 [url "git@github.com:"]
     insteadOf = gh:
 [url "git@gitlab.com:"]
@@ -32,8 +33,8 @@
 [url "git@gitlab.com"]
     insteadOf = https://gitlab.com
 [protocol]
-	version = 2
+    version = 2
 [diff "org"]
-	xfuncname = "^(\\*+ +.*)$"
+    xfuncname = "^(\\*+ +.*)$"
 [rerere]
-	enabled = true
+    enabled = true
