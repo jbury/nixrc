@@ -36,6 +36,8 @@ alias jc="journalctl -e"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 
+alias shutdown="sudo shutdown now"
+
 # Sometimes I need to unplug and re-plug my mouse to actually get loonix to notice it.
 alias steelseriesmouse="usb-reload 1038 1361"
 
