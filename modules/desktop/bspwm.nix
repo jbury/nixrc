@@ -42,6 +42,11 @@ in {
 
     systemd = {
       user = {
+        # https://discourse.nixos.org/t/systemd-user-units-and-no-such-path/8399
+	# Forces systemd to actually like, point at some bins, or whatever.
+        extraConfig = ''
+          DefaultEnvironment="PATH=/run/current-system/sw/bin:/etc/nixos/bin"
+	'';
         services = {
           dunst = {
 	    enable = true;
