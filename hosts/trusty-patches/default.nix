@@ -40,7 +40,6 @@
       db.postgres.enable  = true;
     };
     editors = {
-      default      = "nvim";
       emacs.enable = true;
       vim.enable   = true;
     };
