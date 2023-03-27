@@ -49,7 +49,7 @@ in {
 	'';
         services = {
           dunst = {
-	    enable = true;
+          enable = true;
             description = "";
             wantedBy = [ "default.target" ];
             serviceConfig.Restart = "always";

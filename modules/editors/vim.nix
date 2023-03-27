@@ -64,6 +64,11 @@ in {
           set laststatus=2
 
           set autoread
+
+          augroup use_tabs
+            autocmd!
+            autocmd Filetype nix,sh,bash,zsh setlocal noexpandtab
+          augroup END
         '';
 
         defaultEditor = true;

@@ -19,6 +19,9 @@ super + f
 	firefox
 super + i
 	idea-community
+super + k
+  keepass
+
 
 
 # Invoke emacs-everywhere at point.
