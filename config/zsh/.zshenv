@@ -38,3 +38,5 @@ fi
 _source ${0:a:h}/extra.zshenv
 # If you have host-local configuration, this is where you'd put it
 _source $ZDOTDIR/local.zshenv
+
+export EDITOR=vim
