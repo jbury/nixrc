@@ -33,13 +33,7 @@ in {
       # too soon, which means commands initialized later in my config won't get
       # completion, and running compinit twice is slow.
       enableGlobalCompInit = false;
-      promptInit = "";
     };
-
-    user.packages = with pkgs; [
-      zsh
-      nix-zsh-completions
-    ];
 
     env = {
       ZDOTDIR   = "$XDG_CONFIG_HOME/zsh";
