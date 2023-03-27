@@ -1,43 +1,49 @@
 [user]
-    name = Jason Bury
-    email = jason.bury@flexe.com
+	name = Jason Bury
+	email = jason.bury@flexe.com
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [github]
-    user = jbury
+	user = jbury
 [gitlab]
-    user = jason.bury
+	user = jason.bury
 [gitlab "gitlab.com/api"]
-    user = jason.bury
+	user = jason.bury
 [gitlab "gitlab.com/api/v4"]
-    user = jason.bury
+	user = jason.bury
 [rebase]
-    autoSquash = true
-    autoStash = true
+	autoSquash = true
+	autoStash = true
 [push]
-    default = current
-    autoSetupRemote = true
+	default = current
+	autoSetupRemote = true
 [pull]
-    rebase = true
-    twohead = ort
+	rebase = true
+	twohead = ort
 [diff]
-    algorithm = histogram
+	algorithm = histogram
 [alias]
-    unadd = "reset HEAD"
-    undo-commit = "reset --soft HEAD~1"
-    restore-file = "checkout HEAD --"
-    get = "!git clone git@gitlab.com:flexe/$1"
+	unadd = "reset HEAD"
+	undo-commit = "reset --soft HEAD~1"
+	restore-file = "checkout HEAD --"
+	get = "!git clone git@gitlab.com:flexe/$1"
 [url "git@github.com:"]
-    insteadOf = gh:
+	insteadOf = gh:
 [url "git@gitlab.com:"]
-    insteadOf = gl:
+	insteadOf = gl:
 [url "git@gitlab.com:flexe"]
-    insteadOf = glf
+	insteadOf = glf
 [url "git@gitlab.com"]
-    insteadOf = https://gitlab.com
+	insteadOf = https://gitlab.com
 [protocol]
-    version = 2
+	version = 2
 [diff "org"]
-    xfuncname = "^(\\*+ +.*)$"
+	xfuncname = "^(\\*+ +.*)$"
 [rerere]
-    enabled = true
+	enabled = true
+[filter "tabspace2"]
+	smudge = unexpand --tabs=2 --first-only
+	clean = expand --tabs=2 --initial
+[filter "tabspace4"]
+	smudge = unexpand --tabs=4 --first-only
+	clean = expand --tabs=4 --initial
