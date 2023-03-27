@@ -2,6 +2,7 @@
   description = "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
+    stablepkgs.url = "nixpkgs/nixos-22.11-small";
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -23,7 +24,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, emacs-overlay, ... }:
+  outputs = inputs@{ self, nixpkgs, stablepkgs, emacs-overlay, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -32,6 +33,10 @@
       nonfreepkgs = import "${nixpkgs}" {
         inherit system;
         config.allowUnfree = true;
+      };
+
+      stable = import "${stablepkgs}" {
+        inherit system;
       };
 
       pkgs = import "${nixpkgs}" {
@@ -43,6 +48,7 @@
             sublime4 = nonfreepkgs.sublime4;
             spotify = nonfreepkgs.spotify;
             zoom-us = nonfreepkgs.zoom-us;
+            gimp = stable.gimp;
           })
           emacs-overlay.overlay
         ];
