@@ -15,7 +15,7 @@ alias vimrc="vim ~/.vimrc"
 alias sshconf="vim ~/.ssh/config"
 
 # Nix Reloaded
-alias reflake="nix flake update /home/jbury/.nixrc"
+alias refl="nix flake update /home/jbury/.nixrc"
 alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
 
 # CDs
