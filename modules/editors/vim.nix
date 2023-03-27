@@ -17,10 +17,8 @@ in {
         settings = {
           background = "dark";
           copyindent = true;
-          # Because I use emacs most everywhere, vim is only for machines
-          # I don't want to install all emacs things on, which is probably
-          # a hellscape where people use spaces.
-          expandtab = true;
+          # Default to hard tabs
+          expandtab = false;
           # Save me from myself, vim-sama
           hidden = false;
           ignorecase = false;
@@ -54,8 +52,6 @@ in {
           set listchars:tab:»·,trail:·
           set list
 
-          set colorcolumn=125
-
           set visualbell
           set noerrorbells
 
@@ -64,11 +60,6 @@ in {
           set laststatus=2
 
           set autoread
-
-          augroup use_tabs
-            autocmd!
-            autocmd Filetype nix,sh,bash,zsh setlocal noexpandtab
-          augroup END
         '';
 
         defaultEditor = true;
