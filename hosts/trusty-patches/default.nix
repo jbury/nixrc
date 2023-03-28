@@ -51,6 +51,7 @@
     };
     services = {
       docker.enable = true;
+      cron.enable = true;
     };
     theme.active = "alucard";
   };
