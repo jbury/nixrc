@@ -13,7 +13,7 @@ in {
     services.cron = {
       enable = true;
       systemCronJobs = [
-        "*/15 * * * *      jbury    work_screenshot"
+        "*/15 * * * *      jbury   whoami; work_screenshot &>> /tmp/cron.log"
       ];
     };
   };

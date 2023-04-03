@@ -19,6 +19,7 @@ in {
       lightdm
       dunst
       libnotify
+      xorg.xev
       (polybar.override {
         pulseSupport = true;
         nlSupport = true;
@@ -43,10 +44,9 @@ in {
     systemd = {
       user = {
         # https://discourse.nixos.org/t/systemd-user-units-and-no-such-path/8399
-	# Forces systemd to actually like, point at some bins, or whatever.
-        extraConfig = ''
-          DefaultEnvironment="PATH=/run/current-system/sw/bin:/etc/nixos/bin"
-	'';
+        # Forces systemd to actually like, point at some bins, or whatever.
+#        extraConfig = ''
+#          DefaultEnvironment="PATH=/run/current-system/sw/bin:/etc/nixos/bin"
         services = {
           dunst = {
           enable = true;
@@ -57,22 +57,22 @@ in {
             serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
           };
 
-          work-screenshot = {
-            script = "${config.dotfiles.binDir}/work_screenshot";
-            serviceConfig.Type = "oneshot";
-          };
+#          work-screenshot = {
+#            script = "${config.dotfiles.binDir}/work_screenshot";
+#            serviceConfig.Type = "oneshot";
+#          };
         }; # end of services
 
-        timers = {
-          work-screenshot = {
-            wantedBy = [ "timers.target" ];
-	    timerConfig = {
-	      OnCalendar = "*:00/15:00";
-	      Unit = "work-screenshot.service";
-	    };
-	  };
-	}; # end of timers
-      }; 
+#        timers = {
+#          work-screenshot = {
+#            wantedBy = [ "timers.target" ];
+#    timerConfig = {
+#        OnCalendar = "*:00/15:00";
+#        Unit = "work-screenshot.service";
+#      };
+#    };
+#  }; # end of timers
+      };
     };
 
     # link recursively so other modules can link files in their folders
