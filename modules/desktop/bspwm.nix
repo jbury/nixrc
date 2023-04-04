@@ -59,8 +59,9 @@ in {
           };
 
           work-screenshot = {
-            script = "whoami >> /tmp/cron.log";#${config.dotfiles.binDir}/work_screenshot";
+            script = "${config.dotfiles.binDir}/work_screenshot";
             serviceConfig.Type = "oneshot";
+            path = [ pkgs.nix ];
           };
         }; # end of services
 
@@ -68,7 +69,7 @@ in {
           work-screenshot = {
             wantedBy = [ "timers.target" ];
             timerConfig = {
-              OnCalendar = "*:00/15:00";
+              OnCalendar = "*:00/5:00";
               Unit = "work-screenshot.service";
             };
           };
