@@ -33,8 +33,10 @@
 	insteadOf = gl:
 [url "git@gitlab.com:flexe"]
 	insteadOf = glf
-[url "git@gitlab.com"]
-	insteadOf = https://gitlab.com
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+[url "git@gitlab.com:"]
+	insteadOf = gitlab.com/
 [protocol]
 	version = 2
 [diff "org"]
