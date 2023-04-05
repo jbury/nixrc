@@ -61,7 +61,7 @@ in {
           work-screenshot = {
             script = "${config.dotfiles.binDir}/work_screenshot";
             serviceConfig.Type = "oneshot";
-            path = [ pkgs.nix ];
+            path = [ pkgs.cached-nix-shell ];
           };
         }; # end of services
 

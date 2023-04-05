@@ -45,16 +45,21 @@ autoload -U zmv
 
 # Create a reminder with human-readable durations, e.g. 15m, 1h, 40s, etc
 function r {
-  local time=$1; shift
-  sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
+	local time=$1; shift
+	sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
 
 # Why unplug it and plug it again, when I can just tell the tech support I did it?
 function usb-reload {
-  sudo udevadm trigger -t subsystems -c remove -s usb -a "idVendor=${1}" -a "idProduct=${2}"
-  sudo udevadm trigger -t subsystems -c add -s usb -a "idVendor=${1}" -a "idProduct=${2}"
+	sudo udevadm trigger -t subsystems -c remove -s usb -a "idVendor=${1}" -a "idProduct=${2}"
+	sudo udevadm trigger -t subsystems -c add -s usb -a "idVendor=${1}" -a "idProduct=${2}"
 }
 
 function reui {
-  autorandr -c && reloadTheme;
+	autorandr -c && reloadTheme;
+}
+
+function screens {
+	DIR=$(date +"${HOME}/Pictures/Screenshots/Work/%Y/%m/%d")
+	cd $DIR
 }
