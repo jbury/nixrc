@@ -69,7 +69,7 @@ in {
           work-screenshot = {
             wantedBy = [ "timers.target" ];
             timerConfig = {
-              OnCalendar = "*:00/5:00";
+              OnCalendar = "*:00/10:00";
               Unit = "work-screenshot.service";
             };
           };

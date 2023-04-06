@@ -5,8 +5,8 @@ fpath+=( $ZDOTDIR/completions )
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
-# Expand partial paths, e.g. cd f/b/z == cd foo/bar/baz (assuming no ambiguity)
-zstyle ':completion:*:paths' path-completion yes
+# Case-insensitive, partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Colors pls
 zstyle ':completion:*:paths' list-colors "${(@s.:.)LS_COLORS}"
