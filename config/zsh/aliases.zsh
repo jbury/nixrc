@@ -63,3 +63,47 @@ function screens {
 	DIR=$(date +"${HOME}/Pictures/Screenshots/Work/%Y/%m/%d")
 	cd $DIR
 }
+
+function docker-runasme {
+	local IMAGE
+	local COMMAND
+	local DOCKER_ACCESS
+	local BACKUP=1
+
+# -i IMAGE_NAME
+# -c COMMAND
+# -d DOCKER_ACCESS
+# -h HELP
+	local SHORT=":i:c:hd"
+
+	while getopts "${SHORT}" opt; do
+		case "${opt}" in
+			i)
+				IMAGE="${OPTARG}"
+				;;
+			c)
+				COMMAND="-- ${OPTARG}"
+				;;
+			h)
+				echo "No."
+				exit 2
+				;;
+			d)
+				DOCKER_ACCESS="-v /var/run/docker.sock:/var/run/docker.sock"
+				;;
+			[?])
+				BACKUP=2
+				;;
+		esac
+	done
+
+	shift $OPTIND-$BACKUP
+	local CREDS_DIR="/var/.config/gcloud/adc.json"
+
+	local COMMAND_TO_RUN="docker run ${@} --env-file ~/.env --env GOOGLE_APPLICATION_CREDENTIALS=${CREDS_DIR} -v ~/.config/gcloud/application_default_credentials.json:${CREDS_DIR} -v ${PWD}:/var/files ${DOCKER_ACCESS} -w /var/files --rm -i -t ${IMAGE} ${COMMAND}"
+
+	echo "${COMMAND_TO_RUN}"
+
+	eval "${COMMAND_TO_RUN}"
+}
+alias drm="docker-runasme"
