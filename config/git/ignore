@@ -37,4 +37,5 @@ __pycache__/
 
 .gitlab-ci-local/
 .cache/
+sbt-cache/
 # renn*  I don't remember why I had this now.

@@ -68,13 +68,15 @@ function docker-runasme {
 	local IMAGE
 	local COMMAND
 	local DOCKER_ACCESS
+	local GITLAB_ACCESS
 	local BACKUP=1
 
 # -i IMAGE_NAME
 # -c COMMAND
 # -d DOCKER_ACCESS
+# -g GITLAB_ACCESS
 # -h HELP
-	local SHORT=":i:c:hd"
+	local SHORT=":i:c:hdg"
 
 	while getopts "${SHORT}" opt; do
 		case "${opt}" in
@@ -82,7 +84,7 @@ function docker-runasme {
 				IMAGE="${OPTARG}"
 				;;
 			c)
-				COMMAND="-- ${OPTARG}"
+				COMMAND="${OPTARG}"
 				;;
 			h)
 				echo "No."
@@ -91,19 +93,28 @@ function docker-runasme {
 			d)
 				DOCKER_ACCESS="-v /var/run/docker.sock:/var/run/docker.sock"
 				;;
+			g)
+				GITLAB_ACCESS="-v ~/.gitlab-token:/root/.gitlab-token"
+				;;
 			[?])
 				BACKUP=2
 				;;
 		esac
 	done
 
+	if [ -z $IMAGE ]; then
+		echo "FATAL: Missing mandatory arg \`-i <IMAGE_NAME>\`"
+		exit 1
+	fi
+
 	shift $OPTIND-$BACKUP
 	local CREDS_DIR="/var/.config/gcloud/adc.json"
 
-	local COMMAND_TO_RUN="docker run ${@} --env-file ~/.env --env GOOGLE_APPLICATION_CREDENTIALS=${CREDS_DIR} -v ~/.config/gcloud/application_default_credentials.json:${CREDS_DIR} -v ${PWD}:/var/files ${DOCKER_ACCESS} -w /var/files --rm -i -t ${IMAGE} ${COMMAND}"
+	local COMMAND_TO_RUN="docker run ${@} --env-file ~/.env --env GOOGLE_APPLICATION_CREDENTIALS=${CREDS_DIR} -v ~/.config/gcloud/application_default_credentials.json:${CREDS_DIR} -v ${PWD}:/var/files ${DOCKER_ACCESS} ${GITLAB_ACCESS} -w /var/files --rm -i -t ${IMAGE} ${COMMAND}"
 
 	echo "${COMMAND_TO_RUN}"
 
 	eval "${COMMAND_TO_RUN}"
 }
 alias drm="docker-runasme"
+
