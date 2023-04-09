@@ -102,12 +102,12 @@ function docker-runasme {
 		esac
 	done
 
-	if [ -z $IMAGE ]; then
+	if [ -z "${IMAGE}" ]; then
 		echo "FATAL: Missing mandatory arg \`-i <IMAGE_NAME>\`"
 		exit 1
 	fi
 
-	shift $OPTIND-$BACKUP
+	shift "${OPTIND}-${BACKUP}"
 	local CREDS_DIR="/var/.config/gcloud/adc.json"
 
 	local COMMAND_TO_RUN="docker run ${@} --env-file ~/.env --env GOOGLE_APPLICATION_CREDENTIALS=${CREDS_DIR} -v ~/.config/gcloud/application_default_credentials.json:${CREDS_DIR} -v ${PWD}:/var/files ${DOCKER_ACCESS} ${GITLAB_ACCESS} -w /var/files --rm -i -t ${IMAGE} ${COMMAND}"
