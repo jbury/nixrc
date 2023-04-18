@@ -1,4 +1,5 @@
-export FLEXE_SHELL_CONFIG="${HOME}/.flexe-tooling/shell-configs"
+export FLEXE_TOOLING_DIR="${HOME}/.flexe-tooling"
+export FLEXE_SHELL_CONFIG="${FLEXE_TOOLING_DIR}/shell-configs"
 
 source ${FLEXE_SHELL_CONFIG}/autoupdate-helpers.sh
 autoupdate-flexe-tooling
@@ -7,7 +8,7 @@ source ${FLEXE_SHELL_CONFIG}/common-helpers.sh
 source ${FLEXE_SHELL_CONFIG}/nonprod-cluster-helpers.sh
 source ${FLEXE_SHELL_CONFIG}/prod-cluster-helpers.sh
 source ${FLEXE_SHELL_CONFIG}/kustomize-aliases.bash
-source ${FLEXE_SHELL_CONFIG}/argocd-helpers.zsh
+source ${FLEXE_SHELL_CONFIG}/argocd-helpers.sh
 
 alias kb="kustbuild"
 alias kbd="kustdiff"

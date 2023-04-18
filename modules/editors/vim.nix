@@ -34,10 +34,10 @@ in {
 
         extraConfig = ''
           syntax on
+          set omnifunc=syntaxcomplete#Complete
           set t_Co=256
           set encoding=utf-8
 
-          set paste
           set backspace=indent,eol,start
           set cursorline
           set showmatch
@@ -60,6 +60,14 @@ in {
           set laststatus=2
 
           set autoread
+
+          let g:go_def_mode='gopls'
+          let g:go_info_mode='gopls'
+
+          inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
+          inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
+
+          packloadall
         '';
 
         defaultEditor = true;
