@@ -78,6 +78,7 @@ in {
           autocmd FileType go nmap <leader>r  <Plug>(go-run)
           autocmd FileType go nmap <leader>t  <Plug>(go-test)
 
+          let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
           inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
           inoremap <expr> k pumvisible() ? "\<C-P>" : "k"

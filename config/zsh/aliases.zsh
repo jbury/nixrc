@@ -118,3 +118,4 @@ function docker-runasme {
 }
 alias drm="docker-runasme"
 
+alias cleancharts="find . -type d -name 'charts' -exec rm -r {} \;"
