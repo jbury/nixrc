@@ -21,9 +21,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    flexe-flakes = {
+      url = "path:/home/jbury/.flexe-flakes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, stablepkgs, emacs-overlay, ... }:
+  outputs = inputs@{ self, nixpkgs, stablepkgs, emacs-overlay, flexe-flakes, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -50,6 +55,7 @@
             gimp = stable.gimp;
           })
           emacs-overlay.overlay
+          flexe-flakes.overlays.default
         ];
       };
 
