@@ -1,9 +1,6 @@
 alt + {_,shift +} Tab
         bspc node -f {next,prev}
 
-super + w; super + b
-	bspc window -s last
-
 # Start a plain ol' terminal
 super + Return
 	alacritty
@@ -19,7 +16,7 @@ super + f
 	firefox
 super + i
 	idea-community
-super + k
+super + k; super + e; super + y
   keepass
 
 

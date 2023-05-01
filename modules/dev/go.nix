@@ -20,6 +20,7 @@ in {
       gore
       gotools
       gotests
+      goreleaser
       gomodifytags
       golangci-lint
       delve
