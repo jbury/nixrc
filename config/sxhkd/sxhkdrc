@@ -12,6 +12,8 @@ super + s; super + l
 	slack
 super + s; super + i
 	signal-desktop
+super + s; super + p; super + o; super + t
+	spotify
 super + f
 	firefox
 super + i

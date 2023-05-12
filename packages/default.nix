@@ -3,4 +3,5 @@
 with pkgs;
 {
   thermald = (callPackage ./thermald {});
+  kustomize = (callPackage ./kustomize.nix {});
 }

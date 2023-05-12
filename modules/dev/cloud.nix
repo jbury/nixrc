@@ -41,7 +41,8 @@ in {
           krew            # Plugin manager
           kubernetes-helm # Bane of my existence
           kind            # Local kluster
-          kustomize       # We don't mess with the kubectl-bundled version
+          kustomize    # We don't mess with the kubectl-bundled version
+          kubent
 
           # Kubernet-curious apps
           open-policy-agent # Policies and such

@@ -43,6 +43,9 @@
         inherit system;
       };
 
+      localpackages."${system}" =
+        mapModules ./packages (p: pkgs.callPackage p {});
+
       pkgs = import "${nixpkgs}" {
         inherit system;
         overlays = [
@@ -52,7 +55,13 @@
             sublime4 = nonfreepkgs.sublime4;
             spotify = nonfreepkgs.spotify;
             zoom-us = nonfreepkgs.zoom-us;
+          })
+          (final: prev:{
+            # Sometimes we value stability
             gimp = stable.gimp;
+          })
+          (final: prev:{
+            kustomize = localpackages."${system}".kustomize;
           })
           emacs-overlay.overlay
           flexe-flakes.overlays.default
@@ -66,9 +75,7 @@
         };
       });
     in {
-      lib = lib.my;
-
-      packages."${system}" = mapModules ./packages (p: pkgs.callPackage p { });
+      #lib = lib.my;
 
       nixosModules = {
         dotfiles = import ./.;

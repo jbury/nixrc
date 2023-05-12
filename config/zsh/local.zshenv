@@ -26,6 +26,8 @@ alias argocd-pipelines="cd ~/workspace/argocd-pipelines/"
 
 alias moms="momus"
 
-alias rep="rm ./plan_output* -f; ./terraform_plan.sh"
-alias tir="terraform init && rep"
+alias terraflexe="~/workspace/terraflexe/terraflexe"
+alias tf="terraflexe"
+alias tir="tf p"
 alias tap="terraform apply planfile"
+

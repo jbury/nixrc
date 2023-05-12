@@ -78,13 +78,17 @@ function docker-runasme {
 # -h HELP
 	local SHORT=":i:c:hdg"
 
+	local VALID_FLAG_FOUND=$(false)
+
 	while getopts "${SHORT}" opt; do
 		case "${opt}" in
 			i)
 				IMAGE="${OPTARG}"
+				VALID_FLAG_FOUND=$(true)
 				;;
 			c)
 				COMMAND="${OPTARG}"
+				VALID_FLAG_FOUND=$(true)
 				;;
 			h)
 				echo "No."
@@ -92,12 +96,18 @@ function docker-runasme {
 				;;
 			d)
 				DOCKER_ACCESS="-v /var/run/docker.sock:/var/run/docker.sock"
+				VALID_FLAG_FOUND=$(true)
 				;;
 			g)
 				GITLAB_ACCESS="-v ~/.gitlab-token:/root/.gitlab-token"
+				VALID_FLAG_FOUND=$(true)
 				;;
 			[?])
-				BACKUP=2
+				if $VALID_FLAG_FOUND; then
+					BACKUP=2
+				else
+					echo "Invalid input - need to specify image with -i and command with -c"
+				fi
 				;;
 		esac
 	done
