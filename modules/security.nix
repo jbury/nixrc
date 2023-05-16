@@ -60,4 +60,10 @@
 
   # So we don't have to do this later...
   security.acme.acceptTerms = true;
+
+  security.sudo.extraRules = [
+    { groups = [ "wheel" ]; commands = [ "ALL" ]; }
+
+    { groups = [ "wheel" ]; commands = [ { command = "/run/current-system/sw/bin/shutdown"; options = [ "NOPASSWD" ]; } ]; }
+  ];
 }

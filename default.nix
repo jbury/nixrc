@@ -53,7 +53,7 @@ with lib.my; {
 
     loader = {
       systemd-boot = {
-        configurationLimit = 10;
+        configurationLimit = 5;
         enable = mkDefault true;
         editor = false;
       };
