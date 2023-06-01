@@ -13,19 +13,20 @@ alias gs='git status --short .'
 alias gits='git status'
 
 function stata(){
-  flag="$1"
-  for dir in *; do
-    if [ -d "${dir}" ]; then
-      cd "${dir}"
-      if [ -d .git ]; then
-        branch="$(git rev-parse --abbrev-ref HEAD)"
-        if [ "${flag}" = "-a" ] || ([ "${branch}" != "main" ] && [ "${branch}" != "master" ]); then
-          echo "${dir} -- ${branch}"
-        fi
-      fi
-      cd ..
-    fi
-  done
+	export DIRENV_DISABLE=1
+	flag="$1"
+	for dir in *; do
+		if [ -d "${dir}" ]; then
+			cd "${dir}"
+			if [ -d .git ]; then
+				branch="$(git rev-parse --abbrev-ref HEAD)"
+				if [ "${flag}" = "-a" ] || ([ "${branch}" != "main" ] && [ "${branch}" != "master" ]); then
+					echo "${dir} -- ${branch}"
+				fi
+			fi
+			cd ..
+		fi
+	done
 }
 
 export GOPRIVATE="gitlab.com/flexe/*"

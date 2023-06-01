@@ -44,6 +44,7 @@
       vim.enable   = true;
     };
     shell = {
+      direnv.enable = true;
       flexe.enable = true;
       git.enable   = true;
       gnupg.enable = true;

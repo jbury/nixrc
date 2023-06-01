@@ -56,8 +56,14 @@ function usb-reload {
 }
 
 function reui {
-	autorandr -c && reloadTheme;
+	autorandr -c ${1:-multi}  && reloadTheme;
 }
+
+alias single="reui single"
+alias double="reui double"
+alias multi="reui multi"
+
+
 
 function screens {
 	DIR=$(date +"${HOME}/Pictures/Screenshots/Work/%Y/%m/%d")

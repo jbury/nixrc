@@ -12,4 +12,7 @@ in {
     user.packages = [ pkgs.direnv ];
     modules.shell.zsh.rcInit = ''eval "$(direnv hook zsh)"'';
   };
+
+  #TODO generate a .envrc with the following:
+  #${DIRENV_DISABLE:+exit}
 }
