@@ -15,6 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    devenv.url = "github:cachix/devenv/latest";
+
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
 
@@ -28,7 +30,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, stablepkgs, emacs-overlay, flexe-flakes, ... }:
+  outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, emacs-overlay, flexe-flakes, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -62,6 +64,9 @@
           })
           (final: prev:{
             kustomize = localpackages."${system}".kustomize;
+          })
+          (final: prev:{
+            devenv = devenv.packages."${system}".devenv;
           })
           emacs-overlay.overlay
           flexe-flakes.overlays.default
