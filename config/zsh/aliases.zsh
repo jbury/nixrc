@@ -13,6 +13,7 @@ alias zshrc="vim ~/.nixrc/config/zsh/"
 alias rezsh="source ~/.config/zsh/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias sshconf="vim ~/.ssh/config"
+alias alsa="alsamixer"
 
 # Nix Reloaded
 alias refl="nix flake update /home/jbury/.nixrc"
@@ -63,7 +64,9 @@ alias single="reui single"
 alias double="reui double"
 alias multi="reui multi"
 
-
+function nixgc {
+	nix-collect-garbage -d
+}
 
 function screens {
 	DIR=$(date +"${HOME}/Pictures/Screenshots/Work/%Y/%m/%d")

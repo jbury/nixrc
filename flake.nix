@@ -63,7 +63,7 @@
             gimp = stable.gimp;
           })
           (final: prev:{
-            kustomize = localpackages."${system}".kustomize;
+#            kustomize = localpackages."${system}".kustomize;
           })
           (final: prev:{
             devenv = devenv.packages."${system}".devenv;
