@@ -7,7 +7,7 @@ with lib.my;
 let
   cfg = config.modules.editors.emacs;
   configDir = config.dotfiles.configDir;
-  myEmacs = pkgs.emacsPgtk;
+  myEmacs = pkgs.emacs;
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
@@ -15,17 +15,18 @@ in {
       enable = mkBoolOpt false;
       forgeUrl = mkOpt types.str "https://github.com";
       repoUrl = mkOpt types.str "${forgeUrl}/doomemacs/doomemacs";
-      configRepoUrl = mkOpt types.str "${forgeUrl}/hlissner/doom-emacs-private";
     };
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+
     user.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-      # 29 + pgtk + native-comp
+      # 29 + native-comp
       ((emacsPackagesFor myEmacs).emacsWithPackages
-        (epkgs: [ epkgs.vterm epkgs.parinfer-rust-mode ]))
+        (epkgs: [ epkgs.vterm ]))
 
       ## Doom dependencies
       git
@@ -71,7 +72,6 @@ in {
       # :lang org
       graphviz
 
-      # (mu.override { emacs = myEmacs; })
 
       mpc_cli
 
@@ -103,7 +103,6 @@ in {
       installDoomEmacs = ''
         if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
            git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
-           git clone "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
         fi
       '';
     };
