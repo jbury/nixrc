@@ -13,7 +13,6 @@ in {
     user.packages = with pkgs; [
       docker
       docker-compose
-      hadolint # Dockerfile linter
     ];
 
     env.DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";

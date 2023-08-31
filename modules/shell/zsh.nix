@@ -26,6 +26,9 @@ in {
   config = mkIf cfg.enable {
     users.defaultUserShell = pkgs.zsh;
 
+    #We want to use nix-index for our command-not-found
+    programs.command-not-found.enable = false;
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -33,6 +36,9 @@ in {
       # too soon, which means commands initialized later in my config won't get
       # completion, and running compinit twice is slow.
       enableGlobalCompInit = false;
+      interactiveShellInit = ''
+        source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+      ''
     };
 
     env = {
