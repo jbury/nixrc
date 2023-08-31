@@ -24,7 +24,7 @@ in {
 
     user.packages = with pkgs; [
       feh
-      keepass
+      keepassxc
       xclip
       qgnomeplatform                   # QPlatformTheme for a better Qt application inclusion in GNOME
       libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
@@ -40,7 +40,7 @@ in {
     fonts = {
       fontDir.enable = true;
       enableGhostscriptFonts = true;
-      enableDefaultFonts = true;
+      enableDefaultPackages = true;
       fonts = with pkgs; [
         ubuntu_font_family
         dejavu_fonts

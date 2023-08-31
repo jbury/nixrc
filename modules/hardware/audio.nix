@@ -26,18 +26,6 @@ in {
       easyeffects
     ];
 
-    # systemd.user.services.easyeffects = {
-    #   description = "Tuning for headphones";
-    #   wantedBy = [ "pipewire.service" ];
-    #   after = [ "pipewire.service" ];
-    #   bindsTo = [ "pipewire.service" ];
-    #   serviceConfig = {
-    #     ExecStart = "${pkgs.easyeffects}/bin/easyeffects --gapplication-service";
-    #     RestartSec = 5;
-    #     Restart = "always";
-    #   };
-    # };
-
     user.extraGroups = [ "audio" ];
   };
 }

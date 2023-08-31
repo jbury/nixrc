@@ -61,6 +61,7 @@
           (final: prev:{
             # Sometimes we value stability
             gimp = stable.gimp;
+            ilist = stable.ilist;
           })
           (final: prev:{
 #            kustomize = localpackages."${system}".kustomize;
