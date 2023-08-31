@@ -11,10 +11,8 @@ let
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
-    doom = rec {
-      enable = mkBoolOpt false;
-      forgeUrl = mkOpt types.str "https://github.com";
-      repoUrl = mkOpt types.str "${forgeUrl}/doomemacs/doomemacs";
+    doom = {
+      repoUrl = mkOpt types.str "https://github.com/doomemacs/doomemacs";
     };
   };
 
@@ -97,14 +95,12 @@ in {
 
     modules.shell.zsh.rcFiles = [ "${configDir}/emacs/aliases.zsh" ];
 
-    fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
+    fonts.packages= [ pkgs.emacs-all-the-icons-fonts ];
 
-    system.userActivationScripts = mkIf cfg.doom.enable {
-      installDoomEmacs = ''
+    system.userActivationScripts.installDoomEmacs = ''
         if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-           git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
+           ${pkgs.git}/bin/git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
         fi
       '';
-    };
   };
 }

@@ -40,3 +40,4 @@ _source ${0:a:h}/extra.zshenv
 _source $ZDOTDIR/local.zshenv
 
 export EDITOR=vim
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
