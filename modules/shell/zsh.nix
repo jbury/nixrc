@@ -38,7 +38,7 @@ in {
       enableGlobalCompInit = false;
       interactiveShellInit = ''
         source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-      ''
+      '';
     };
 
     env = {
