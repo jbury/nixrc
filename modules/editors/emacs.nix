@@ -7,7 +7,7 @@ with lib.my;
 let
   cfg = config.modules.editors.emacs;
   configDir = config.dotfiles.configDir;
-  myEmacs = pkgs.emacsGcc;
+  myEmacs = pkgs.emacs-git;
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
@@ -22,7 +22,6 @@ in {
     user.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-      # 29 + native-comp
       ((emacsPackagesFor myEmacs).emacsWithPackages
         (epkgs: [ epkgs.vterm ]))
 

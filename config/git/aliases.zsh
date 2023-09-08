@@ -13,7 +13,6 @@ alias gs='git status --short .'
 alias gits='git status'
 
 function stata(){
-	export DIRENV_DISABLE=1
 	flag="$1"
 	for dir in *; do
 		if [ -d "${dir}" ]; then

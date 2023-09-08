@@ -68,7 +68,6 @@
           (final: prev:{
             devenv = devenv.packages."${system}".devenv;
           })
-          emacs-overlay.overlay
           flexe-flakes.overlays.default
         ];
       };

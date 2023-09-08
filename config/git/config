@@ -1,6 +1,5 @@
 [user]
 	name = Jason Bury
-	email = jason.bury@flexe.com
 [init]
 	defaultBranch = main
 [github]
@@ -23,17 +22,10 @@
 [diff]
 	algorithm = histogram
 [alias]
-	unadd = "reset HEAD"
 	undo-commit = "reset --soft HEAD~1"
 	restore-file = "checkout HEAD --"
-	get = "clone git@gitlab.com:flexe/$1"
+	get = "clone -v git@gitlab.com:flexe/$1"
 	outta-here = "!echo https://www.youtube.com/watch?v=BHkfdZjshqY&t=34s"
-[url "git@github.com:"]
-	insteadOf = gh:
-[url "git@gitlab.com:"]
-	insteadOf = gl:
-[url "git@gitlab.com:flexe"]
-	insteadOf = glf
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/
 [url "git@gitlab.com:"]
