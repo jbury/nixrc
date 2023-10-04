@@ -101,7 +101,7 @@ function docker-runasme {
 				;;
 			h)
 				echo "No."
-				exit 2
+				return 2
 				;;
 			d)
 				DOCKER_ACCESS="-v /var/run/docker.sock:/var/run/docker.sock"
@@ -123,7 +123,7 @@ function docker-runasme {
 
 	if [ -z "${IMAGE}" ]; then
 		echo "FATAL: Missing mandatory arg \`-i <IMAGE_NAME>\`"
-		exit 1
+		return 1
 	fi
 
 	shift "${OPTIND}-${BACKUP}"

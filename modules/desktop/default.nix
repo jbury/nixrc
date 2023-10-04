@@ -41,8 +41,7 @@ in {
       fontDir.enable = true;
       enableGhostscriptFonts = true;
       enableDefaultPackages = true;
-      fonts = with pkgs; [
-        ubuntu_font_family
+      packages = with pkgs; [
         dejavu_fonts
         noto-fonts
         noto-fonts-emoji

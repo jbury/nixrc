@@ -29,6 +29,7 @@ in {
       ripgrep
       tldr
       tree
+      zip
       unzip
       wl-clipboard-x11
       yq-go
