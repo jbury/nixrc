@@ -14,6 +14,7 @@ alias rezsh="source ~/.config/zsh/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias sshconf="vim ~/.ssh/config"
 alias alsa="alsamixer"
+alias dev="nix develop --impure"
 
 # Nix Reloaded
 alias refl="nix flake update /home/jbury/.nixrc"

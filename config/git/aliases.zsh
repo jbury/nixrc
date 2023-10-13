@@ -15,15 +15,11 @@ alias gits='git status'
 function stata(){
 	flag="$1"
 	for dir in *; do
-		if [ -d "${dir}" ]; then
-			cd "${dir}"
-			if [ -d .git ]; then
-				branch="$(git rev-parse --abbrev-ref HEAD)"
-				if [ "${flag}" = "-a" ] || ([ "${branch}" != "main" ] && [ "${branch}" != "master" ]); then
-					echo "${dir} -- ${branch}"
-				fi
+		if [ -d "${dir}/.git" ]; then
+			branch="$(git -C ${dir} rev-parse --abbrev-ref HEAD)"
+			if [ "${flag}" = "-a" ] || ([ "${branch}" != "main" ] && [ "${branch}" != "master" ]); then
+				echo "${dir} -- ${branch}"
 			fi
-			cd ..
 		fi
 	done
 }

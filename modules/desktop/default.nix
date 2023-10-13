@@ -23,6 +23,7 @@ in {
     ];
 
     user.packages = with pkgs; [
+      gparted
       feh
       keepassxc
       xclip

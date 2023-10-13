@@ -19,7 +19,7 @@ in {
 
       # Basic utils
       bat
-      exa
+      eza
       fd
       jq
       envsubst
