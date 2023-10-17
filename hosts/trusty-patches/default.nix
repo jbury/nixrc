@@ -31,7 +31,6 @@
       };
     };
     dev = {
-      cc.enable           = true;
       cloud.enable        = true;
       cloud.google.enable = true;
       go.enable           = true;
