@@ -45,8 +45,10 @@
         inherit system;
       };
 
-      localpackages."${system}" =
-        mapModules ./packages (p: pkgs.callPackage p {});
+      localpackages = import ./packages {
+        pkgs = nixpkgs.legacyPackages.${system};
+        lib = nixpkgs.lib;
+      };
 
       pkgs = import "${nixpkgs}" {
         inherit system;
@@ -64,7 +66,8 @@
             gimp = stable.gimp;
           })
           (final: prev:{
-#            kustomize = localpackages."${system}".kustomize;
+            # Sometimes we just want to refer to "local" packages from the packages dir
+            # kustomize = localpackages.kustomize;
           })
           (final: prev:{
             devenv = devenv.packages."${system}".devenv;
@@ -80,8 +83,6 @@
         };
       });
     in {
-      #lib = lib.my;
-
       nixosModules = {
         dotfiles = import ./.;
       } // mapModulesRec ./modules import;

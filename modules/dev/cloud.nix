@@ -22,7 +22,7 @@ in {
           google-cloud-sdk.components.config-connector
           google-cloud-sdk.components.terraform-tools
         ]))
-        cloud-sql-proxy
+        google-cloud-sql-proxy
       ];
 
       env.USE_GKE_GCLOUD_AUTH_PLUGIN = "True";

@@ -1,7 +1,8 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs, lib }:
 
-with pkgs;
-{
+let
+  callPackage = (lib.callPackageWith pkgs);
+in {
   thermald = (callPackage ./thermald {});
   kustomize = (callPackage ./kustomize.nix {});
 }
