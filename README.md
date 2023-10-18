@@ -3,7 +3,7 @@
 > guarantees that it will work out of the box for anyone but myself. It may also
 > change drastically and without warning.
 
-Shamelessly copied from [jboyens]() who shamelessly copied from [hlissner](https://github.com/hlissner/dotfiles)
+Shamelessly copied from [jboyens](https://git.sr.ht/~jboyens/dotfiles) who shamelessly copied from [hlissner](https://github.com/hlissner/dotfiles)
 
 ------
 
