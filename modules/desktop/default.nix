@@ -43,10 +43,24 @@ in {
       enableGhostscriptFonts = true;
       enableDefaultPackages = true;
       packages = with pkgs; [
+        iosevka-bin
+        (iosevka-bin.override { variant = "etoile"; })
+        (iosevka-bin.override { variant = "aile"; })
+        (iosevka-bin.override { variant = "sgr-iosevka-term"; })
+
+        noto-fonts-emoji
+
         fira
         fira-code
         fira-mono
       ];
+
+      fontconfig.defaultFonts = {
+        serif = ["Iosevka Etoile"];
+        sansSerif = ["Iosevka Aile"];
+        monospace = ["Iosevka Term"];
+        emoji = ["Noto Color Emoji"];
+      };
     };
 
     ## Apps/Services
