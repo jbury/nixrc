@@ -43,26 +43,9 @@ in {
       enableGhostscriptFonts = true;
       enableDefaultPackages = true;
       packages = with pkgs; [
-        dejavu_fonts
-        noto-fonts
-        noto-fonts-emoji
-        noto-fonts-cjk
-        cascadia-code
-        atkinson-hyperlegible
-        inconsolata
-        curie
-        scientifica
         fira
         fira-code
         fira-mono
-        iosevka-bin
-        (iosevka-bin.override { variant = "sgr-iosevka-term"; })
-        _3270font
-        jetbrains-mono
-        hack-font
-        ibm-plex
-        oxygenfonts
-        (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
       ];
     };
 

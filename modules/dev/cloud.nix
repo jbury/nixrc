@@ -45,7 +45,6 @@ in {
           kubent
 
           # Kubernet-curious apps
-          open-policy-agent # Policies and such
           istioctl          # TLS?  I've never met her!
           tilt              # gottagofast
 

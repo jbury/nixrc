@@ -14,7 +14,7 @@ in {
 
   config = mkMerge [
     (mkIf cfg.postgres.enable {
-      user.packages = with pkgs; [ postgresql pgcenter pgadmin ];
+      user.packages = with pkgs; [ postgresql pgcenter ];
     })
 
     (mkIf cfg.mysql.enable {
