@@ -137,7 +137,5 @@ function docker-runasme {
 }
 alias drm="docker-runasme"
 
-alias cleancharts="find . -type d -name 'charts' -exec rm -r {} \;"
-
 alias cleanzsh="find ${HOME}/.config/zsh -type f -name '*.zwc' -delete"
 alias showscreens="feh * -."
