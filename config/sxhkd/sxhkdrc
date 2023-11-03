@@ -1,6 +1,19 @@
 alt + {_,shift +} Tab
         bspc node -f {next,prev}
 
+# Reload sxhkdrc
+ctrl + super + alt + Return
+	pkill -USR1 -x sxhkd
+
+super + space
+	$DOTFILES_BIN/rofi/appmenu
+
+super + Tab
+	$DOTFILES_BIN/rofi/windowmenu
+
+super + Escape
+	$DOTFILES_BIN/rofi/powermenu
+
 # Start a plain ol' terminal
 super + Return
 	alacritty
@@ -22,20 +35,10 @@ super + k; super + e; super + y
   keepassxc
 
 
-
 # Invoke emacs-everywhere at point.
 super + e
     emacsclient --eval "(emacs-everywhere)"
 
-super + Escape
-	pkill -USR1 -x sxhkd
-
-super + alt + Escape
-	bspc quit
-
-
-#
-##
 
 ## Toggle floating/fullscreen
 super + w; super + {_,shift + }f
@@ -48,7 +51,6 @@ super + {_,ctrl +}{h,j,k,l}
 # Swap windows directionally; w/ ctrl = across monitors
 super + shift + {_,ctrl +}{h,j,k,l}
 	$DOTFILES_BIN/bspwm/swap {_,-m }{west,south,north,east}
-
 
 # Close window or force-kill it!
 super + q; super + {_,shift + }q
@@ -68,3 +70,8 @@ super + Print
 super + ctrl + Print
 	scrrec -s ~/recordings/$(date +%F-%T).gif
 
+
+XF86AudioLowerVolume
+	amixer -q set Master 10%- unmute
+XF86AudioRaiseVolume
+	amixer -q set Master 10%+ unmute
