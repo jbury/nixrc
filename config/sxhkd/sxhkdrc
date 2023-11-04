@@ -3,7 +3,7 @@ alt + {_,shift +} Tab
 
 # Reload sxhkdrc
 ctrl + super + alt + Return
-	pkill -USR1 -x sxhkd
+	multi
 
 super + space
 	$DOTFILES_BIN/rofi/appmenu
@@ -54,7 +54,14 @@ super + shift + {_,ctrl +}{h,j,k,l}
 
 # Close window or force-kill it!
 super + q; super + {_,shift + }q
-	bspc node -{c,k}
+	bspc node -{c,k};
+
+
+super + {1-2}
+	bspc desktop -f {1-2};
+
+super + shift + {1-2}
+	bspc node -d {1-2};
 
 #
 ## Media keys
