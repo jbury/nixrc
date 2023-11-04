@@ -29,15 +29,10 @@ super + s; super + p; super + o; super + t
 	spotify
 super + f
 	firefox
-super + i
+super + i; super + n; super + t
 	idea-community
 super + k; super + e; super + y
   keepassxc
-
-
-# Invoke emacs-everywhere at point.
-super + e
-    emacsclient --eval "(emacs-everywhere)"
 
 
 ## Toggle floating/fullscreen
