@@ -58,14 +58,6 @@ function usb-reload {
 	sudo udevadm trigger -t subsystems -c add -s usb -a "idVendor=${1}" -a "idProduct=${2}"
 }
 
-function reui {
-	autorandr -c ${1:-multi}  && reloadTheme;
-}
-
-alias single="reui single"
-alias double="reui double"
-alias multi="reui multi"
-
 function nixgc {
 	nix-collect-garbage -d
 }
