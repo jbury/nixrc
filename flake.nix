@@ -88,8 +88,5 @@
       } // mapModulesRec ./modules import;
 
       nixosConfigurations = mapHosts ./hosts { };
-
-      devShells."${system}".default = import ./shell.nix { inherit pkgs; };
-
     };
 }
