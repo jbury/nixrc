@@ -1,33 +1,42 @@
 {
-  description = "A very basic flake";
+  description = "A very basic flake that pulls in home-manager";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs = { nixpkgs, home-manager, ... }:
     let
+      username = "jbury";
       system = "x86_64-linux";
+
       nonfreepkgs = import "${nixpkgs}" {
         inherit system;
         config.allowUnfree = true;
       };
+
       pkgs = import "${nixpkgs}" {
         inherit system;
-        overlays = [ (final: prev:{
+        overlays = [
+          (final: prev:{
+            # Don't just allowUnfree globally - override the specific unfree packages we actually want.
             slack = nonfreepkgs.slack;
             sublime4 = nonfreepkgs.sublime4;
             spotify = nonfreepkgs.spotify;
-        }) ];
+          })
+        ];
       };
 
     in {
-      homeConfigurations.jbury = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
         modules = [
           ./home.nix
         ];
