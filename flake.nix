@@ -27,8 +27,6 @@
           (final: prev:{
             # Don't just allowUnfree globally - override the specific unfree packages we actually want.
             slack = nonfreepkgs.slack;
-            sublime4 = nonfreepkgs.sublime4;
-            spotify = nonfreepkgs.spotify;
           })
         ];
       };
@@ -36,6 +34,7 @@
     in {
       homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        inherit username;
 
         modules = [
           ./home.nix

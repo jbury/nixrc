@@ -1,39 +1,35 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
-  home.username = "jbury";
-  home.homeDirectory = "/home/jbury";
+  home.username = "${username}";
+  home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    vim
+    # Bare Necessities
     curl
+    vim
     zsh
     git
-    slack
-    ripgrep
-    keepass
+
+    # Stuff you probably want for work
+    kubernetes-helm #Helm 3
     kubectl
     kustomize
-    drawio
     istioctl
     postgresql
     pgcenter
     cloud-sql-proxy
-    tree
-    jq
-    yq-go
-    go_1_19
-    sublime4
-    kubernetes-helm #Helm 3
-    rename
-    shellcheck
-    yamllint
-    ruby_2_7
+    # The only nonfree software in the bunch
+    slack
+
+    # Stuff that is _really_ handy to have on hand
     fd
-    krew
-    spotify
+    jq
+    ripgrep
+    tree
+    yq-go
   ];
 }
