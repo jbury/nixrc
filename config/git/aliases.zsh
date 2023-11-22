@@ -2,10 +2,6 @@
 
 g() { [[ $# = 0 ]] && git status --short . || git $*; }
 
-alias ga='git add'
-alias gc='git commit'
-alias gca='git commit --amend'
-alias gcf='git commit --fixup'
 alias gl='git log --graph --pretty="format:%C(yellow)%h%Creset %C(red)%G?%Creset%C(green)%d%Creset %s %Cblue(%cr) %C(bold blue)<%aN>%Creset"'
 alias gll='git log --pretty="format:%C(yellow)%h%Creset %C(red)%G?%Creset%C(green)%d%Creset %s %Cblue(%cr) %C(bold blue)<%aN>%Creset"'
 alias gpr='git pull --rebase --autostash'
