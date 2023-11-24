@@ -54,11 +54,11 @@ super + q; super + {_,shift + }q
 	bspc node -{c,k};
 
 
-super + {1-2}
-	bspc desktop -f {1-2};
+super + {1-3}
+	bspc desktop -f {1-3};
 
-super + shift + {1-2}
-	bspc node -d {1-2};
+super + shift + {1-3}
+	bspc node -d {1-3};
 
 #
 ## Media keys

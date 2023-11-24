@@ -19,10 +19,6 @@ alias alsa="alsamixer"
 alias refl="nix flake update /home/jbury/.nixrc"
 alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
 
-# Nonsense
-alias vim="e"
-alias vi="\"vim\""
-
 # CDs
 alias ws="cd ~/workspace/"
 alias nixrc="pushd ~/.nixrc"
