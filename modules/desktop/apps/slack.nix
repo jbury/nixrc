@@ -20,5 +20,7 @@ in {
         categories = ["Network"];
       })
     ];
+
+    modules.shell.zsh.aliases.fix-slack = "rm -rf ~/.config/Slack/GPUCache";
   };
 }
