@@ -18,6 +18,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       lightdm
+      betterlockscreen
       dunst
       libnotify
       xorg.xev
