@@ -10,6 +10,8 @@
 	user = jason.bury
 [gitlab "gitlab.com/api/v4"]
 	user = jason.bury
+[fetch]
+	prune = true
 [rebase]
 	autoSquash = true
 	autoStash = true
