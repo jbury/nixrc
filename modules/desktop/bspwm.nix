@@ -13,7 +13,6 @@ in {
     modules.theme.onReload.bspwm = ''
       ${pkgs.bspwm}/bin/bspc wm -r
       pkill -USR1 -x sxhkd
-      source $XDG_CONFIG_HOME/bspwm/bspwmrc
     '';
 
     environment.systemPackages = with pkgs; [

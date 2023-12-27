@@ -1,9 +1,10 @@
 alt + {_,shift +} Tab
 	bspc node -f {next,prev}
 
+
 ## Reload sxhkdrc
 ctrl + super + alt + Return
-	multi
+	reloadTheme
 
 super + space
 	$DOTFILES_BIN/rofi/appmenu
@@ -27,8 +28,8 @@ ctrl + alt + Return
 
 
 ## Applications
-super + s
-	slack & signal & spotify
+super + s;
+	slack & signal-desktop & spotify
 
 super + f
 	firefox
@@ -38,6 +39,7 @@ super + k;
 
 super + e;
 	emacs
+
 
 ## Window things
 # Swap windows directionally; w/ ctrl = across monitors

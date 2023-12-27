@@ -6,9 +6,15 @@ PRIMARY_MONITOR=${PRIMARY_MONITOR:-${MONITORS[0]}}
 STANDARD_MONITOR="DP-1-2"
 WIDE_MONITOR="DP-1-3"
 
-bspc monitor $PRIMARY_MONITOR -d {1,2,3}
-bspc monitor $STANDARD_MONITOR -d {4}
-bspc monitor $WIDE_MONITOR -d {5}
+bspc monitor $PRIMARY_MONITOR -d 1 2 3
+
+if [[ ${MONITORS[@]} =~ ${STANDARD_MONITOR} ]]; then
+	bspc monitor $STANDARD_MONITOR -d std
+fi
+
+if [[ ${MONITORS[@]} =~ ${WIDE_MONITOR} ]]; then
+	bspc monitor $WIDE_MONITOR -d wide
+fi
 
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
@@ -20,12 +26,12 @@ bspc rule -r '*'
 bspc rule -a Spotify desktop=3
 
 ## Standard Monitor
-bspc rule -a Slack desktop=4
-bspc rule -a Signal desktop=4
+bspc rule -a Slack desktop=std
+bspc rule -a Signal desktop=std
 
 ## Wide Monitor
-bspc rule -a 'Emacs:org*' desktop=5
-bspc rule -a KeePassXC desktop=5
+bspc rule -a 'Emacs:org*' desktop=wide
+bspc rule -a KeePassXC desktop=wide
 
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
   source "$file"
