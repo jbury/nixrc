@@ -18,13 +18,13 @@ bspc rule -r '*'
 
 ## Main Monitor
 bspc rule -a Spotify desktop=3
-bspc rule -a 'Emacs:org*' state=floating
 
 ## Standard Monitor
 bspc rule -a Slack desktop=4
 bspc rule -a Signal desktop=4
 
 ## Wide Monitor
+bspc rule -a 'Emacs:org*' desktop=5
 bspc rule -a KeePassXC desktop=5
 
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
