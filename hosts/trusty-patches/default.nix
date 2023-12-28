@@ -46,7 +46,6 @@
       direnv.enable = true;
       flexe.enable  = true;
       git.enable    = true;
-      gnupg.enable  = true;
       utils.enable  = true;
       zsh.enable    = true;
     };
