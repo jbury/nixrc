@@ -32,13 +32,20 @@ in {
       picom.enable = true;
       xserver = {
         enable = true;
+
+        windowManager.bspwm.enable = true;
+
         displayManager = {
           defaultSession = "none+bspwm";
-          lightdm.enable = true;
-          lightdm.greeters.mini.enable = true;
-          lightdm.greeters.mini.user = config.user.name;
+
+          lightdm = {
+            enable = true;
+            greeters.mini = {
+              enable = true;
+              user = config.user.name;
+            };
+          };
         };
-        windowManager.bspwm.enable = true;
       };
     };
 
