@@ -2,7 +2,7 @@
   description = "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
-    stablepkgs.url = "nixpkgs/nixos-22.11-small";
+    stablepkgs.url = "nixpkgs/nixos-23.11-small";
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -17,6 +17,8 @@
 
     devenv.url = "github:cachix/devenv/latest";
 
+    stylix.url = "github:danth/stylix";
+
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
 
@@ -30,7 +32,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, emacs-overlay, flexe-flakes, ... }:
+  outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, stylix, emacs-overlay, flexe-flakes, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
