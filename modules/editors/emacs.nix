@@ -22,8 +22,7 @@ in {
     user.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-      ((emacsPackagesFor myEmacs).emacsWithPackages
-        (epkgs: [ epkgs.vterm ]))
+      ((emacsPackagesFor myEmacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
 
       ## Doom dependencies
       git
@@ -62,11 +61,11 @@ in {
       })
       # :lang nix
       nixfmt
+      nil # This is the lsp server
       # :lang sh
       shellcheck
       # :lang org
       graphviz
-
 
       mpc_cli
 
@@ -92,12 +91,12 @@ in {
 
     modules.shell.zsh.rcFiles = [ "${configDir}/emacs/aliases.zsh" ];
 
-    fonts.packages= [ pkgs.emacs-all-the-icons-fonts ];
+    fonts.packages = [ pkgs.emacs-all-the-icons-fonts ];
 
     system.userActivationScripts.installDoomEmacs = ''
-        if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-           ${pkgs.git}/bin/git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
-        fi
-      '';
+      if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
+         ${pkgs.git}/bin/git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
+      fi
+    '';
   };
 }
