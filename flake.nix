@@ -78,10 +78,10 @@
         ];
       };
 
-      lib = nixpkgs.lib.extend (self: super: {
+      lib = nixpkgs.lib.extend (final: prev: {
         my = import ./lib {
           inherit pkgs inputs;
-          lib = self;
+          lib = final;
         };
       });
     in {
