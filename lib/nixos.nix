@@ -1,10 +1,11 @@
 { inputs, lib, pkgs, ... }:
 
 let
-  sys = "x86_64-linux";
   inherit (builtins) baseNameOf elem import;
   inherit (lib) mkDefault removeSuffix filterAttrs nixosSystem;
   inherit (lib.my) mapModules;
+
+  sys = "x86_64-linux";
 in rec {
   mkHost = path:
     attrs@{ system ? sys, ... }:

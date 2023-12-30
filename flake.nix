@@ -1,5 +1,6 @@
 {
-  description = "A gross nixos config. Approximately none incandescence to be found";
+  description =
+    "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
     stablepkgs.url = "nixpkgs/nixos-23.11-small";
@@ -32,9 +33,10 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, stylix, emacs-overlay, flexe-flakes, ... }:
+  outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, stylix, emacs-overlay
+    , flexe-flakes, ... }:
     let
-      inherit (lib.my) mapModules mapModulesRec mapHosts;
+      inherit (lib.my) mapModulesRec mapHosts;
 
       system = "x86_64-linux";
 
@@ -43,9 +45,7 @@
         config.allowUnfree = true;
       };
 
-      stable = import "${stablepkgs}" {
-        inherit system;
-      };
+      stable = import "${stablepkgs}" { inherit system; };
 
       localpackages = import ./packages {
         pkgs = nixpkgs.legacyPackages.${system};
@@ -55,7 +55,7 @@
       pkgs = import "${nixpkgs}" {
         inherit system;
         overlays = [
-          (final: prev:{
+          (final: prev: {
             # Don't offend Stallman more than we need to
             slack = nonfreepkgs.slack;
             sublime4 = nonfreepkgs.sublime4;
@@ -63,17 +63,16 @@
             zoom-us = nonfreepkgs.zoom-us;
             terraform = nonfreepkgs.terraform;
           })
-          (final: prev:{
+          (final: prev: {
             # Sometimes we value stability
             gimp = stable.gimp;
           })
-          (final: prev:{
-            # Sometimes we just want to refer to "local" packages from the packages dir
-            # kustomize = localpackages.kustomize;
-          })
-          (final: prev:{
-            devenv = devenv.packages."${system}".devenv;
-          })
+          (final: prev:
+            {
+              # Sometimes we just want to refer to "local" packages from the packages dir
+              # kustomize = localpackages.kustomize;
+            })
+          (final: prev: { devenv = devenv.packages."${system}".devenv; })
           flexe-flakes.overlays.default
         ];
       };

@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf mkDefault filterAttrs mapAttrsToList mapAttrs;
-  inherit (builtins) toString attrValues;
+  inherit (builtins) toString;
   inherit (lib.my) mapModulesRec';
 in {
   imports = [
@@ -63,7 +63,15 @@ in {
   };
 
   # It's dangerous to pull yourself up by your bootstraps alone, take these:
-  environment.systemPackages = attrValues {
-    inherit (pkgs) bind cached-nix-shell curl git gnumake unzip vim wget cacert;
-  };
+  environment.systemPackages = with pkgs; [
+    bind
+    cached-nix-shell
+    curl
+    git
+    gnumake
+    unzip
+    vim
+    wget
+    cacert
+  ];
 }
