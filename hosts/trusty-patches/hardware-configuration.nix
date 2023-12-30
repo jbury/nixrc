@@ -1,22 +1,21 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ lib, modulesPath, ... }:
 
-{
+let inherit (lib) mkDefault;
+in {
   imports = [ "${modulesPath}/installer/scan/not-detected.nix" ];
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
   networking.networkmanager.enable = true;
-  #networking.interfaces.enp0s13f0u4u4.useDHCP = lib.mkDefault true;
-  #networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   ## ssh is related to networking, which is close enough to hardware for me.
   programs.ssh.startAgent = true;
   services.openssh.startWhenNeeded = true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault true;
+  nixpkgs.hostPlatform = mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = mkDefault true;
 
   ### Laptop hardware
   # Just the touchpad for now

@@ -1,8 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
-with builtins;
-with lib;
-let
+let inherit (lib) mkDefault;
 in {
   time.timeZone = mkDefault "America/Los_Angeles";
 

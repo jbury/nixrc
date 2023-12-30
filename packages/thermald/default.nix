@@ -1,20 +1,6 @@
-{ autoconf
-, autoconf-archive
-, automake
-, dbus
-, dbus-glib
-, docbook_xml_dtd_412
-, docbook-xsl-nons
-, fetchFromGitHub
-, gtk-doc
-, libevdev
-, libtool
-, libxml2
-, xz
-, pkg-config
-, lib, stdenv
-, upower
-}:
+{ autoconf, autoconf-archive, automake, dbus, dbus-glib, docbook_xml_dtd_412
+, docbook-xsl-nons, fetchFromGitHub, gtk-doc, libevdev, libtool, libxml2, xz
+, pkg-config, stdenv, upower }:
 
 stdenv.mkDerivation rec {
   pname = "thermald";
@@ -40,14 +26,7 @@ stdenv.mkDerivation rec {
     pkg-config
   ];
 
-  buildInputs = [
-    dbus
-    dbus-glib
-    libevdev
-    libxml2
-    xz
-    upower
-  ];
+  buildInputs = [ dbus dbus-glib libevdev libxml2 xz upower ];
 
   configureFlags = [
     "--sysconfdir=${placeholder "out"}/etc"
@@ -64,13 +43,4 @@ stdenv.mkDerivation rec {
   postInstall = ''
     cp ./data/thermal-conf.xml $out/etc/thermald/
   '';
-
-  meta = with lib; {
-    description = "Thermal Daemon";
-    homepage = "https://github.com/intel/thermal_daemon";
-    changelog = "https://github.com/intel/thermal_daemon/blob/master/README.txt";
-    license = licenses.gpl2Plus;
-    platforms = [ "x86_64-linux" "i686-linux" ];
-    maintainers = with maintainers; [ abbradar ];
-  };
 }

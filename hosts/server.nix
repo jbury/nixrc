@@ -3,7 +3,7 @@
 # Only to be used for headless servers, at home or abroad, with more
 # security/automation-minded configuration.
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_15_hardened;

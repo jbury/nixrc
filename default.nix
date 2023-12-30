@@ -1,14 +1,15 @@
 { inputs, config, lib, pkgs, ... }:
 
-with lib;
-with lib.my; {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-    ]
-    # All my personal modules
+let
+  inherit (lib) mkIf mkDefault filterAttrs mapAttrsToList mapAttrs;
+  inherit (builtins) toString attrValues;
+  inherit (lib.my) mapModulesRec';
+in {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ]
+  # All my personal modules
     ++ (mapModulesRec' (toString ./modules) import);
-
 
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
@@ -20,14 +21,10 @@ with lib.my; {
   in {
     package = pkgs.nixVersions.stable;
     extraOptions = "experimental-features = nix-command flakes";
-    nixPath = nixPathInputs ++ [
-      "dotfiles=${config.dotfiles.dir}"
-    ];
+    nixPath = nixPathInputs ++ [ "dotfiles=${config.dotfiles.dir}" ];
     registry = registryInputs // { dotfiles.flake = inputs.self; };
     settings = {
-      substituters = [
-        "https://nix-community.cachix.org"
-      ];
+      substituters = [ "https://nix-community.cachix.org" ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
@@ -35,7 +32,8 @@ with lib.my; {
     };
   };
 
-  system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
+  system.configurationRevision =
+    mkIf (inputs.self ? inputs.rev) inputs.self.rev;
   system.stateVersion = "23.11";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false
@@ -65,16 +63,7 @@ with lib.my; {
   };
 
   # It's dangerous to pull yourself up by your bootstraps alone, take these:
-  environment.systemPackages = with pkgs; [
-    bind
-    cached-nix-shell
-    curl
-    git
-    gnumake
-    unzip
-    vim
-    wget
-
-    cacert
-  ];
+  environment.systemPackages = attrValues {
+    inherit (pkgs) bind cached-nix-shell curl git gnumake unzip vim wget cacert;
+  };
 }

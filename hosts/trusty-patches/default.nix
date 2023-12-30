@@ -1,57 +1,51 @@
-{ pkgs, config, lib, ... }:
-{
-  imports = [
-    ../home.nix
-    ./hardware-configuration.nix
-  ];
+{ ... }: {
+  imports = [ ../home.nix ./hardware-configuration.nix ];
 
   ## Modules
   modules = {
     desktop = {
       bspwm.enable = true;
       apps = {
-        rofi.enable   = true;
-        slack.enable  = true;
+        rofi.enable = true;
+        slack.enable = true;
         signal.enable = true;
-        zoom.enable   = true;
+        zoom.enable = true;
       };
       browsers = {
-        default         = "firefox";
+        default = "firefox";
         chromium.enable = true;
-        firefox.enable  = true;
+        firefox.enable = true;
       };
       media = {
         graphics.enable = true;
-        mpv.enable      = true;
-        spotify.enable  = true;
+        mpv.enable = true;
+        spotify.enable = true;
       };
       term = {
-        default          = "alacritty";
+        default = "alacritty";
         alacritty.enable = true;
       };
     };
     dev = {
-      cloud.enable        = true;
+      cloud.enable = true;
       cloud.google.enable = true;
-      go.enable           = true;
-      java.enable         = true;
-      shell.enable        = true;
-      db.postgres.enable  = true;
+      go.enable = true;
+      java.enable = true;
+      shell.enable = true;
+      db.postgres.enable = true;
     };
     editors = {
       emacs.enable = true;
-      vim.enable   = true;
+      vim.enable = true;
     };
     shell = {
       direnv.enable = true;
-      flexe.enable  = true;
-      git.enable    = true;
-      utils.enable  = true;
-      zsh.enable    = true;
+      flexe.enable = true;
+      git.enable = true;
+      utils.enable = true;
+      zsh.enable = true;
     };
-    services = {
-      docker.enable = true;
-    };
+    services = { docker.enable = true; };
     theme.active = "alucard";
   };
 }

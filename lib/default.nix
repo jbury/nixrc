@@ -2,17 +2,16 @@
 
 let
   inherit (lib) makeExtensible attrValues foldr;
-  inherit (modules) mapModules;
 
   modules = import ./modules.nix {
     inherit lib;
-    self.attrs = import ./attrs.nix { inherit lib; self = {}; };
+    final.attrs = import ./attrs.nix {
+      inherit lib;
+      final = { };
+    };
   };
 
-  mylib = makeExtensible (self:
-    with self; mapModules ./.
-      (file: import file { inherit self lib pkgs inputs; }));
-in
-mylib.extend
-  (self: super:
-    foldr (a: b: a // b) {} (attrValues super))
+  mylib = makeExtensible (final:
+    modules.mapModules ./.
+    (file: import file { inherit final lib pkgs inputs; }));
+in mylib.extend (final: prev: foldr (a: b: a // b) { } (attrValues prev))
