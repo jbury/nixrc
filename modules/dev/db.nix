@@ -2,10 +2,12 @@
 #
 # Packages for various db memes
 
-{ config, options, lib, pkgs, ... }:
-with lib;
-with lib.my;
-let cfg = config.modules.dev.db;
+{ config, lib, pkgs, ... }:
+let
+  inherit (lib) mkMerge mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.dev.db;
 in {
   options.modules.dev.db = {
     postgres.enable = mkBoolOpt false;
@@ -17,8 +19,6 @@ in {
       user.packages = with pkgs; [ postgresql pgcenter ];
     })
 
-    (mkIf cfg.mysql.enable {
-      user.packages = with pkgs; [ mysql ];
-    })
+    (mkIf cfg.mysql.enable { user.packages = with pkgs; [ mysql ]; })
   ];
 }

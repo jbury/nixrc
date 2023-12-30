@@ -1,13 +1,12 @@
-{ config, options, pkgs, lib, ... }:
-with lib;
-let cfg = config.modules.shell.utils;
+{ config, pkgs, lib, ... }:
+
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.shell.utils;
 in {
-  options.modules.shell.utils = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
-  };
+  options.modules.shell.utils = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [

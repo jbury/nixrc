@@ -1,15 +1,17 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop.term;
+let
+  inherit (lib) mkDefault;
+  inherit (lib.types) str;
+  inherit (lib.my) mkOpt;
+
+  cfg = config.modules.desktop.term;
 in {
-  options.modules.desktop.term = {
-    default = mkOpt types.str "xterm";
-  };
+  options.modules.desktop.term = { default = mkOpt str "xterm"; };
 
   config = {
-    services.xserver.desktopManager.xterm.enable = mkDefault (cfg.default == "xterm");
+    services.xserver.desktopManager.xterm.enable =
+      mkDefault (cfg.default == "xterm");
 
     env.TERMINAL = cfg.default;
   };

@@ -1,18 +1,12 @@
-# modules/browser/chromium.nix
+{ config, lib, pkgs, ... }:
 
-{ options, config, lib, pkgs, ... }:
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop.browsers.chromium;
+  cfg = config.modules.desktop.browsers.chromium;
 in {
-  options.modules.desktop.browsers.chromium = with types; {
-    enable = mkBoolOpt false;
-  };
+  options.modules.desktop.browsers.chromium = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      chromium
-    ];
-  };
+  config = mkIf cfg.enable { user.packages = [ pkgs.chromium ]; };
 }

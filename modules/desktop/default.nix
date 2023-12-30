@@ -1,23 +1,23 @@
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop;
+let
+  inherit (builtins) isAttrs;
+  inherit (lib) mkIf value;
+  inherit (lib.my) anyAttrs countAttrs;
+
+  cfg = config.modules.desktop;
 in {
   config = mkIf (config.services.xserver.enable) {
     assertions = [
       {
         assertion = (countAttrs (n: v: n == "enable" && value) cfg) < 2;
-        message = "Can't have more than one desktop environment enabled at a time";
+        message =
+          "Can't have more than one desktop environment enabled at a time";
       }
       {
-        assertion =
-          let srv = config.services;
-          in srv.xserver.enable ||
-             !(anyAttrs
-               (n: v: isAttrs v &&
-                      anyAttrs (n: v: isAttrs v && v.enable))
-               cfg);
+        assertion = let srv = config.services;
+        in srv.xserver.enable || !(anyAttrs
+          (n: v: isAttrs v && anyAttrs (n: v: isAttrs v && v.enable)) cfg);
         message = "Can't enable a desktop app without a desktop environment";
       }
     ];
@@ -27,12 +27,12 @@ in {
       feh
       keepassxc
       xclip
-      qgnomeplatform                   # QPlatformTheme for a better Qt application inclusion in GNOME
+      qgnomeplatform # QPlatformTheme for a better Qt application inclusion in GNOME
       libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
       xdg-utils
-      arandr                           # Beautiful xrandr GUI layout tool for generating monitor layout configs
+      arandr # Beautiful xrandr GUI layout tool for generating monitor layout configs
       scrot
-      optipng                          # I take a _lot_ of screenshots, so making them small is nice
+      optipng # I take a _lot_ of screenshots, so making them small is nice
     ];
 
     modules.shell.zsh.aliases.y = "xclip -selection clipboard -in";
@@ -56,10 +56,10 @@ in {
       ];
 
       fontconfig.defaultFonts = {
-        serif = ["Iosevka Etoile"];
-        sansSerif = ["Iosevka Aile"];
-        monospace = ["Iosevka Term"];
-        emoji = ["Noto Color Emoji"];
+        serif = [ "Iosevka Etoile" ];
+        sansSerif = [ "Iosevka Aile" ];
+        monospace = [ "Iosevka Term" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
 
@@ -68,8 +68,6 @@ in {
       backend = "glx";
       vSync = true;
       opacityRules = [
-        # "100:class_g = 'Firefox'"
-        # "100:class_g = 'Vivaldi-stable'"
         "100:class_g = 'VirtualBox Machine'"
         # Art/image programs where we need fidelity
         "100:class_g = 'Gimp'"

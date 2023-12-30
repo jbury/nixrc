@@ -1,18 +1,19 @@
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop.apps.rofi;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+  inherit (pkgs) writeScriptBin rofi stdenv;
+
+  cfg = config.modules.desktop.apps.rofi;
 in {
-  options.modules.desktop.apps.rofi = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.desktop.apps.rofi = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    user.packages = [
       (writeScriptBin "rofi" ''
         #!${stdenv.shell}
-        exec ${pkgs.rofi}/bin/rofi "$@"
+        exec ${rofi}/bin/rofi "$@"
       '')
     ];
   };

@@ -1,6 +1,4 @@
-{ config, lib, ... }:
-
-{
+{ config, lib, ... }: {
   ## System security tweaks
   # Prevent replacing the running kernel w/o reboot
   security.protectKernelImage = true;
@@ -62,8 +60,17 @@
   security.acme.acceptTerms = true;
 
   security.sudo.extraRules = [
-    { groups = [ "wheel" ]; commands = [ "ALL" ]; }
+    {
+      groups = [ "wheel" ];
+      commands = [ "ALL" ];
+    }
 
-    { groups = [ "wheel" ]; commands = [ { command = "/run/current-system/sw/bin/shutdown"; options = [ "NOPASSWD" ]; } ]; }
+    {
+      groups = [ "wheel" ];
+      commands = [{
+        command = "/run/current-system/sw/bin/shutdown";
+        options = [ "NOPASSWD" ];
+      }];
+    }
   ];
 }

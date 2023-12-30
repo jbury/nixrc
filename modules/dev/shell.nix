@@ -2,28 +2,18 @@
 #
 # How else would I do my job as a Senior YAML Engineer?
 
-{ config, options, lib, pkgs, my, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let devCfg = config.modules.dev;
-    cfg = devCfg.shell;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.dev.shell;
 in {
-  options.modules.dev.shell = {
-    enable = mkBoolOpt false;
-    xdg.enable = mkBoolOpt devCfg.xdg.enable;
+  options.modules.dev.shell = { enable = mkBoolOpt false; };
+
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ shellcheck checkbashisms ];
   };
 
-  config = mkMerge [
-    (mkIf cfg.enable {
-      user.packages = with pkgs; [
-        shellcheck
-        checkbashisms
-      ];
-    })
-
-    (mkIf cfg.xdg.enable {
-      # TODO
-    })
-  ];
 }

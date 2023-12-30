@@ -1,18 +1,15 @@
-{ config, options, lib, pkgs, ... }:
+{ config, lib, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.shell.git;
-    configDir = config.dotfiles.configDir;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.shell.git;
+  configDir = config.dotfiles.configDir;
 in {
-  options.modules.shell.git = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.shell.git = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-    ];
-
     home.configFile = {
       "git/config".source = "${configDir}/git/config";
       "git/ignore".source = "${configDir}/git/ignore";

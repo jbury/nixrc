@@ -1,12 +1,12 @@
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.shell.direnv;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.shell.direnv;
 in {
-  options.modules.shell.direnv = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.shell.direnv = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = [ pkgs.direnv ];

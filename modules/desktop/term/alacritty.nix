@@ -1,14 +1,12 @@
-# modules/desktop/term/alacritty.nix
+{ config, lib, pkgs, ... }:
 
-{ options, config, lib, pkgs, ... }:
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop.term.alacritty;
+  cfg = config.modules.desktop.term.alacritty;
 in {
-  options.modules.desktop.term.alacritty = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.desktop.term.alacritty = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     # xst-256color isn't supported over ssh, so revert to a known one
@@ -21,8 +19,6 @@ in {
       recursive = true;
     };
 
-    user.packages = with pkgs; [
-      alacritty
-    ];
+    user.packages = [ pkgs.alacritty ];
   };
 }

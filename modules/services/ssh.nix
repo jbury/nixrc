@@ -1,12 +1,12 @@
-{ options, config, lib, ... }:
+{ config, lib, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.services.ssh;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.services.ssh;
 in {
-  options.modules.services.ssh = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.services.ssh = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     services.openssh = {
@@ -18,8 +18,6 @@ in {
     };
 
     user.openssh.authorizedKeys.keys =
-      if config.user.name == "jbury"
-      then [ "TODO" ]
-      else [];
+      if config.user.name == "jbury" then [ "TODO" ] else [ ];
   };
 }

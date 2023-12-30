@@ -2,15 +2,15 @@
 # intertwined with others, and are solely responsible for aesthetics. Disabling
 # a theme module should never leave a system non-functional.
 
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  cfg = config.modules.theme;
-
   inherit (lib)
     mkOption mkIf mkMerge optionalString concatStringsSep mapAttrsToList;
   inherit (lib.types) attrsOf lines str int either path nullOr;
   inherit (lib.my) mkOpt toFilteredImage;
+
+  cfg = config.modules.theme;
 in {
   options.modules.theme = {
     active = mkOption {

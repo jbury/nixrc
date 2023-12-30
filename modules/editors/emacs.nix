@@ -2,18 +2,18 @@
 
 { config, lib, pkgs, inputs, ... }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.types) str;
+  inherit (lib.my) mkBoolOpt mkOpt;
+
   cfg = config.modules.editors.emacs;
   configDir = config.dotfiles.configDir;
   myEmacs = pkgs.emacs-git;
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
-    doom = {
-      repoUrl = mkOpt types.str "https://github.com/doomemacs/doomemacs";
-    };
+    doom = { repoUrl = mkOpt str "https://github.com/doomemacs/doomemacs"; };
   };
 
   config = mkIf cfg.enable {

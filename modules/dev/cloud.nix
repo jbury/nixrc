@@ -1,11 +1,16 @@
 # modules/dev/cloud.nix
 #
 # Packages for various cloud services
+#
+# Also Kubernetes, because what else even _is_ a cloud?
 
-{ config, options, lib, pkgs, ... }:
-with lib;
-with lib.my;
-let cfg = config.modules.dev.cloud;
+{ config, lib, pkgs, ... }:
+
+let
+  inherit (lib) mkMerge mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.dev.cloud;
 in {
   options.modules.dev.cloud = {
     enable = mkBoolOpt false;
@@ -15,9 +20,9 @@ in {
   };
 
   config = mkMerge [
-    (mkIf cfg.google.enable {
+    (mkIf (cfg.enable && cfg.google.enable) {
       user.packages = with pkgs; [
-        (google-cloud-sdk.withExtraComponents([
+        (google-cloud-sdk.withExtraComponents ([
           google-cloud-sdk.components.gke-gcloud-auth-plugin
           google-cloud-sdk.components.config-connector
           google-cloud-sdk.components.terraform-tools
@@ -28,25 +33,32 @@ in {
       env.USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     })
 
-    (mkIf cfg.amazon.enable { user.packages = with pkgs; [ awscli ]; })
+    (mkIf (cfg.enable && cfg.amazon.enable) {
+      user.packages = [ pkgs.awscli ];
+    })
 
-    (mkIf cfg.microsoft.enable { user.packages = with pkgs; [ azure-cli ]; })
+    (mkIf (cfg.enable && cfg.microsoft.enable) {
+      user.packages = [ pkgs.azure-cli ];
+    })
 
     (mkIf cfg.enable {
       user = {
         packages = with pkgs; [
+          # Certifiable
+          certbot
+
           # Kubernetes
-          kubectl         # Talk at my kubernet pls
-          k9s             # Like kubectl, but _fancy_
-          krew            # Plugin manager
+          kubectl # Talk at my kubernet pls
+          k9s # Like kubectl, but _fancy_
+          krew # Plugin manager
           kubernetes-helm # Bane of my existence
-          kind            # Local kluster
-          kustomize    # We don't mess with the kubectl-bundled version
+          kind # Local kluster
+          kustomize # We don't mess with the kubectl-bundled version
           kubent
 
           # Kubernet-curious apps
-          istioctl          # TLS?  I've never met her!
-          tilt              # gottagofast
+          istioctl # TLS?  I've never met her!
+          tilt # gottagofast
 
           terraform
 
@@ -59,7 +71,8 @@ in {
       modules.shell.zsh.aliases.k = "kubectl";
       modules.shell.zsh.aliases.kccc = "kubectl config current-context";
 
-      modules.shell.zsh.aliases.tfdiff = "terraform show --json | jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'";
+      modules.shell.zsh.aliases.tfdiff =
+        "terraform show --json | jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'";
 
       env.PATH = [ "$HOME/.krew/bin" ];
     })

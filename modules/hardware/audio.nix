@@ -1,8 +1,10 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.hardware.audio;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.hardware.audio;
 in {
   options.modules.hardware.audio = { enable = mkBoolOpt false; };
 
@@ -18,13 +20,9 @@ in {
 
     security.rtkit.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      easyeffects
-    ];
+    environment.systemPackages = [ pkgs.easyeffects ];
 
-    user.packages = with pkgs; [
-      easyeffects
-    ];
+    user.packages = [ pkgs.easyeffects ];
 
     user.extraGroups = [ "audio" ];
   };

@@ -1,23 +1,25 @@
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop.apps.signal;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+  inherit (pkgs) makeDesktopItem signal-desktop;
+
+  cfg = config.modules.desktop.apps.signal;
 in {
-  options.modules.desktop.apps.signal = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.desktop.apps.signal = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    user.packages = [
       signal-desktop
       (makeDesktopItem {
         name = "signal-desktop";
         desktopName = "Signal Desktop";
         genericName = "Open Signal Desktop";
         icon = "signal-desktop";
-        exec = "${signal-desktop}/bin/signal-desktop --ozone-platform-hint=auto";
-        categories = ["Network"];
+        exec =
+          "${signal-desktop}/bin/signal-desktop --ozone-platform-hint=auto";
+        categories = [ "Network" ];
       })
     ];
   };

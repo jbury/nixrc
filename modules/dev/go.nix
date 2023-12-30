@@ -2,15 +2,15 @@
 #
 # Go?  More like GO AWAY lolol gotem
 
-{ config, options, lib, pkgs, my, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.dev.go;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.dev.go;
 in {
-  options.modules.dev.go = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.dev.go = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [

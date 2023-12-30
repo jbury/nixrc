@@ -1,20 +1,15 @@
 # I use spotify for my music needs. Gone are the days where I'd manage 200gb+ of
 # local music; most of which I haven't heard or don't even like.
 
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.desktop.media.spotify;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.desktop.media.spotify;
 in {
-  options.modules.desktop.media.spotify = {
-    enable = mkBoolOpt false;
-    tui.enable = mkBoolOpt false;  # TODO
-  };
+  options.modules.desktop.media.spotify = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      spotify
-    ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ spotify ]; };
 }

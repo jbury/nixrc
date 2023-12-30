@@ -1,19 +1,15 @@
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.dev;
+let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.dev;
 in {
   options.modules.dev = {
     enable = mkBoolOpt true;
     xdg.enable = mkBoolOpt true;
   };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      certbot
-      devenv
-      inotify-tools
-    ];
-  };
+  config = mkIf cfg.enable { user.packages = [ pkgs.devenv ]; };
 }

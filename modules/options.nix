@@ -1,20 +1,22 @@
-{ config, options, lib, home-manager, ... }:
+{ config, options, lib, ... }:
 
-with lib;
-with lib.my; {
-  options = with types; {
+let
+  inherit (lib)
+    elem findFirst pathExists removePrefix mkOption mapAttrs mapAttrsToList
+    isList concatMapStringsSep concatStringsSep mkAliasDefinitions;
+  inherit (lib.types) path attrs attrsOf either str listOf oneOf;
+  inherit (lib.my) mkOpt mkOpt';
+in {
+  options = {
     user = mkOpt attrs { };
 
     dotfiles = {
-      dir = mkOpt path
-        (removePrefix "/mnt"
-          (findFirst pathExists (toString ../.) [
-            "/etc/nixos"
-          ]));
-      binDir     = mkOpt path "${config.dotfiles.dir}/bin";
-      configDir  = mkOpt path "${config.dotfiles.dir}/config";
+      dir = mkOpt path (removePrefix "/mnt"
+        (findFirst pathExists (toString ../.) [ "/etc/nixos" ]));
+      binDir = mkOpt path "${config.dotfiles.dir}/bin";
+      configDir = mkOpt path "${config.dotfiles.dir}/config";
       modulesDir = mkOpt path "${config.dotfiles.dir}/modules";
-      themesDir  = mkOpt path "${config.dotfiles.modulesDir}/themes";
+      themesDir = mkOpt path "${config.dotfiles.modulesDir}/themes";
     };
 
     home = {
@@ -36,9 +38,9 @@ with lib.my; {
   };
 
   config = {
-    user =
-      let user = builtins.getEnv "USER";
-          name = if elem user [ "" "root" ] then "jbury" else user;
+    user = let
+      user = builtins.getEnv "USER";
+      name = if elem user [ "" "root" ] then "jbury" else user;
     in {
       inherit name;
       description = "The primary user account";
@@ -78,7 +80,8 @@ with lib.my; {
 
     users.users.${config.user.name} = mkAliasDefinitions options.user;
 
-    nix.settings = let users = [ "root" config.user.name ]; in {
+    nix.settings = let users = [ "root" config.user.name ];
+    in {
       trusted-users = users;
       allowed-users = users;
     };
