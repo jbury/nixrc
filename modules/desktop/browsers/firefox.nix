@@ -19,7 +19,6 @@ in {
       Extra lines to add to <filename>user.js</filename>
     '';
 
-    userChrome = mkOpt' lines "" "CSS Styles for Firefox's interface";
     userContent = mkOpt' lines "" ''
       Global CSS Styles for websites
       #webrtcIndicator {
@@ -230,8 +229,9 @@ in {
           '';
         };
 
-      "${cfgPath}/${cfg.profileName}.default/chrome/userChrome.css" =
-        mkIf (cfg.userChrome != "") { text = cfg.userChrome; };
+        "${cfgPath}/${cfg.profileName}.default/chrome/userChrome.css" = {
+          text = concatMapStringsSep "\n" readFile [ ./userChrome.css ];
+        };
 
       "${cfgPath}/${cfg.profileName}.default/chrome/userContent.css" =
         mkIf (cfg.userContent != "") { text = cfg.userContent; };

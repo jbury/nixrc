@@ -85,6 +85,27 @@ in {
       };
     };
 
+    writeScriptBin "reui" ''
+      #!${stdenv.shell}
+      monitors="$(xrandr --listmonitors | head -n1 | cut -d' ' -f2)"
+      echo "Reloading current theme: ${cfg.active}"
+      echo "Detected ''${monitors} monitors"
+      case $monitors in
+        1)
+          autorandr -c "single"
+          ;;
+        2)
+          autorandr -c "double"
+          ;;
+        3)
+          autorandr -c "multi"
+          ;;
+        *)
+          autorandr -c "single"
+          ;;
+      esac
+    '';
+
     # link recursively so other modules can link files in their folders
     home.configFile = {
       "sxhkd".source = "${configDir}/sxhkd";

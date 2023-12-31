@@ -4,7 +4,7 @@ alt + {_,shift +} Tab
 
 ## Reload sxhkdrc
 ctrl + super + alt + Return
-	reloadTheme
+	reui
 
 super + space
 	$DOTFILES_BIN/rofi/appmenu
