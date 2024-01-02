@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkIf mkMerge mapAttrsToList concatStrings;
+  inherit (lib)
+    mkIf mkMerge mapAttrsToList concatStrings concatMapStringsSep readFile;
   inherit (lib.types) str bool int lines attrsOf oneOf;
   inherit (lib.my) mkBoolOpt mkOpt mkOpt';
   inherit (pkgs) makeDesktopItem firefox firefox-bin;
@@ -229,9 +230,9 @@ in {
           '';
         };
 
-        "${cfgPath}/${cfg.profileName}.default/chrome/userChrome.css" = {
-          text = concatMapStringsSep "\n" readFile [ ./userChrome.css ];
-        };
+      "${cfgPath}/${cfg.profileName}.default/chrome/userChrome.css" = {
+        text = concatMapStringsSep "\n" readFile [ ./userChrome.css ];
+      };
 
       "${cfgPath}/${cfg.profileName}.default/chrome/userContent.css" =
         mkIf (cfg.userContent != "") { text = cfg.userContent; };

@@ -46,6 +46,6 @@
       zsh.enable = true;
     };
     services = { docker.enable = true; };
-    theme.active = "alucard";
+    stylix.enable = true;
   };
 }

@@ -3,6 +3,7 @@
 let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
+  inherit (pkgs) writeScriptBin stdenv;
 
   cfg = config.modules.desktop.bspwm;
   configDir = config.dotfiles.configDir;
@@ -10,11 +11,6 @@ in {
   options.modules.desktop.bspwm = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    modules.theme.onReload.bspwm = ''
-      ${pkgs.bspwm}/bin/bspc wm -r
-      pkill -USR1 -x sxhkd
-    '';
-
     environment.systemPackages = with pkgs; [
       lightdm
       betterlockscreen
@@ -85,26 +81,30 @@ in {
       };
     };
 
-    writeScriptBin "reui" ''
-      #!${stdenv.shell}
-      monitors="$(xrandr --listmonitors | head -n1 | cut -d' ' -f2)"
-      echo "Reloading current theme: ${cfg.active}"
-      echo "Detected ''${monitors} monitors"
-      case $monitors in
-        1)
-          autorandr -c "single"
-          ;;
-        2)
-          autorandr -c "double"
-          ;;
-        3)
-          autorandr -c "multi"
-          ;;
-        *)
-          autorandr -c "single"
-          ;;
-      esac
-    '';
+    user.packages = [
+      (writeScriptBin "reui" ''
+        #!${stdenv.shell}
+        monitors="$(xrandr --listmonitors | head -n1 | cut -d' ' -f2)"
+        echo "Detected ''${monitors} monitors"
+        case $monitors in
+          1)
+            autorandr -c "single"
+            ;;
+          2)
+            autorandr -c "double"
+            ;;
+          3)
+            autorandr -c "multi"
+            ;;
+          *)
+            autorandr -c "single"
+            ;;
+        esac
+
+        ${pkgs.bspwm}/bin/bspc wm -r
+        pkill -USR1 -x sxhkd
+      '')
+    ];
 
     # link recursively so other modules can link files in their folders
     home.configFile = {

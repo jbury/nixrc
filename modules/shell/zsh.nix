@@ -22,7 +22,8 @@ in {
       by $XDG_CONFIG_HOME/zsh/.zshenv
     '';
 
-    rcFiles = mkOpt (listOf (either str path)) [ ];
+    rcFiles =
+      mkOpt (listOf (either str path)) [ "${configDir}/zsh/prompt.zsh" ];
     envFiles = mkOpt (listOf (either str path)) [ ];
   };
 
