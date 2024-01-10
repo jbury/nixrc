@@ -62,21 +62,21 @@ in {
             serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
           };
 
-          work-screenshot = {
-            script = "${config.dotfiles.binDir}/work_screenshot";
-            serviceConfig.Type = "oneshot";
-            path = [ pkgs.cached-nix-shell ];
-          };
+          #work-screenshot = {
+          #  script = "${config.dotfiles.binDir}/work_screenshot";
+          #  serviceConfig.Type = "oneshot";
+          #  path = [ pkgs.cached-nix-shell ];
+          #};
         }; # end of services
 
         timers = {
-          work-screenshot = {
-            wantedBy = [ "timers.target" ];
-            timerConfig = {
-              OnCalendar = "*:00/10:00";
-              Unit = "work-screenshot.service";
-            };
-          };
+          #work-screenshot = {
+          #  wantedBy = [ "timers.target" ];
+          #  timerConfig = {
+          #    OnCalendar = "*:00/10:00";
+          #    Unit = "work-screenshot.service";
+          #  };
+          #};
         }; # end of timers
       };
     };
