@@ -1,0 +1,22 @@
+live_config_reload = true
+working_directory = "None"
+
+[window]
+dimensions = { columns = 0, lines = 0 }
+decorations = "None"
+startup_mode = "Windowed"
+dynamic_title = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = false
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = false
