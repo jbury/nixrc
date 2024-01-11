@@ -61,7 +61,6 @@
             sublime4 = nonfreepkgs.sublime4;
             spotify = nonfreepkgs.spotify;
             zoom-us = nonfreepkgs.zoom-us;
-            terraform = nonfreepkgs.terraform;
           })
           (final: prev: {
             # Sometimes we value stability
