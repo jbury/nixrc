@@ -1,6 +1,6 @@
 export FLEXE_TOOLING_DIR="${HOME}/.flexe-tooling"
 export FLEXE_SHELL_CONFIG="${FLEXE_TOOLING_DIR}/shell-configs"
-export FLEXE_TOOLING_VERBOSE="true"
+#export FLEXE_TOOLING_VERBOSE="true"
 
 source ${FLEXE_SHELL_CONFIG}/autoupdate-helpers.sh
 autoupdate-flexe-tooling

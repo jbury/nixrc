@@ -37,6 +37,8 @@ alias jc="journalctl -e"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 
+alias jqlogs="jq -R '. as $line | try (fromjson) catch $line'"
+
 alias shutdown="sudo shutdown now"
 
 alias keys="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", $5, $8 }'"
