@@ -31,6 +31,9 @@ ctrl + alt + Return
 super + s;
 	slack & signal-desktop & spotify
 
+super + d;
+	discord
+
 super + f
 	firefox
 

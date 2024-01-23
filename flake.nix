@@ -61,6 +61,7 @@
             sublime4 = nonfreepkgs.sublime4;
             spotify = nonfreepkgs.spotify;
             zoom-us = nonfreepkgs.zoom-us;
+            discord = nonfreepkgs.discord;
           })
           (final: prev: {
             # Sometimes we value stability

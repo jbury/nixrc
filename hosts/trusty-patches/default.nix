@@ -6,6 +6,7 @@
     desktop = {
       bspwm.enable = true;
       apps = {
+        discord.enable = true;
         rofi.enable = true;
         slack.enable = true;
         signal.enable = true;
