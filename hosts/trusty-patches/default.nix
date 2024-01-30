@@ -42,7 +42,10 @@
     shell = {
       direnv.enable = true;
       flexe.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        gitlab.enable = true;
+      };
       utils.enable = true;
       zsh.enable = true;
     };

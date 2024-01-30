@@ -136,4 +136,15 @@ alias drm="docker-runasme"
 alias cleanzsh="find ${HOME}/.config/zsh -type f -name '*.zwc' -delete"
 alias showscreens="feh * -."
 
-alias pow="cat /sys/class/power_supply/BAT0/capacity"
+pow () {
+	local BAT_CAP
+	BAT_CAP=$(tr -d '\n' < /sys/class/power_supply/BAT0/capacity)
+	local BAT_STATUS
+	BAT_STATUS=$(tr -d '\n' < /sys/class/power_supply/BAT0/status)
+	if [ "$BAT_STATUS" = "Discharging" ]
+	then
+		echo "${BAT_CAP}-"
+	else
+		echo "${BAT_CAP}+"
+	fi
+}
