@@ -135,3 +135,5 @@ alias drm="docker-runasme"
 
 alias cleanzsh="find ${HOME}/.config/zsh -type f -name '*.zwc' -delete"
 alias showscreens="feh * -."
+
+alias pow="cat /sys/class/power_supply/BAT0/capacity"
