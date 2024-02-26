@@ -136,6 +136,10 @@ alias drm="docker-runasme"
 alias cleanzsh="find ${HOME}/.config/zsh -type f -name '*.zwc' -delete"
 alias showscreens="feh * -."
 
+alias xargs='xargs ' # This is the dumbest most batshit insane thing I've ever seen
+# Since aliases are recursive, making xargs an alias causes all other aliased commands to automatically expand
+# which means xargs now respects my aliases.
+
 pow () {
 	local BAT_CAP
 	BAT_CAP=$(tr -d '\n' < /sys/class/power_supply/BAT0/capacity)
