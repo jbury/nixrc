@@ -44,9 +44,9 @@ in {
       enableDefaultPackages = true;
       packages = with pkgs; [
         iosevka-bin
-        (iosevka-bin.override { variant = "etoile"; })
-        (iosevka-bin.override { variant = "aile"; })
-        (iosevka-bin.override { variant = "sgr-iosevka-term"; })
+        (iosevka-bin.override { variant = "Etoile"; })
+        (iosevka-bin.override { variant = "Aile"; })
+        (iosevka-bin.override { variant = "SGr-IosevkaFixed"; })
 
         noto-fonts-emoji
 

@@ -73,7 +73,7 @@ in {
       terraform-ls
 
       # :lang go
-      gocode
+      gopls
       gomodifytags
       gotests
       gore
