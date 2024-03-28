@@ -5,10 +5,10 @@ let
   inherit (lib.my) mkBoolOpt;
   inherit (pkgs) writeScriptBin stdenv;
 
-  cfg = config.modules.desktop.bspwm;
+  cfg = config.modules.desktop.core.bspwm;
   configDir = config.dotfiles.configDir;
 in {
-  options.modules.desktop.bspwm = { enable = mkBoolOpt false; };
+  options.modules.desktop.core.bspwm = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [

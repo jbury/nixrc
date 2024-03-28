@@ -7,9 +7,9 @@ let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
 
-  cfg = config.modules.desktop.media.spotify;
+  cfg = config.modules.desktop.apps.spotify;
 in {
-  options.modules.desktop.media.spotify = { enable = mkBoolOpt false; };
+  options.modules.desktop.apps.spotify = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable { user.packages = with pkgs; [ spotify ]; };
 }

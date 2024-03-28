@@ -4,23 +4,23 @@
   ## Modules
   modules = {
     desktop = {
-      bspwm.enable = true;
+      core = {
+        rofi.enable = true;
+        bspwm.enable = true;
+      };
       apps = {
         discord.enable = true;
-        rofi.enable = true;
         slack.enable = true;
         signal.enable = true;
         zoom.enable = true;
+        graphics.enable = true;
+        mpv.enable = true;
+        spotify.enable = true;
       };
       browsers = {
         default = "firefox";
         chromium.enable = true;
         firefox.enable = true;
-      };
-      media = {
-        graphics.enable = true;
-        mpv.enable = true;
-        spotify.enable = true;
       };
       term = {
         default = "alacritty";

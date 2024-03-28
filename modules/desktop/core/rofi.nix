@@ -5,9 +5,9 @@ let
   inherit (lib.my) mkBoolOpt;
   inherit (pkgs) writeScriptBin rofi stdenv;
 
-  cfg = config.modules.desktop.apps.rofi;
+  cfg = config.modules.desktop.core.rofi;
 in {
-  options.modules.desktop.apps.rofi = { enable = mkBoolOpt false; };
+  options.modules.desktop.core.rofi = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = [

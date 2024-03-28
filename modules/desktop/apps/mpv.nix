@@ -4,9 +4,9 @@ let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
 
-  cfg = config.modules.desktop.media.mpv;
+  cfg = config.modules.desktop.apps.mpv;
 in {
-  options.modules.desktop.media.mpv = { enable = mkBoolOpt false; };
+  options.modules.desktop.apps.mpv = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
