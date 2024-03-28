@@ -47,10 +47,6 @@ in {
       texlive.combined.scheme-medium
       # :lang beancount
       beancount
-      # fava
-      # :lang rust
-      rustfmt
-      rust-analyzer
       (makeDesktopItem {
         name = "org-protocol";
         desktopName = "org-protocol";
