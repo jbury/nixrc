@@ -9,6 +9,8 @@ in {
   options.modules.desktop.term.alacritty = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
+    user.packages = [ pkgs.alacritty ];
+
     # xst-256color isn't supported over ssh, so revert to a known one
     modules.shell.zsh.rcInit = ''
       [ "$TERM" = alacritty ] && export TERM=xterm-256color
@@ -18,7 +20,5 @@ in {
       source = "${config.dotfiles.configDir}/alacritty";
       recursive = true;
     };
-
-    user.packages = [ pkgs.alacritty ];
   };
 }

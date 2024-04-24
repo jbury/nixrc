@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.enable {
     user.packages = [
       signal-desktop
+
       (makeDesktopItem {
         name = "signal-desktop";
         desktopName = "Signal Desktop";

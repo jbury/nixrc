@@ -25,7 +25,6 @@ in {
 
     services = {
       autorandr.enable = true;
-      picom.enable = true;
       xserver = {
         enable = true;
 
@@ -47,11 +46,6 @@ in {
 
     systemd = {
       user = {
-        # https://discourse.nixos.org/t/systemd-user-units-and-no-such-path/8399
-        # Forces systemd to actually like, point at some bins, or whatever.
-        extraConfig = ''
-          DefaultEnvironment="PATH=/run/current-system/sw/bin:/etc/nixos/bin"
-        '';
         services = {
           dunst = {
             enable = true;
@@ -61,23 +55,7 @@ in {
             serviceConfig.RestartSec = 2;
             serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
           };
-
-          #work-screenshot = {
-          #  script = "${config.dotfiles.binDir}/work_screenshot";
-          #  serviceConfig.Type = "oneshot";
-          #  path = [ pkgs.cached-nix-shell ];
-          #};
-        }; # end of services
-
-        timers = {
-          #work-screenshot = {
-          #  wantedBy = [ "timers.target" ];
-          #  timerConfig = {
-          #    OnCalendar = "*:00/10:00";
-          #    Unit = "work-screenshot.service";
-          #  };
-          #};
-        }; # end of timers
+        };
       };
     };
 

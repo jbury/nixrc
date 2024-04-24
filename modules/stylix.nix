@@ -14,6 +14,6 @@ in {
 
   config.stylix = mkIf cfg.enable {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${schemeName}";
-    image = ./desktop/wallpaper.png;
+    image = ./desktop/core/wallpaper.png;
   };
 }

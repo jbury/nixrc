@@ -3,6 +3,8 @@
 
   ## Modules
   modules = {
+    stylix.enable = true;
+
     desktop = {
       core = {
         rofi.enable = true;
@@ -25,6 +27,10 @@
       term = {
         default = "alacritty";
         alacritty.enable = true;
+      };
+      extras = {
+        screensnap.enable = false;
+        setup.enable = false;
       };
     };
     dev = {
@@ -49,7 +55,7 @@
       utils.enable = true;
       zsh.enable = true;
     };
+
     services = { docker.enable = true; };
-    stylix.enable = true;
   };
 }

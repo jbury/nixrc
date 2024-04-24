@@ -3,7 +3,6 @@
 let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
-  inherit (pkgs) makeDesktopItem signal-desktop;
 
   cfg = config.modules.desktop.apps.discord;
 in {

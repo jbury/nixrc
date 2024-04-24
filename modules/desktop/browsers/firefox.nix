@@ -31,6 +31,7 @@ in {
   config = mkIf cfg.enable (mkMerge [{
     user.packages = [
       firefox
+
       (makeDesktopItem {
         name = "firefox";
         desktopName = "Firefox";

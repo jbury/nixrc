@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.enable {
     user.packages = [
       slack
+
       (makeDesktopItem {
         name = "slack";
         desktopName = "Slack";
