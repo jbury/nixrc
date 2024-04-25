@@ -56,7 +56,7 @@ in {
         mimeTypes = [ "x-scheme-handler/org-protocol" ];
       })
       # :lang nix
-      nixfmt
+      nixfmt-rfc-style
       nil # This is the lsp server
       # :lang sh
       shellcheck
