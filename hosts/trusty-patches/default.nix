@@ -41,7 +41,6 @@
     };
     shell = {
       direnv.enable = true;
-      flexe.enable = true;
       git = {
         enable = true;
         gitlab.enable = true;
