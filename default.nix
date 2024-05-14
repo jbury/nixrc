@@ -73,5 +73,6 @@ in {
     vim
     wget
     cacert
+    nh
   ];
 }
