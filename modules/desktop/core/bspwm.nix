@@ -25,14 +25,13 @@ in {
 
     services = {
       autorandr.enable = true;
+      displayManager.defaultSession = "none+bspwm";
       xserver = {
         enable = true;
 
         windowManager.bspwm.enable = true;
 
         displayManager = {
-          defaultSession = "none+bspwm";
-
           lightdm = {
             enable = true;
             greeters.mini = {

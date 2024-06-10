@@ -3,6 +3,7 @@
 let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
+  inherit (pkgs) scrot optipng;
 
   cfg = config.modules.desktop.extras.screensnap;
 in {

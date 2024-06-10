@@ -3,6 +3,7 @@
 let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
+  inherit (pkgs) gparted arandr;
 
   cfg = config.modules.desktop.extras.setup;
 in {

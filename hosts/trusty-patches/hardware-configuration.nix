@@ -19,7 +19,7 @@ in {
 
   ### Laptop hardware
   # Just the touchpad for now
-  services.xserver = { libinput.enable = true; };
+  services.libinput.enable = true;
 
   ### Boot memes
 
