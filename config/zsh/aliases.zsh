@@ -17,7 +17,7 @@ alias alsa="alsamixer"
 
 # Nix Reloaded
 alias refl="nix flake update /home/jbury/.nixrc"
-alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#trusty-patches"
+alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#knight-lautrec"
 
 # CDs
 alias ws="cd ~/workspace/"

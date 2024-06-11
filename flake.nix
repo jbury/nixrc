@@ -26,15 +26,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-
-    flexe-flakes = {
-      url = "path:/home/jbury/.flexe-flakes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, stylix, emacs-overlay
-    , flexe-flakes, ... }:
+    , ... }:
     let
       inherit (lib.my) mapModulesRec mapHosts;
 
@@ -73,7 +68,6 @@
               # kustomize = localpackages.kustomize;
             })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
-          flexe-flakes.overlays.default
         ];
       };
 

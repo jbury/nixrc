@@ -1,15 +1,10 @@
 [user]
 	name = Jason Bury
+	email = jason@knock.app
 [init]
 	defaultBranch = main
 [github]
 	user = jbury
-[gitlab]
-	user = jason.bury
-[gitlab "gitlab.com/api"]
-	user = jason.bury
-[gitlab "gitlab.com/api/v4"]
-	user = jason.bury
 [fetch]
 	prune = true
 [rebase]
@@ -26,7 +21,7 @@
 [alias]
 	undo-commit = "reset --soft HEAD~1"
 	restore-file = "checkout HEAD --"
-	get = "!f() { git clone -v git@gitlab.com:flexe/$1; }; f"
+	get = "!f() { git clone -v git@github.com:flexe/$1; }; f"
 	outta-here = "!echo https://www.youtube.com/watch?v=BHkfdZjshqY&t=34s"
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/
