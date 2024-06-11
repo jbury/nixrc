@@ -46,7 +46,10 @@
       utils.enable = true;
       zsh.enable = true;
     };
-    services = { docker.enable = true; };
+    services = {
+      docker.enable = true;
+      vanta.enable = true;
+    };
     stylix.enable = true;
   };
 }
