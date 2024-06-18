@@ -1,14 +1,16 @@
-{ lib, config, modulesPath, ... }:
+{ lib, config, modulesPath, inputs, ... }:
 
 let inherit (lib) mkDefault;
 in {
-  imports = [ "${modulesPath}/installer/scan/not-detected.nix" ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+  ];
 
   # fwupd needed for firmware updates
   services.fwupd.enable = true;
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  services.thermald.enable = true;
 
   networking.networkmanager.enable = true;
   networking.useDHCP = mkDefault true;
@@ -19,7 +21,7 @@ in {
 
   nixpkgs.hostPlatform = mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = mkDefault "powersave";
-  
+
   hardware.cpu.amd.updateMicrocode = mkDefault config.hardware.enableRedistributableFirmware;
 
   ### Laptop hardware

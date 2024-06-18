@@ -9,12 +9,13 @@ in {
   options.modules.hardware.audio = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
+    sound.enable = true;
+
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      media-session.enable = false;
       wireplumber.enable = true;
     };
 

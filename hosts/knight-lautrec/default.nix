@@ -5,6 +5,7 @@
 
   ## Modules
   modules = {
+    hardware.audio.enable = true;
     desktop = {
       bspwm.enable = true;
       apps = {
