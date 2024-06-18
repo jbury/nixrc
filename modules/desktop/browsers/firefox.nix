@@ -42,6 +42,8 @@ in {
     ];
 
     env.XDG_DESKTOP_DIR = "$HOME/";
+    env.BROWSER = "firefox";
+    env.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
     modules.desktop.browsers.firefox.settings = {
       ## Settings I personally like a lot

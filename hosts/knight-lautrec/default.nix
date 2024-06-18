@@ -14,7 +14,6 @@
         zoom.enable = true;
       };
       browsers = {
-        default = "firefox";
         chromium.enable = true;
         firefox.enable = true;
       };
