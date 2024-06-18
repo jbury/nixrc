@@ -141,10 +141,11 @@ alias xargs='xargs ' # This is the dumbest most batshit insane thing I've ever s
 # which means xargs now respects my aliases.
 
 pow () {
+	local BAT_NAME="BAT1"
 	local BAT_CAP
-	BAT_CAP=$(tr -d '\n' < /sys/class/power_supply/BAT0/capacity)
+	BAT_CAP=$(tr -d '\n' < "/sys/class/power_supply/${BAT_NAME}/capacity")
 	local BAT_STATUS
-	BAT_STATUS=$(tr -d '\n' < /sys/class/power_supply/BAT0/status)
+	BAT_STATUS=$(tr -d '\n' < "/sys/class/power_supply/${BAT_NAME}/status")
 	if [ "$BAT_STATUS" = "Discharging" ]
 	then
 		echo "${BAT_CAP}-"

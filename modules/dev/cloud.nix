@@ -14,13 +14,13 @@ let
 in {
   options.modules.dev.cloud = {
     enable = mkBoolOpt false;
-    google.enable = mkBoolOpt false;
-    amazon.enable = mkBoolOpt false;
-    microsoft.enable = mkBoolOpt false;
+    gcp.enable = mkBoolOpt false;
+    aws.enable = mkBoolOpt false;
+    azure.enable = mkBoolOpt false;
   };
 
   config = mkMerge [
-    (mkIf (cfg.enable && cfg.google.enable) {
+    (mkIf (cfg.enable && cfg.gcp.enable) {
       user.packages = with pkgs; [
         (google-cloud-sdk.withExtraComponents ([
           google-cloud-sdk.components.gke-gcloud-auth-plugin
@@ -33,11 +33,11 @@ in {
       env.USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     })
 
-    (mkIf (cfg.enable && cfg.amazon.enable) {
+    (mkIf (cfg.enable && cfg.aws.enable) {
       user.packages = [ pkgs.awscli ];
     })
 
-    (mkIf (cfg.enable && cfg.microsoft.enable) {
+    (mkIf (cfg.enable && cfg.azure.enable) {
       user.packages = [ pkgs.azure-cli ];
     })
 

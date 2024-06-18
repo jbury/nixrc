@@ -3,12 +3,11 @@
 , dpkg
 , autoPatchelfHook
 , zlib
+, ...
 }:
-let
-  version = "2.0.0";
-in
-stdenv.mkDerivation {
-  name = "vanta-agent-${version}";
+stdenv.mkDerivation rec {
+  pname = "vanta-agent";
+  version = '2.0.0";
 
   src = fetchurl {
     url = "https://vanta-agent-repo.s3.amazonaws.com/targets/versions/${version}/vanta-amd64.deb";

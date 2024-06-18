@@ -1,4 +1,4 @@
-{ ... }: {
+{... }: {
   imports = [ ../home.nix ./hardware-configuration.nix ];
 
   networking.hostName = "knight-lautrec"; # Define your hostname.
@@ -30,9 +30,8 @@
     };
     dev = {
       cloud.enable = true;
-      cloud.google.enable = true;
+      cloud.aws.enable = true;
       go.enable = true;
-      java.enable = true;
       shell.enable = true;
       db.postgres.enable = true;
     };
@@ -48,7 +47,7 @@
     };
     services = {
       docker.enable = true;
-      vanta.enable = true;
+      vanta-agent.enable = false;
     };
     stylix.enable = true;
   };

@@ -1,33 +1,29 @@
 
-{ config, pkgs, lib, ... }:
-with lib;
+{ config, lib, pkgs, ... }:
 
 let
-  cfg = config.services.vanta;
+  inherit (lib) mkIf mkOption mkDefault;
+  inherit (lib.types) str;
+  inherit (lib.my) mkBoolOpt;
+
+  cfg = config.modules.services.vanta-agent;
 in
 {
-  options.services.vanta = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''Vanta agent'';
-    };
+  options.modules.services.vanta-agent = {
+    enable = mkBoolOpt false;
 
     agentKey = mkOption {
-      type = types.str;
+      type = str;
     };
 
     email = mkOption {
-      type = types.str;
+      type = str;
     };
   };
 
   config = mkIf cfg.enable (
-    let
-      vanta = pkgs.callPackage ./default.nix {};
-    in
       {
-        environment.systemPackages = [ vanta ];
+        environment.systemPackages = [ pkgs.vanta-agent ];
 
         systemd.services.vanta =
           {
@@ -35,11 +31,11 @@ in
             description = "Vanta monitoring software";
             wantedBy = [ "multi-user.target" ];
             preStart = ''
-              cp -a ${vanta}/var/vanta /var
+              cp -a ${pkgs.vanta-agent}/var/vanta /var
               sed \
                 -e 's/\("AGENT_KEY": "\)"/\1${cfg.agentKey}"/1' \
                 -e 's/\("OWNER_EMAIL": "\)"/\1${cfg.email}"/' \
-                ${vanta}/etc/vanta.conf > /etc/vanta.conf
+                ${pkgs.vanta-agent}/etc/vanta.conf > /etc/vanta.conf
             '';
             script = ''
               /var/vanta/metalauncher

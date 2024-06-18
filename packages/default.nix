@@ -5,4 +5,5 @@ let
 in {
   thermald = (callPackage ./thermald {});
   kustomize = (callPackage ./kustomize.nix {});
+  vanta-agent = (callPackage ./vanta-agent {});
 }
