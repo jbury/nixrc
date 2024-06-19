@@ -21,7 +21,7 @@
 [alias]
 	undo-commit = "reset --soft HEAD~1"
 	restore-file = "checkout HEAD --"
-	get = "!f() { git clone -v git@github.com:flexe/$1; }; f"
+	get = "!f() { git clone -v git@github.com:knocklabs/$1; }; f"
 	outta-here = "!echo https://www.youtube.com/watch?v=BHkfdZjshqY&t=34s"
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/

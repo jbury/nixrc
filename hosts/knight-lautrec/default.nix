@@ -15,7 +15,6 @@
         zoom.enable = true;
       };
       browsers = {
-        chromium.enable = true;
         firefox.enable = true;
       };
       media = {
