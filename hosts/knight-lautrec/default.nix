@@ -30,6 +30,7 @@
     dev = {
       cloud.enable = true;
       cloud.aws.enable = true;
+      elixir.enable = true;
       go.enable = true;
       shell.enable = true;
       db.postgres.enable = true;
