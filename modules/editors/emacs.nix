@@ -39,12 +39,16 @@ in {
       (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
       # :checkers grammar
       languagetool
+
       # :tools editorconfig
       editorconfig-core-c # per-project style config
+
       # :tools lookup & :lang org +roam
       sqlite
+
       # :lang latex & :lang org (latex previews)
       texlive.combined.scheme-medium
+
       # :lang beancount
       beancount
       (makeDesktopItem {
@@ -55,11 +59,15 @@ in {
         categories = [ "System" ];
         mimeTypes = [ "x-scheme-handler/org-protocol" ];
       })
+
       # :lang nix
       nixfmt-rfc-style
       nil # This is the lsp server
+
       # :lang sh
       shellcheck
+      shfmt
+
       # :lang org
       graphviz
 
@@ -79,6 +87,10 @@ in {
 
       # :lang web
       html-tidy
+
+      # :app everywhere
+      xdotool
+      xorg.xwininfo
 
       pandoc
     ];
