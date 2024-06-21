@@ -233,7 +233,11 @@ in {
         };
 
       "${cfgPath}/${cfg.profileName}.default/chrome/userChrome.css" = {
-        text = concatMapStringsSep "\n" readFile [ ./userChrome.css ];
+        text = concatMapStringsSep "\n" readFile [
+          ./styles/window_control_placeholder_support.css
+          ./styles/tabs_on_bottom.css
+          ./styles/userChrome.css
+        ];
       };
 
       "${cfgPath}/${cfg.profileName}.default/chrome/userContent.css" =
