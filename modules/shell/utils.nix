@@ -32,6 +32,9 @@ in {
       unzip
       wl-clipboard-x11
       yq-go
+
+      # Pretty shell scripts
+      gum
     ];
   };
 }
