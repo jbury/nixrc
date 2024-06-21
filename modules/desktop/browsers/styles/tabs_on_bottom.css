@@ -69,7 +69,8 @@ toolbox#navigator-toolbox > toolbar#nav-bar.browser-toolbar{ animation: none; }
 :root:not([lwtheme]) #navigator-toolbox{ background-color: -moz-dialog }
 
 /* Bookmarks toolbar below tabs */
+/*
 #PersonalToolbar{
   order: 2;
 }
-
+*/
