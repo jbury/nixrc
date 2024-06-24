@@ -25,12 +25,24 @@ in {
 
     services = {
       autorandr.enable = true;
+
       picom.enable = true;
+
       displayManager = {
         defaultSession = "none+bspwm";
       };
+
       xserver = {
         enable = true;
+
+        xautolock = {
+          enable = true;
+          enableNotifier = true;
+          nowlocker = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dim";
+          time = 5;
+          notify = 30;
+          notifier = "${pkgs.libnotify}/bin/notify-send 'Locking in 30 seconds'";
+        };
 
         windowManager.bspwm.enable = true;
 
