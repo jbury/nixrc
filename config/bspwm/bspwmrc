@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
 export MONITORS=( $(xrandr -q | grep ' connected' | cut -d' ' -f1) )
-export PRIMARY_MONITOR=$(xrandr -q | grep primary | cut -d' ' -f1)
-PRIMARY_MONITOR=${PRIMARY_MONITOR:-${MONITORS[0]}}
+export MONITOR_PRIMARY=$(xrandr -q | grep primary | cut -d' ' -f1)
+MONITOR_PRIMARY="${MONITOR_PRIMARY:-${MONITORS[0]}}"
 
-STANDARD_MONITOR="DP-1-2"
-WIDE_MONITOR="DP-1-3"
+bspc monitor "${MONITOR_PRIMARY}" -d 1 2 3 4
 
-bspc monitor $PRIMARY_MONITOR -d 1 2 3 4
-
-if [[ ${MONITORS[@]} =~ ${STANDARD_MONITOR} ]]; then
-	bspc monitor $STANDARD_MONITOR -d std
+if [[ "${MONITORS[@]}" =~ "${MONITOR_MULTI_COMMS}" ]]; then
+	bspc monitor "${MONITOR_MULTI_COMMS}" -d comms
 fi
 
-if [[ ${MONITORS[@]} =~ ${WIDE_MONITOR} ]]; then
-	bspc monitor $WIDE_MONITOR -d wide
+if [[ "${MONITORS[@]}" =~ "${MONITOR_MULTI_ETC}" ]]; then
+	bspc monitor "${MONITOR_MULTI_ETC}" -d etc
 fi
 
 bspc config remove_disabled_monitors true
@@ -22,17 +19,18 @@ bspc config remove_unplugged_monitors true
 # Rules
 bspc rule -r '*'
 
-## Main Monitor
-bspc rule -a Spotify desktop=3
-bspc rule -a Discord desktop=4
-
-## Standard Monitor
-bspc rule -a Slack desktop=std
-bspc rule -a Signal desktop=std
+## Comms Monitor
+if [[ "${MONITOR_MULTI_COMMS}" -z ]]; then
+	bspc rule -a Slack desktop=comms
+	bspc rule -a Signal desktop=comms
+fi
 
 ## Wide Monitor
-bspc rule -a 'Emacs:org*' desktop=wide
-bspc rule -a KeePassXC desktop=wide
+if [[ "${MONITOR_MULTI_ETC}" -z ]]; then
+	bspc rule -a 'Emacs:org*' desktop=etc
+	bspc rule -a KeePassXC desktop=etc
+	bspc rule -a firefox desktop=etc
+fi
 
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
   source "$file"
