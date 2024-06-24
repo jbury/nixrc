@@ -35,11 +35,6 @@
 
       system = "x86_64-linux";
 
-      nonfreepkgs = import "${nixpkgs}" {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
       stable = import "${stablepkgs}" { inherit system; };
 
       localpackages = import ./packages {
@@ -49,15 +44,18 @@
 
       pkgs = import "${nixpkgs}" {
         inherit system;
+
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+          "aspell-dict-en-science"
+          "slack"
+          "sublime4"
+          "spotify"
+          "discord"
+#          "zoom-us" https://discourse.nixos.org/t/suggested-pattern-for-using-allowunfreepredicate-is-overly-permissive-due-to-overloaded-pnames/47609
+          "zoom"
+        ] ;
+
         overlays = [
-          (final: prev: {
-            # Don't offend Stallman more than we need to
-            slack = nonfreepkgs.slack;
-            sublime4 = nonfreepkgs.sublime4;
-            spotify = nonfreepkgs.spotify;
-            zoom-us = nonfreepkgs.zoom-us;
-            discord = nonfreepkgs.discord;
-          })
           (final: prev: {
             # Sometimes we value stability
             gimp = stable.gimp;

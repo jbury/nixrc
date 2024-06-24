@@ -36,7 +36,9 @@ in {
       python3 # for treemacs
 
       ## Module dependencies
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      #(aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      (aspellWithDicts (ds: with ds; [ en en-computers ]))
+
       # :checkers grammar
       languagetool
 
