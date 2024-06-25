@@ -103,9 +103,6 @@ in {
           1)
             autorandr -c "single"
             ;;
-          2)
-            autorandr -c "double"
-            ;;
           3)
             autorandr -c "multi"
             ;;
