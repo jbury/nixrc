@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 export MONITORS=( $(xrandr -q | grep ' connected' | cut -d' ' -f1) )
-export MONITOR_PRIMARY=$(xrandr -q | grep primary | cut -d' ' -f1)
-MONITOR_PRIMARY="${MONITOR_PRIMARY:-${MONITORS[0]}}"
+MONITOR_PRIMARY=$(xrandr -q | grep primary | cut -d' ' -f1)
+export MONITOR_PRIMARY="${MONITOR_PRIMARY:-${MONITORS[0]}}"
+
+MULTI=false
+if [[ "${#MONITORS[@]}" -gt "1" ]]; then
+	MULTI=true
+fi
 
 bspc monitor "${MONITOR_PRIMARY}" -d 1 2 3 4
 
-if [[ "${MONITORS[@]}" =~ "${MONITOR_MULTI_COMMS}" ]]; then
+if [[ "${MULTI}" ]] && [[ "${MONITORS[@]}" =~ "${MONITOR_MULTI_COMMS}" ]]; then
 	bspc monitor "${MONITOR_MULTI_COMMS}" -d comms
 fi
 
-if [[ "${MONITORS[@]}" =~ "${MONITOR_MULTI_ETC}" ]]; then
+if [[ "${MULTI}" ]] && [[ "${MONITORS[@]}" =~ "${MONITOR_MULTI_ETC}" ]]; then
 	bspc monitor "${MONITOR_MULTI_ETC}" -d etc
 fi
 
@@ -20,13 +25,13 @@ bspc config remove_unplugged_monitors true
 bspc rule -r '*'
 
 ## Comms Monitor
-if [[ "${MONITOR_MULTI_COMMS}" -z ]]; then
+if [[ "${MULTI}" ]] && [[ "${MONITOR_MULTI_COMMS}" -z ]]; then
 	bspc rule -a Slack desktop=comms
 	bspc rule -a Signal desktop=comms
 fi
 
 ## Wide Monitor
-if [[ "${MONITOR_MULTI_ETC}" -z ]]; then
+if [[ "${MULTI}" ]] && [[ "${MONITOR_MULTI_ETC}" -z ]]; then
 	bspc rule -a 'Emacs:org*' desktop=etc
 	bspc rule -a KeePassXC desktop=etc
 	bspc rule -a firefox desktop=etc

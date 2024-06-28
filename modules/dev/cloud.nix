@@ -60,7 +60,7 @@ in {
           istioctl # TLS?  I've never met her!
           tilt # gottagofast
 
-          #terraform
+          terraform
 
           # stern really ought to be installed via krew
           argocd

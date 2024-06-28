@@ -47,10 +47,11 @@
 
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
-          "slack"
-          "sublime4"
-          "spotify"
           "discord"
+          "slack"
+          "spotify"
+          "sublime4"
+          "terraform"
 #          "zoom-us" https://discourse.nixos.org/t/suggested-pattern-for-using-allowunfreepredicate-is-overly-permissive-due-to-overloaded-pnames/47609
           "zoom"
         ] ;
