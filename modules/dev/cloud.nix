@@ -61,6 +61,7 @@ in {
           tilt # gottagofast
 
           terraform
+          terraform-docs
 
           # stern really ought to be installed via krew
           argocd
