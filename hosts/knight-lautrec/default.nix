@@ -7,7 +7,7 @@
   modules = {
     hardware.audio.enable = true;
     desktop = {
-      bspwm.enable = true;
+      swaywm.enable = true;
       apps = {
         rofi.enable = true;
         slack.enable = true;

@@ -22,6 +22,9 @@ in {
       file = mkOpt' attrs { } "Files to place directly in $HOME";
       configFile = mkOpt' attrs { } "Files to place in $XDG_CONFIG_HOME";
       dataFile = mkOpt' attrs { } "Files to place in $XDG_DATA_HOME";
+      programs = mkOpt' attrs {} "Apps to configure";
+      services = mkOpt' attrs {} "Services to configure";
+      wayland = mkOpt' attrs {} "Wayland config";
     };
 
     env = mkOption {
@@ -74,6 +77,9 @@ in {
           configFile = mkAliasDefinitions options.home.configFile;
           dataFile = mkAliasDefinitions options.home.dataFile;
         };
+        programs = mkAliasDefinitions options.home.programs;
+        services = mkAliasDefinitions options.home.services;
+        wayland = mkAliasDefinitions options.home.wayland;
       };
     };
 

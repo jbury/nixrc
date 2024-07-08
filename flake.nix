@@ -18,6 +18,11 @@
 
     devenv.url = "github:cachix/devenv/latest";
 
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix.url = "github:danth/stylix";
 
     emacs-overlay = {
@@ -59,7 +64,7 @@
         overlays = [
           (final: prev: {
             # Sometimes we value stability
-            gimp = stable.gimp;
+            # gimp = stable.gimp;
           })
           (final: prev:
             {
@@ -68,6 +73,8 @@
               vanta-agent = localpackages.vanta-agent;
             })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
+          inputs.emacs-overlay.overlay
+          inputs.nixpkgs-wayland.overlay
         ];
       };
 
