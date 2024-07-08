@@ -22,10 +22,6 @@
         mpv.enable = true;
         spotify.enable = true;
       };
-      term = {
-        default = "alacritty";
-        alacritty.enable = true;
-      };
     };
     dev = {
       cloud.enable = true;
