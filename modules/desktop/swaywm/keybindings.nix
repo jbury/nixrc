@@ -23,17 +23,13 @@ in {
         keybindings = lib.mkOptionDefault {
           "${super}+Return" = "exec ${swayConfig.terminal}";
           "${super}+f" = "exec firefox";
+          "${super}+k" = "exec keepassxc";
           "${super}+q" = "kill";
-          # "${super}+space" = "exec $DOTFILES/bin/appmenu";
           "${super}+space" = "exec $DOTFILES/bin/rofi/appmenu";
-          # "${super}+Tab" = "exec swayr switch-window";
           "${super}+Tab" = "exec $DOTFILES/bin/rofi/windowmenu";
-          "${super}+p" = "exec $DOTFILES/bin/rofi/bwmenu";
-          "${super}+Shift+p" = "exec $DOTFILES/bin/rofi/bwmenu -r";
           "${super}+Shift+c" = "reload";
           "${super}+${control}+${shift}+Escape" = "reload";
           "${super}+question" = "exec $DOTFILES/bin/remontoire-toggle";
-          "${super}+Slash" = "exec $DOTFILES/bin/rofi/filemenu -x";
           "${super}+e" = "exec emacsclient -e '(emacs-everywhere)'";
           "${super}+t" =
             "exec emacsclient -n -c ~/Documents/org-mode/todo.org && $DOTFILES/bin/activate emacs";

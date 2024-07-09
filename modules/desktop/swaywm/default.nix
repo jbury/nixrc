@@ -203,6 +203,7 @@ in {
       gammastep
       grim
       qt5.qtwayland
+      remontoire
       sirula
       slurp
       sov

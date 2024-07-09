@@ -70,6 +70,7 @@
             {
               # Sometimes we just want to refer to "local" packages from the packages dir
               # kustomize = localpackages.kustomize;
+              remontoire = localpackages.remontoire;
               vanta-agent = localpackages.vanta-agent;
             })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
