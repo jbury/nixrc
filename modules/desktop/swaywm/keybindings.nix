@@ -22,6 +22,7 @@ in {
         modifier = "Mod4";
         keybindings = lib.mkOptionDefault {
           "${super}+Return" = "exec ${swayConfig.terminal}";
+          "${super}+l" = "swaylock -fFe -c000000";
           "${super}+f" = "exec firefox";
           "${super}+k" = "exec keepassxc";
           "${super}+q" = "kill";

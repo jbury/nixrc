@@ -150,14 +150,14 @@ in {
         timeouts = [
           {
             timeout = 600;
-            command = "${pkgs.swaylock}/bin/swaylock -f";
+            command = "${pkgs.swaylock}/bin/swaylock -fFe -c000000";
           }
         ];
 
         events = [
           {
             event = "before-sleep";
-            command = "${pkgs.swaylock}/bin/swaylock -f";
+            command = "${pkgs.swaylock}/bin/swaylock -fFe -c000000";
           }
         ];
       };
@@ -182,10 +182,11 @@ in {
         anchor = "top-right";
         borderRadius = 2;
         borderSize = 1;
-        defaultTimeout = 0;
         height = 1000;
         icons = true;
-        ignoreTimeout = false;
+        # I know better than you, notification sender.
+        ignoreTimeout = true;
+        defaultTimeout = 10;
         margin = "4,26";
         markup = true;
         maxVisible = -1;
@@ -210,7 +211,6 @@ in {
       sway-contrib.grimshot
       swaybg
       swayidle
-      swaylock
       swayr
       wayvnc
       wev
