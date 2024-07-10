@@ -1,3 +1,6 @@
+# Temp
+alias kill-signal="pgrep -l signal | head -n1 | cut -d' ' -f1 | xargs kill -9 "
+
 # Short Hands
 alias sl="ls" # gottogofast
 
