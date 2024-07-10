@@ -80,7 +80,7 @@ in {
           };
 
           "ASUSTek COMPUTER INC ASUS VG35V 0x000207A6" = {
-            mode = "3440x1440@60Hz";
+            mode = "3440x1440";
             position = "0,0";
             scale = "1.0";
           };
