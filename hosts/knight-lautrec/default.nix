@@ -5,7 +5,10 @@
 
   ## Modules
   modules = {
-    hardware.audio.enable = true;
+    hardware = {
+      audio.enable = true;
+      thermald.enable = true;
+    };
     desktop = {
       swaywm.enable = true;
       apps = {

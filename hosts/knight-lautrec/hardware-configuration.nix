@@ -10,8 +10,6 @@ in {
   # fwupd needed for firmware updates
   services.fwupd.enable = true;
 
-  services.thermald.enable = true;
-
   networking.networkmanager.enable = true;
   networking.useDHCP = mkDefault true;
 

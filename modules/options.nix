@@ -77,6 +77,7 @@ in {
           configFile = mkAliasDefinitions options.home.configFile;
           dataFile = mkAliasDefinitions options.home.dataFile;
         };
+        #TODO more aliases at some point - these were copy/pasted for wayland transition
         programs = mkAliasDefinitions options.home.programs;
         services = mkAliasDefinitions options.home.services;
         wayland = mkAliasDefinitions options.home.wayland;
