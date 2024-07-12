@@ -17,8 +17,10 @@ in {
         desktopName = "Signal Desktop";
         genericName = "Open Signal Desktop";
         icon = "signal-desktop";
+        # TODO: Using .signal-desktop-wrapped directly instead of the normal bin/signal-desktop binary
+        # is a workaround for _some_ electron/sway/autotiling bug I don't feel like figuring out
         exec =
-          "${signal-desktop}/bin/signal-desktop --ozone-platform-hint=auto";
+          "${signal-desktop}/bin/.signal-desktop-wrapped --ozone-platform-hint=auto";
         categories = [ "Network" ];
       })
     ];
