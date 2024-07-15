@@ -5,6 +5,8 @@
 	defaultBranch = main
 [github]
 	user = jbury
+[advice]
+	skippedCherryPicks = false
 [fetch]
 	prune = true
 [rebase]
