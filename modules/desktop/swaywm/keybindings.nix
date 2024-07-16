@@ -20,11 +20,14 @@ in {
     in {
       config = {
         modifier = "Mod4";
-        keybindings = lib.mkOptionDefault {
+        keybindings = {
           "${super}+Return" = "exec ${swayConfig.terminal}";
-          "${super}+l" = "swaylock -fFe -c000000";
+
+          "${super}+l" = "exec swaylock -Fe -c000000";
           "${super}+f" = "exec firefox";
           "${super}+k" = "exec keepassxc";
+          "${super}+s" = "slack";
+
           "${super}+q" = "kill";
           "${super}+space" = "exec $DOTFILES/bin/rofi/appmenu";
           "${super}+Tab" = "exec $DOTFILES/bin/rofi/windowmenu";
@@ -42,12 +45,6 @@ in {
             "exec $XDG_CONFIG_HOME/emacs/bin/org-capture -k t";
           "${super}+${control}+n" =
             "exec $XDG_CONFIG_HOME/emacs/bin/org-capture -k n";
-          "${super}+m" =
-            "exec emacsclient -c -n -e '(=mu4e)' && $DOTFILES/bin/activate emacs";
-          "${hyper}+e" = "$DOTFILES/bin/activate emacs";
-          "${hyper}+f" = "$DOTFILES/bin/activate firefox";
-          "${hyper}+s" = "$DOTFILES/bin/activate slack";
-          "${hyper}+z" = "$DOTFILES/bin/activate zoom zoom-us";
 
           "${super}+${shift}+${left}" = "move left";
           "${super}+${shift}+${down}" = "move down";
@@ -64,10 +61,6 @@ in {
           "${meh}+${up}" = "move workspace to output up";
           "${meh}+${right}" = "move workspace to output right";
 
-          "${super}+w" =
-            "exec swayr toggle-tab-shuffle-tile-workspace include-floating";
-          #"${super}+e" = "layout toggle split";
-
           "${super}+${alt}+f" = "floating toggle";
           "${super}+${control}+f" = "fullscreen";
           "${super}+a" = "focus parent";
@@ -83,17 +76,6 @@ in {
           "${super}+${control}+Up" = "resize shrink height 40 px";
           "${super}+${control}+Right" = "resize shrink width 40 px";
 
-          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
-          "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-          "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
-          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-
-          "XF86MonBrightnessUp" =
-            "exec ${pkgs.brightnessctl}/bin/brightness_ctl set +10% && $DOTFILES/bin/brightnessctl_perc > $SWAYSOCK.wob";
-          "XF86MonBrightnessDown" =
-            "exec ${pkgs.brightnessctl}/bin/brightness_ctl set 10%- && $DOTFILES/bin/brightnessctl_perc > $SWAYSOCK.wob";
-
           "XF86AudioRaiseVolume" =
             "exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob";
           "XF86AudioLowerVolume" =
@@ -102,10 +84,6 @@ in {
             "exec pamixer -t && if [ $(pamixer --get-mute) == true ]; then; echo 0; else; pamixer --get-volume; fi > $SWAYSOCK.wob";
 
           "${super}+r" = ''mode "resize"'';
-
-          "--no-repeat --release ${hyper}+m" = "exec $DOTFILES/bin/mute-huddle";
-
-          #     floating_modifier $super normal
         };
         modes = {
           resize = {

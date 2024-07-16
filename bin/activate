@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+### activate - activate or start a window in sway
+###
+### activate window_name [command]
+
+set -uo pipefail
+IFS=$'\t\n'
+
+function show-help {
+    sed -rn 's/^### ?//;T;p' "$0"
+}
+
+if [[ $# == 0 ]] || [[ "$1" == "-h" ]]; then
+    show-help
+    exit 1
+fi
+
+SEARCH=$1
+COMMAND=${2:-$1}
+WIN_ID=$(swaywindow -s "$SEARCH" | head -1)
+
+if [ -z "$WIN_ID" ]
+then
+    if command -v "$COMMAND" >/dev/null
+    then
+        "$COMMAND" &
+    else
+        printf "ERROR: Can't find command '%s'; please specify second arg\n\n" "$COMMAND"
+        show-help
+        exit 1
+    fi
+else
+    swaywindow -a "$WIN_ID"
+fi

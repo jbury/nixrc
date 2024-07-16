@@ -21,7 +21,10 @@ in {
 
     security.rtkit.enable = true;
 
-    environment.systemPackages = [ pkgs.easyeffects ];
+    environment.systemPackages = [
+      pkgs.easyeffects
+      pkgs.pamixer
+    ];
 
     user.packages = [ pkgs.easyeffects ];
 

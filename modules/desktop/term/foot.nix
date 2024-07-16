@@ -18,6 +18,11 @@ in {
 
           dpi-aware = "yes";
         };
+        bell = {
+          urgent = "no";
+          notify = "no";
+          visual = "no";
+        };
         scrollback = {
           lines = 5000;
         };
