@@ -46,6 +46,7 @@
     };
     services = {
       docker.enable = true;
+      tailscale.enable = true;
       vanta-agent.enable = true;
     };
     stylix.enable = true;
