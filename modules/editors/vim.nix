@@ -52,8 +52,7 @@ in {
           set listchars:tab:»·,trail:·
           set list
 
-          set visualbell
-          set noerrorbells
+          set belloff=all
 
           set title
           set showcmd
