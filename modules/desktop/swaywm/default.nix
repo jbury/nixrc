@@ -192,10 +192,6 @@ in {
         maxVisible = -1;
         padding = "20,16";
         width = 440;
-        extraConfig = ''
-          [app-name="Slack"]
-          group-by=summary
-        '';
       };
     };
 

@@ -16,7 +16,7 @@ in {
           ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --time \
           --asterisks \
-          --user-menu \
+          --remember \
           --cmd sway
         '';
       };
