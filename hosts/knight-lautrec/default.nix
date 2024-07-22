@@ -46,7 +46,10 @@
     };
     services = {
       docker.enable = true;
-      tailscale.enable = true;
+      tailscale = {
+        enable = true;
+        hostname = "jason-framework";
+      };
       vanta-agent.enable = true;
     };
     stylix.enable = true;
