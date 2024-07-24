@@ -1,5 +1,5 @@
 {... }: {
-  imports = [ ../home.nix ./hardware-configuration.nix ./monitors.nix ];
+  imports = [ ../home.nix ./hardware-configuration.nix ];
 
   networking.hostName = "knight-lautrec"; # Define your hostname.
 
