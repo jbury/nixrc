@@ -62,6 +62,7 @@ in {
 
           terraform
           terraform-docs
+          terramate
 
           # stern really ought to be installed via krew
           argocd
