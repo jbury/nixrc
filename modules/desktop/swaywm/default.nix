@@ -178,6 +178,7 @@ in {
         inherit iconPath;
 
         enable = true;
+        output = "eDP-1";
         actions = true;
         anchor = "top-right";
         borderRadius = 2;
