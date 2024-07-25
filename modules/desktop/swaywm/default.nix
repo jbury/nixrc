@@ -16,6 +16,9 @@ in {
     # Wayland needs strict security policy stuff
     security.polkit.enable = true;
 
+    #security.pam.services.swaylock.fprintAuth = false;
+    security.pam.services.swaylock = {};
+
 
     # Make super sure we aren't running X alongside Wayland
     services = {
