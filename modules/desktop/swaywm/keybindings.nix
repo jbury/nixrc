@@ -34,7 +34,7 @@ in {
           "${super}+Shift+c" = "reload";
           "${super}+${control}+${shift}+Escape" = "reload";
           "${super}+question" = "exec $DOTFILES/bin/remontoire-toggle";
-          "${super}+e" = "exec emacsclient -e '(emacs-everywhere)'";
+          "${super}+e" = "exec emacsclient";
           "${super}+t" =
             "exec emacsclient -n -c ~/Documents/org-mode/todo.org && $DOTFILES/bin/activate emacs";
           "${super}+n" =

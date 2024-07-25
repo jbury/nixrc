@@ -1,6 +1,6 @@
 { lib, config, modulesPath, inputs, ... }:
 
-let inherit (lib) mkDefault;
+let inherit (lib) mkDefault mkForce;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -12,6 +12,9 @@ in {
 
   networking.networkmanager.enable = true;
   networking.useDHCP = mkDefault true;
+
+  systemd.services.NetworkManager-wait-online.enable = mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = mkForce false;
 
   ## ssh is related to networking, which is close enough to hardware for me.
   programs.ssh.startAgent = true;

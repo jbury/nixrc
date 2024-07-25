@@ -9,7 +9,7 @@ let
 
   cfg = config.modules.editors.emacs;
   configDir = config.dotfiles.configDir;
-  myEmacs = pkgs.emacs-git;
+  myEmacs = pkgs.emacs29-pgtk;
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
@@ -98,6 +98,7 @@ in {
     ];
 
     env.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+    env.ALTERNATE_EDITOR = "";
 
     modules.shell.zsh.rcFiles = [ "${configDir}/emacs/aliases.zsh" ];
 
