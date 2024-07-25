@@ -10,10 +10,9 @@ Shamelessly copied from [jboyens](https://git.sr.ht/~jboyens/dotfiles) who shame
 |                |                                                          |
 |----------------|----------------------------------------------------------|
 | **Shell:**     | zsh + zgenom                                             |
-| **DM:**        | lightdm + lightdm-mini-greeter                           |
-| **WM:**        | bspwm + polybar                                          |
+| **DM:**        | greetd                                                   |
+| **WM:**        | Sway                                                     |
 | **Editor:**    | [Doom Emacs][doom-emacs]                                 |
-| **Terminal:**  | Alacritty                                                |
+| **Terminal:**  | foot                                                     |
 | **Launcher:**  | rofi                                                     |
 | **Browser:**   | firefox                                                  |
-| **GTK Theme:** | ?                                                        |
