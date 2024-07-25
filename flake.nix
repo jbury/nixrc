@@ -3,15 +3,15 @@
     "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
-    stablepkgs.url = "nixpkgs/nixos-23.11-small";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    #nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-24.05";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -33,14 +33,12 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, stablepkgs, devenv, stylix, emacs-overlay
+  outputs = inputs@{ self, nixpkgs, devenv, stylix, emacs-overlay
     , ... }:
     let
       inherit (lib.my) mapModulesRec mapHosts;
 
       system = "x86_64-linux";
-
-      stable = import "${stablepkgs}" { inherit system; };
 
       localpackages = import ./packages {
         pkgs = nixpkgs.legacyPackages.${system};
@@ -62,10 +60,6 @@
         ] ;
 
         overlays = [
-          (final: prev: {
-            # Sometimes we value stability
-            # gimp = stable.gimp;
-          })
           (final: prev:
             {
               # Sometimes we just want to refer to "local" packages from the packages dir
