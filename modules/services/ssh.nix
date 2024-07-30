@@ -15,6 +15,7 @@ in {
         KbdInteractiveAuthentication = false;
         PasswordAuthentication = false;
       };
+      authorizedKeysFiles = [ ".ssh/authorized_keys" ];
     };
 
     user.openssh.authorizedKeys.keys =

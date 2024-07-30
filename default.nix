@@ -36,10 +36,29 @@ in {
     mkIf (inputs.self ? inputs.rev) inputs.self.rev;
   system.stateVersion = "23.11";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false
-  # here. Per-interface useDHCP will be mandatory in the future, so we enforce
-  # this default behavior here.
-  networking.useDHCP = mkDefault true;
+  networking = {
+    useDHCP = mkDefault true;
+    enableIPv6 = mkDefault true;
+    useNetworkd = mkDefault true;
+    nameservers = mkDefault [];
+    nftables.enable = mkDefault true;
+
+    firewall = {
+      enable = true;
+
+      allowedTCPPorts = [ 22 80 443 ];
+      allowedTCPPortRanges = [ { from = 8080; to = 8090; } ];
+
+      allowedUDPPorts = [
+        # DHCPv6
+        546
+        # Tailscale
+        41641 3478
+      ];
+      allowedUDPPortRanges = [];
+    };
+  };
+
 
   # A root fileSystem is needed to appease the nix flake check gods
   fileSystems."/".device = mkDefault "/dev/disk/by-label/nixos";
@@ -68,6 +87,7 @@ in {
     cached-nix-shell
     curl
     git
+    pciutils
     gnumake
     unzip
     vim

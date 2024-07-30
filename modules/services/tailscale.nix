@@ -15,6 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    networking.networkmanager.unmanaged = [ "tailscale0" ];
+
     services.tailscale = {
       enable = true;
       extraUpFlags = mkIf cfg.hostname [

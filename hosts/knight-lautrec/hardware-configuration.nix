@@ -34,11 +34,11 @@ in {
   boot = {
     initrd = {
       availableKernelModules =
-        [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+        [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "ahci" "usbhid" "sd_mod" ];
       kernelModules = [ ];
     };
 
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "amdgpu" "iwlwifi" "k10temp" "kvm-amd" ];
     extraModulePackages = [ ];
   };
 
