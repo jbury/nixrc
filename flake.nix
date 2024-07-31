@@ -4,11 +4,27 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    #nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     flake-utils.url = "github:numtide/flake-utils";
+
+    lib-aggregate = {
+      url = "github:nix-community/lib-aggregate";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    flake-compat = {
+      url   = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
+    nix-eval-jobs = {
+      url = "github:nix-community/nix-eval-jobs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -16,20 +32,72 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    devenv.url = "github:cachix/devenv/latest";
-
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
-    stylix.url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows       = "nixpkgs";
+        flake-compat.follows  = "flake-compat";
+        lib-aggregate.follows = "lib-aggregate";
+        nix-eval-jobs.follows = "nix-eval-jobs";
+      };
+    };
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
 
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs = {
+        nixpkgs.follows     = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+
+      inputs = {
+        nixpkgs.follows      = "nixpkgs";
+        home-manager.follows = "home-manager";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
+    # cachix stuff
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+
+      inputs = {
+        nixpkgs.follows        = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        flake-compat.follows   = "flake-compat";
+      };
+    };
+
+    cachix = {
+      url = "github:cachix/cachix/latest";
+
+      inputs = {
+        nixpkgs.follows          = "nixpkgs";
+        devenv.follows           = "devenv";
+        flake-compat.follows     = "flake-compat";
+        pre-commit-hooks.follows = "pre-commit-hooks";
+
+      };
+    };
+
+    devenv = {
+      url = "github:cachix/devenv/latest";
+
+      inputs = {
+# devenv uses a custom build of nix, `nix-devenv`, which follows the nixpkgs input, but applies
+# some now out-of-date patches to the boehm-gc dependency.  For details, see:
+# https://github.com/cachix/devenv/issues/1200#issuecomment-2112452403
+#        nixpkgs.follows          = "nixpkgs";
+
+        cachix.follows           = "cachix";
+        flake-compat.follows     = "flake-compat";
+        pre-commit-hooks.follows = "pre-commit-hooks";
+      };
     };
   };
 
