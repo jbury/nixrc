@@ -22,18 +22,18 @@ in {
       }
     ];
 
-    user.packages = with pkgs; [
-      brightnessctl
-      playerctl
-      gparted
-      feh
-      keepassxc
-      xclip
-      qgnomeplatform # QPlatformTheme for a better Qt application inclusion in GNOME
-      libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
-      xdg-utils
-      scrot
-      optipng # I take a _lot_ of screenshots, so making them small is nice
+    user.packages = [
+      pkgs.brightnessctl
+      pkgs.playerctl
+      pkgs.gparted
+      pkgs.feh
+      pkgs.keepassxc
+      pkgs.xclip
+      pkgs.qgnomeplatform # QPlatformTheme for a better Qt application inclusion in GNOME
+      pkgs.libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
+      pkgs.xdg-utils
+      pkgs.scrot
+      pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice
     ];
 
     modules.shell.zsh.aliases.y = "xclip -selection clipboard -in";
@@ -43,17 +43,13 @@ in {
       fontDir.enable = true;
       enableGhostscriptFonts = true;
       enableDefaultPackages = true;
-      packages = with pkgs; [
-        iosevka-bin
-        (iosevka-bin.override { variant = "Etoile"; })
-        (iosevka-bin.override { variant = "Aile"; })
-        (iosevka-bin.override { variant = "SGr-IosevkaFixed"; })
+      packages = [
+        pkgs.iosevka-bin
+        (pkgs.iosevka-bin.override { variant = "Etoile"; })
+        (pkgs.iosevka-bin.override { variant = "Aile"; })
+        (pkgs.iosevka-bin.override { variant = "SGr-IosevkaFixed"; })
 
-        noto-fonts-emoji
-
-        fira
-        fira-code
-        fira-mono
+        pkgs.noto-fonts-emoji
       ];
 
       fontconfig.defaultFonts = {
