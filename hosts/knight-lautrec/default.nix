@@ -16,10 +16,11 @@
   modules = {
     hardware = {
       audio.enable = true;
-      thermald.enable = true;
+      thermald.enable = false;
     };
     desktop = {
       swaywm.enable = true;
+      greetd.enable = false;
       apps = {
         rofi.enable = true;
         slack.enable = true;

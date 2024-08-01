@@ -8,7 +8,6 @@ let
 in {
   options.modules.dev = {
     enable = mkBoolOpt true;
-    xdg.enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable { user.packages = [ pkgs.devenv ]; };

@@ -18,12 +18,10 @@ in {
       settings = [{
         layer = "bottom";
         position = "top";
-        height = 30;
-        spacing = 4;
+        height = 40;
+        spacing = 10;
 
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-center = [ "sway/window" ];
-        modules-right = [
+        modules-left = [
           "cpu"
           "temperature"
           "network#1"
@@ -32,6 +30,8 @@ in {
           "battery"
           "clock"
         ];
+        modules-center = [ "sway/window" ];
+        modules-right = [ "sway/workspaces" "sway/mode" ];
 
         "cpu" = {
           format = "{usage}% ";

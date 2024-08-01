@@ -55,7 +55,7 @@ in {
           };
 
           "ASUSTek COMPUTER INC ASUS VG35V 0x000207A6" = {
-            mode = "3440x1440";
+            mode = "3440x1440@60Hz";
             position = "0,0";
             scale = "1.0";
           };
@@ -116,6 +116,8 @@ in {
           repeat_delay 200
           repeat_rate 30
         }
+
+        font Iosevka Etoile 14
       '';
 
       extraSessionCommands = ''
@@ -133,7 +135,6 @@ in {
         export _JAVA_AWT_WM_NONREPARENTING=1
         export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
         export LIBVA_DRIVER_NAME=iHD
-        export WLR_DRM_NO_MODIFIERS=1
      '';
 
      wrapperFeatures = {
