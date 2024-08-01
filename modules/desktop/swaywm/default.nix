@@ -116,8 +116,6 @@ in {
           repeat_delay 200
           repeat_rate 30
         }
-
-        font Iosevka Etoile 14
       '';
 
       extraSessionCommands = ''

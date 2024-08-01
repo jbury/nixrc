@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkIf literalExpression;
+  inherit (lib) mkIf literalExpression mkForce;
   inherit (lib.my) mkBoolOpt;
 
   cfg = config.modules.desktop.term.foot;
@@ -16,7 +16,7 @@ in {
           term = "xterm-256color";
           font = "Iosevka Term:size=12";
 
-          dpi-aware = "yes";
+          dpi-aware = mkForce "yes";
         };
         bell = {
           urgent = "no";
