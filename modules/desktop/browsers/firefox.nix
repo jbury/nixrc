@@ -192,6 +192,9 @@ in {
       "datareporting.healthreport.service.enabled" = false;
       "datareporting.policy.dataSubmissionEnabled" = false;
 
+      # force webrender to use Wayland
+      "gfx.webrender.compositor.force-enables" = true;
+
       # Disable crash reports
       "breakpad.reportURL" = "";
       "browser.tabs.crashReporting.sendReport" = false;

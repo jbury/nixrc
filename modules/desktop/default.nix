@@ -30,7 +30,6 @@ in {
       pkgs.keepassxc
       pkgs.xclip
       pkgs.qgnomeplatform # QPlatformTheme for a better Qt application inclusion in GNOME
-      pkgs.libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra theme
       pkgs.xdg-utils
       pkgs.scrot
       pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice
@@ -62,7 +61,6 @@ in {
 
     env.GTK_DATA_PREFIX = [ "${config.system.path}" ];
     env.QT_QPA_PLATFORMTHEME = "gnome";
-    env.QT_STYLE_OVERRIDE = "kvantum";
 
     # Clean up leftovers, as much as we can
     system.userActivationScripts.cleanupHome = ''
