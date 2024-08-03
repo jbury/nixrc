@@ -125,7 +125,7 @@ in {
         export XDG_SESSION_TYPE=wayland
         export XDG_CURRENT_DESKTOP=sway
         export NIXOS_OZONE_WL=1
-        export NIXOS_OZON_PLATFORM=wayland;
+        export NIXOS_OZONE_PLATFORM=wayland;
         export QT_QPA_PLATFORM=wayland
         export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
