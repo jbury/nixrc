@@ -6,25 +6,29 @@ let
     mkIf mkMerge filter readFile fetchurl splitString concatMapStrings;
   inherit (lib.my) mkBoolOpt;
 
-  cfg = config.modules.services.nginx;
+  cfg = config.modules.services.networking.nginx;
 in {
-  options.modules.services.nginx = {
+  options.modules.services.networking.nginx = {
     enable = mkBoolOpt false;
     enableCloudflareSupport = mkBoolOpt false;
   };
 
   config = mkMerge [
     (mkIf cfg.enable {
+      networking.firewall = {
+        allowedTCPPorts = [ 80 443 ];
+      };
+
       user.extraGroups = [ "nginx" ];
 
       services.nginx = {
         enable = true;
 
         # Use recommended settings
-        recommendedGzipSettings = true;
-        recommendedOptimisation = true;
+        recommendedGzipSettings  = true;
+        recommendedOptimisation  = true;
         recommendedProxySettings = true;
-        recommendedTlsSettings = true;
+        recommendedTlsSettings   = true;
 
         # Reduce the permitted size of client requests, to reduce the likelihood
         # of buffer overflow attacks. This can be tweaked on a per-vhost basis,
