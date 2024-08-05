@@ -1,20 +1,25 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
   inherit (lib.my) mkBoolOpt;
 
-  cfg = config.modules.services.ssh;
+  cfg = config.modules.services.networking.ssh;
 in {
-  options.modules.services.ssh = { enable = mkBoolOpt false; };
+  options.modules.services.networking.ssh = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
+
       settings = {
         KbdInteractiveAuthentication = false;
         PasswordAuthentication = false;
+        PermitRootLogin = mkDefault "no";
       };
+
+      startWhenNeeded = true;
+      openFirewall = true;
       authorizedKeysFiles = [ ".ssh/authorized_keys" ];
     };
 
