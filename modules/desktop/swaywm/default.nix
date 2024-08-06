@@ -61,7 +61,7 @@ in {
           };
 
           "LG Electronics LG ULTRAGEAR+ 405NTWG5L201" = {
-            mode = "3840x2160@30Hz";
+            mode = "3840x2160@60Hz";
             position = "3440,720";
             scale = "1.0";
           };
