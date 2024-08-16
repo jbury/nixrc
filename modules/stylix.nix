@@ -15,6 +15,8 @@ in {
   config.stylix = mkIf cfg.enable {
     enable = true;
 
+    polarity = "dark";
+
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${schemeName}";
 
     fonts = {

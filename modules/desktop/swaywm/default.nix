@@ -53,15 +53,15 @@ in {
             position = "1184,1440";
             scale = "1.0";
           };
-
+          # Ultrawide
           "ASUSTek COMPUTER INC ASUS VG35V 0x000207A6" = {
-            mode = "3440x1440@60Hz";
+            mode = "3440x1440@30Hz";
             position = "0,0";
             scale = "1.0";
           };
-
+          # 4K
           "LG Electronics LG ULTRAGEAR+ 405NTWG5L201" = {
-            mode = "3840x2160@60Hz";
+            mode = "3840x2160@30Hz";
             position = "3440,720";
             scale = "1.0";
           };

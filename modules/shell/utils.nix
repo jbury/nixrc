@@ -18,6 +18,7 @@ in {
 
       # Basic utils
       bat
+      datamash
       eza
       fd
       jq

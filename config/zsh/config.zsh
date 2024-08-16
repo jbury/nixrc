@@ -41,7 +41,6 @@ SAVEHIST=100000   # Max events to store in history file.
 setopt EXTENDED_HISTORY          # Include start time in history records
 setopt APPEND_HISTORY            # Appends history to history file on exit
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_IGNORE_ALL_DUPS      # Remove old events if new event is a duplicate
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.

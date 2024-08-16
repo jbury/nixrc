@@ -25,7 +25,7 @@
         personal $XDG_CONFIG_HOME/aspell/en_US.pws;
         repl $XDG_CONFIG_HOME/aspell/en.prepl;
       '';
-      HISTFILE = "$XDG_DATA_HOME/bash/history";
+      HISTFILE = "$HOME/.zhistory";
     };
 
     # Move ~/.Xauthority out of $HOME (setting XAUTHORITY early isn't enough)

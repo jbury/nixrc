@@ -74,11 +74,12 @@ in {
       modules.shell.zsh.aliases.kccc = "kubectl config current-context";
 
       modules.shell.zsh.aliases.tf = "terraform";
-      modules.shell.zsh.aliases.tir = "./terraform_plan.sh";
+      modules.shell.zsh.aliases.tir = "terraform plan -var-file=secrets.tfvars -out=planfile";
       modules.shell.zsh.aliases.tap = "terraform apply planfile";
       modules.shell.zsh.aliases.tfp = "terraform plan";
       modules.shell.zsh.aliases.tfa = "terraform apply";
       modules.shell.zsh.aliases.tfw = "terraform workspace list";
+      modules.shell.zsh.aliases.tfv = "terraform validate";
       modules.shell.zsh.aliases.tfdiff =
         "terraform show --json | jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'";
 
