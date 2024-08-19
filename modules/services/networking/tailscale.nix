@@ -15,21 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-#    networking.firewall = {
-#      allowedUDPPorts = [
-#        config.services.tailscale.port
-#      ];
-#      checkReversePath = "loose";
-#      trustedInterfaces = [ "tailscale0" ];
-#    };
-#
-#    systemd = {
-#      services.tailscaled = {
-#        after = [ "network-online.target" "systemd-resolved.service" ];
-#        wants = [ "network-online.target" "systemd-resolved.service" ];
-#      };
-#    };
-
     services.tailscale = {
       enable = true;
       openFirewall = true;
@@ -39,5 +24,7 @@ in
         "--accept-routes"
       ];
     };
+
+    modules.shell.zsh.aliases.tss = "tailscale status";
   };
 }
