@@ -19,19 +19,23 @@ in {
         layer = "bottom";
         position = "top";
         height = 40;
-        spacing = 10;
+        spacing = 15;
 
         modules-left = [
           "cpu"
           "temperature"
-          "network#1"
-          "network#2"
           "pulseaudio"
-          "battery"
           "clock"
         ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "sway/workspaces" "sway/mode" ];
+        modules-right = [
+          "network#1"
+          "network#2"
+          "battery"
+          "clock"
+          "sway/workspaces"
+          "sway/mode"
+        ];
 
         "cpu" = {
           format = "{usage}% ";
@@ -110,8 +114,8 @@ in {
         };
 
         "clock" = {
-          format = "<b>{:%I:%M %p}</b>";
-          today-format = "<b><u>{}</u></b>";
+          format = "<b>{:%I:%M %p  |  %D}</b>";
+          today-format = "<b><u>{%a}</u></b>";
           tooltip = true;
           tooltip-format = ''
             <big>{:%a, %B %e %Y}</big>
