@@ -55,7 +55,7 @@ in {
           };
           # Ultrawide
           "ASUSTek COMPUTER INC ASUS VG35V 0x000207A6" = {
-            mode = "3440x1440@30Hz";
+            mode = "3440x1440@60Hz";
             position = "0,0";
             scale = "1.0";
           };
