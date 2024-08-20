@@ -137,7 +137,7 @@
             })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
           inputs.emacs-overlay.overlay
-          inputs.nixpkgs-wayland.overlay
+#          inputs.nixpkgs-wayland.overlay
         ];
       };
 
