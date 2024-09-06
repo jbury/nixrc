@@ -6,7 +6,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 # Case-insensitive, partial-word and then substring completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Colors pls
 zstyle ':completion:*:paths' list-colors "${(@s.:.)LS_COLORS}"
