@@ -5,6 +5,8 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
 
+    nixpkgs-unstable.url = "nixpkgs/master";
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -101,7 +103,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, devenv, stylix, emacs-overlay
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, devenv, stylix, emacs-overlay
     , ... }:
     let
       inherit (lib.my) mapModulesRec mapHosts;
@@ -113,6 +115,14 @@
         lib = nixpkgs.lib;
       };
 
+      unstable-pkgs = import "${nixpkgs-unstable}" {
+        inherit system;
+
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+          "terraform"
+        ];
+      };
+
       pkgs = import "${nixpkgs}" {
         inherit system;
 
@@ -122,7 +132,6 @@
           "slack"
           "spotify"
           "sublime4"
-          "terraform"
 #          "zoom-us" https://discourse.nixos.org/t/suggested-pattern-for-using-allowunfreepredicate-is-overly-permissive-due-to-overloaded-pnames/47609
           "zoom"
         ] ;
@@ -135,9 +144,13 @@
               remontoire = localpackages.remontoire;
               vanta-agent = localpackages.vanta-agent;
             })
+          (final: prev: {
+            terraform = unstable-pkgs.terraform;
+          })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
           inputs.emacs-overlay.overlay
-#          inputs.nixpkgs-wayland.overlay
+          # Only tested for unstable channel
+          # inputs.nixpkgs-wayland.overlay
         ];
       };
 
