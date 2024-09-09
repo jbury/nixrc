@@ -18,6 +18,7 @@ alias dm="datamash"
 alias vimrc="vim ~/.vimrc"
 alias sshconf="vim ~/.ssh/config"
 alias alsa="alsamixer"
+alias whitespace="sed 's/ /·/g;s/\t/￫/g;s/$/¶/g'"
 
 # Nix Reloaded
 alias refl="nix flake update /home/jbury/.nixrc"
