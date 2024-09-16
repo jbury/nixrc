@@ -78,7 +78,9 @@ in {
       modules.shell.zsh.aliases.tap = "terraform apply planfile";
       modules.shell.zsh.aliases.tfp = "terraform plan";
       modules.shell.zsh.aliases.tfa = "terraform apply";
-      modules.shell.zsh.aliases.tfw = "terraform workspace list";
+      modules.shell.zsh.aliases.tfw = "terraform workspace";
+      modules.shell.zsh.aliases.tfws = "tfw select";
+      modules.shell.zsh.aliases.tfwl = "tfw list";
       modules.shell.zsh.aliases.tfv = "terraform validate";
       modules.shell.zsh.aliases.tfdiff =
         "terraform show --json | jq '.resource_changes[] | select(.change.actions | index(\"no-op\") | not)'";
