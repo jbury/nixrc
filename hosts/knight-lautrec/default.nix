@@ -20,7 +20,6 @@
     };
     desktop = {
       swaywm.enable = true;
-      greetd.enable = false;
       apps = {
         rofi.enable = true;
         slack.enable = true;
