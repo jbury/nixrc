@@ -119,6 +119,7 @@
         inherit system;
 
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+          "discord"
           "terraform"
         ];
       };
@@ -128,7 +129,7 @@
 
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
-          "discord"
+          "graphite-cli"
           "slack"
           "spotify"
           "sublime4"
@@ -144,9 +145,10 @@
               remontoire = localpackages.remontoire;
               vanta-agent = localpackages.vanta-agent;
             })
-          (final: prev: {
-            terraform = unstable-pkgs.terraform;
-          })
+            (final: prev: {
+              discord = unstable-pkgs.discord;
+              terraform = unstable-pkgs.terraform;
+            })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
           inputs.emacs-overlay.overlay
           # Only tested for unstable channel

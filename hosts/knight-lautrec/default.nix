@@ -21,6 +21,7 @@
     desktop = {
       swaywm.enable = true;
       apps = {
+        discord.enable = true;
         rofi.enable = true;
         slack.enable = true;
         signal.enable = true;
@@ -40,6 +41,7 @@
       cloud.aws.enable = true;
       elixir.enable = true;
       go.enable = true;
+      graphite.enable = true;
       shell.enable = true;
       db.postgres.enable = true;
     };

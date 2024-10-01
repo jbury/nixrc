@@ -30,5 +30,3 @@ function stata(){
 		fi
 	done
 }
-
-export GOPRIVATE="gitlab.com/flexe/*"

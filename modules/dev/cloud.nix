@@ -34,7 +34,10 @@ in {
     })
 
     (mkIf (cfg.enable && cfg.aws.enable) {
-      user.packages = [ pkgs.awscli2 ];
+      user.packages = [
+        pkgs.awscli2
+        pkgs.eksctl
+      ];
     })
 
     (mkIf (cfg.enable && cfg.azure.enable) {
