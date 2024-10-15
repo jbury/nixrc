@@ -1,3 +1,17 @@
+# Misc Bin - things that should be something/somewhere else
+
+function jasonpod {
+	kubectl apply -f ${HOME}/jason-pod.yaml
+	sleep 5
+	kubectl -n jason-ns exec -it jason-pod -- sh
+}
+
+function postmanpod {
+	kubectl apply -f ${HOME}/postman-pod.yaml
+	sleep 5
+	kubectl -n jason-ns exec -it jason-postman-pod -- sh
+}
+
 # Temp
 alias kill-signal="pgrep -l signal | head -n1 | cut -d' ' -f1 | xargs kill -9 "
 

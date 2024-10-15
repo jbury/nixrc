@@ -50,6 +50,12 @@ in {
           # Certifiable
           certbot
 
+          # Visualizing terraform graphs upsets me deeply, but I had to do it
+          graphviz
+
+          # Useful for putting together shareable collections of test requests
+          postman
+
           # Kubernetes
           kubectl # Talk at my kubernet pls
           k9s # Like kubectl, but _fancy_

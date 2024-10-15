@@ -26,6 +26,7 @@ in {
       file
       lsof
       libnotify
+      linuxKernel.packages.linux_latest_libre.perf
       ripgrep
       tldr
       tree

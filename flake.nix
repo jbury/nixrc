@@ -130,6 +130,7 @@
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
           "graphite-cli"
+          "postman"
           "slack"
           "spotify"
           "sublime4"
