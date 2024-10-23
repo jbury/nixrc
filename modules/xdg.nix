@@ -16,6 +16,7 @@
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_BIN_HOME = "$HOME/.local/bin";
+      XDG_PICTURES_DIR = "$HOME/Pictures";
     };
     variables = {
       # Conform more programs to XDG conventions. The rest are handled by their

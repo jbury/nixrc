@@ -28,10 +28,10 @@ in {
       pkgs.gparted
       pkgs.feh
       pkgs.keepassxc
+      pkgs.sway-contrib.grimshot
       pkgs.xclip
       pkgs.qgnomeplatform # QPlatformTheme for a better Qt application inclusion in GNOME
       pkgs.xdg-utils
-      pkgs.scrot
       pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice
     ];
 
@@ -61,6 +61,8 @@ in {
 
     env.GTK_DATA_PREFIX = [ "${config.system.path}" ];
     env.QT_QPA_PLATFORMTHEME = "gnome";
+
+    env.XDG_SCREENSHOTS_DIR = "${config.user.home}/screenshots";
 
     # Clean up leftovers, as much as we can
     system.userActivationScripts.cleanupHome = ''

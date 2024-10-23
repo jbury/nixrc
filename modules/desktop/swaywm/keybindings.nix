@@ -22,6 +22,8 @@ in {
         modifier = "Mod4";
         keybindings = {
           "${super}+Return" = "exec ${swayConfig.terminal}";
+          "Print" = "exec grimshot copy anything";
+          "${super}+Print" = "exec grimshot savecopy anything screenshot.png";
 
           "${super}+l" = "exec swaylock -Fe -c000000";
           "${super}+f" = "exec firefox";
