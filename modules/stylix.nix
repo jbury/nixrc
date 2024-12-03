@@ -14,7 +14,6 @@ in {
 
   config.stylix = mkIf cfg.enable {
     enable = true;
-    targets.kubecolor.enable = false;
 
     polarity = "dark";
 

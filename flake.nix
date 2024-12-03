@@ -3,9 +3,8 @@
     "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-
     nixpkgs-unstable.url = "nixpkgs/master";
+    nixpkgs.url = "nixpkgs/master";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
@@ -29,7 +28,9 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      #url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
+
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -54,7 +55,7 @@
     };
 
     stylix = {
-      url = "github:danth/stylix/master";
+      url = "github:danth/stylix";
 
       inputs = {
         nixpkgs.follows      = "nixpkgs";
