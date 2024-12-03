@@ -3,7 +3,7 @@
     "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
 
     nixpkgs-unstable.url = "nixpkgs/master";
 
@@ -29,7 +29,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -50,12 +50,11 @@
 
       inputs = {
         nixpkgs.follows     = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
     stylix = {
-      url = "github:danth/stylix/release-24.05";
+      url = "github:danth/stylix/master";
 
       inputs = {
         nixpkgs.follows      = "nixpkgs";
@@ -75,18 +74,6 @@
       };
     };
 
-    cachix = {
-      url = "github:cachix/cachix/latest";
-
-      inputs = {
-        nixpkgs.follows          = "nixpkgs";
-        devenv.follows           = "devenv";
-        flake-compat.follows     = "flake-compat";
-        pre-commit-hooks.follows = "pre-commit-hooks";
-
-      };
-    };
-
     devenv = {
       url = "github:cachix/devenv/latest";
 
@@ -96,7 +83,6 @@
 # https://github.com/cachix/devenv/issues/1200#issuecomment-2112452403
 #        nixpkgs.follows          = "nixpkgs";
 
-        cachix.follows           = "cachix";
         flake-compat.follows     = "flake-compat";
         pre-commit-hooks.follows = "pre-commit-hooks";
       };

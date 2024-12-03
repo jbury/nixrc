@@ -9,11 +9,11 @@
 stdenv.mkDerivation rec {
   # Version and SHA can be found at https://raw.githubusercontent.com/VantaInc/vanta-agent-scripts/main/install-linux.sh
   pname = "vanta-agent";
-  version = "2.10.0";
+  version = "2.11.0";
 
   src = fetchurl {
     url = "https://vanta-agent-repo.s3.amazonaws.com/targets/versions/${version}/vanta-amd64.deb";
-    sha256 = "d749eeb61526c4cd53455fbfed99418f274b272a54543f905dba613f851f3829";
+    sha256 = "8763c60427111fc84a20662c92aa3b80b35b01825108220b24653e4d25e39d26";
   };
 
   nativeBuildInputs = [
