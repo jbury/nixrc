@@ -6,12 +6,6 @@ function jasonpod {
 	kubectl -n jason-ns exec -it jason-pod -- sh
 }
 
-function postmanpod {
-	kubectl apply -f ${HOME}/postman-pod.yaml
-	sleep 5
-	kubectl -n jason-ns exec -it jason-postman-pod -- sh
-}
-
 # Temp
 alias kill-signal="pgrep -l signal | head -n1 | cut -d' ' -f1 | xargs kill -9 "
 
@@ -36,11 +30,11 @@ alias whitespace="sed 's/ /·/g;s/\t/￫/g;s/$/¶/g'"
 
 # Nix Reloaded
 alias refl="nix flake update /home/jbury/.nixrc"
-alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#knight-lautrec"
+alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#$(hostname)"
 
 # CDs
 alias ws="cd ~/workspace/"
-alias nixrc="pushd ~/.nixrc"
+alias nixrc="cd ~/.nixrc"
 alias ssw="cd ~/Pictures/Screenshots/Work"
 
 # Flag Aliases

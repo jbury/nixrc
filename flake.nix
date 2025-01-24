@@ -28,7 +28,6 @@
     };
 
     home-manager = {
-      #url = "github:nix-community/home-manager/release-24.11";
       url = "github:nix-community/home-manager/master";
 
 
@@ -116,8 +115,6 @@
 
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
-          "graphite-cli"
-          "postman"
           "slack"
           "spotify"
           "sublime4"
@@ -131,7 +128,6 @@
               # Sometimes we just want to refer to "local" packages from the packages dir
               # kustomize = localpackages.kustomize;
               remontoire = localpackages.remontoire;
-              vanta-agent = localpackages.vanta-agent;
             })
             (final: prev: {
               discord = unstable-pkgs.discord;

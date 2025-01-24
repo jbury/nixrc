@@ -3,14 +3,15 @@
 
 #  settings = {
 #    username = "jbury";
-#    email = "jason@knock.app";
+#    email = "jasondougbury@gmail.com";
+#    gitroot = "jbury";
 #    sensors = {
 #      cpu_temp = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
 #      battery = "BAT1";
 #    };
 #  };
 
-  networking.hostName = "knight-lautrec"; # Define your hostname.
+  networking.hostName = "lautrec"; # Define your hostname.
 
   ## Modules
   modules = {
@@ -23,7 +24,6 @@
       apps = {
         discord.enable = true;
         rofi.enable = true;
-        slack.enable = true;
         signal.enable = true;
         zoom.enable = true;
       };
@@ -39,9 +39,7 @@
     dev = {
       cloud.enable = true;
       cloud.aws.enable = true;
-      elixir.enable = true;
       go.enable = true;
-      graphite.enable = true;
       shell.enable = true;
       db.postgres.enable = true;
     };
@@ -57,14 +55,6 @@
     };
     services = {
       docker.enable = true;
-      vanta-agent.enable = true;
-
-      networking = {
-        tailscale = {
-          enable = true;
-          hostname = "jason-framework";
-        };
-      };
     };
     stylix.enable = true;
   };

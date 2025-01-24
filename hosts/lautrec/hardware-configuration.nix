@@ -46,14 +46,14 @@ in {
   # disk/by-uuid is good enough for me.
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/28a405a9-c75f-4baa-8cb5-3ea3e159f2ad";
+    { device = "/dev/disk/by-uuid/1e26657b-742c-4a8c-a681-def6a132be9f";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-e06ea226-c7cf-4486-87d0-ad0fef7832cc".device = "/dev/disk/by-uuid/e06ea226-c7cf-4486-87d0-ad0fef7832cc";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/8ea5b5eb-3dc9-4406-a061-f1d5dcb7950f";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/ED14-07E8";
+    { device = "/dev/disk/by-label/boot";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
