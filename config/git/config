@@ -25,6 +25,7 @@
 	restore-file = "checkout HEAD --"
 	get = "!f() { git clone -v git@github.com:jbury/$1; }; f"
 	outta-here = "!echo https://www.youtube.com/watch?v=BHkfdZjshqY&t=34s"
+	gud = "!cat ${XDG_CONFIG_HOME}/git/dad.txt"
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/
 [url "git@gitlab.com:"]
