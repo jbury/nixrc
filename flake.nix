@@ -3,7 +3,6 @@
     "A gross nixos config. Approximately none incandescence to be found";
 
   inputs = {
-    nixpkgs-unstable.url = "nixpkgs/master";
     nixpkgs.url = "nixpkgs/master";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -89,7 +88,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, devenv, stylix, emacs-overlay
+  outputs = inputs@{ self, nixpkgs, devenv, stylix, emacs-overlay
     , ... }:
     let
       inherit (lib.my) mapModulesRec mapHosts;
@@ -101,26 +100,19 @@
         lib = nixpkgs.lib;
       };
 
-      unstable-pkgs = import "${nixpkgs-unstable}" {
-        inherit system;
-
-        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-          "discord"
-          "terraform"
-        ];
-      };
-
       pkgs = import "${nixpkgs}" {
         inherit system;
 
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
+          "discord"
           "slack"
           "spotify"
           "sublime4"
+          "terraform"
 #          "zoom-us" https://discourse.nixos.org/t/suggested-pattern-for-using-allowunfreepredicate-is-overly-permissive-due-to-overloaded-pnames/47609
           "zoom"
-        ] ;
+        ];
 
         overlays = [
           (final: prev:
@@ -128,10 +120,6 @@
               # Sometimes we just want to refer to "local" packages from the packages dir
               # kustomize = localpackages.kustomize;
               remontoire = localpackages.remontoire;
-            })
-            (final: prev: {
-              discord = unstable-pkgs.discord;
-              terraform = unstable-pkgs.terraform;
             })
           (final: prev: { devenv = devenv.packages."${system}".devenv; })
           inputs.emacs-overlay.overlay

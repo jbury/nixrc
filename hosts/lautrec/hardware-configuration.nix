@@ -5,6 +5,7 @@ in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+    ./disk-configuration.nix
   ];
 
   # fwupd needed for firmware updates

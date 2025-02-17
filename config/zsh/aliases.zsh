@@ -29,7 +29,7 @@ alias alsa="alsamixer"
 alias whitespace="sed 's/ /·/g;s/\t/￫/g;s/$/¶/g'"
 
 # Nix Reloaded
-alias refl="nix flake update /home/jbury/.nixrc"
+alias refl="nix flake update --flake /home/jbury/.nixrc"
 alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#$(hostname)"
 
 # CDs
