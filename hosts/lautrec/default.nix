@@ -55,6 +55,9 @@
     };
     services = {
       docker.enable = true;
+      disks = {
+        google-drive.enable = true;
+      };
     };
     stylix.enable = true;
   };
