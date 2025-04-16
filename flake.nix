@@ -7,6 +7,8 @@
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     flake-utils.url = "github:numtide/flake-utils";
 
     lib-aggregate = {
@@ -28,7 +30,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
-
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -88,7 +89,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, devenv, stylix, emacs-overlay
+  outputs = inputs@{ self, nixpkgs, nixos-wsl, devenv, stylix, emacs-overlay
     , ... }:
     let
       inherit (lib.my) mapModulesRec mapHosts;
