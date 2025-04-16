@@ -34,7 +34,7 @@ in {
 
   system.configurationRevision =
     mkIf (inputs.self ? inputs.rev) inputs.self.rev;
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
 
   networking = {
     useDHCP = mkDefault true;

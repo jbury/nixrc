@@ -9,7 +9,13 @@ let
 
   cfg = config.modules.editors.emacs;
   configDir = config.dotfiles.configDir;
-  myEmacs = pkgs.emacs29-pgtk;
+  myEmacs = with pkgs; (emacsPackagesFor
+    (if config.modules.desktop.swaywm.enable
+    then pkgs.emacs-git-pgtk
+    else pkgs.emacs-git)).emacsWithPackages (epkgs: with epkgs; [
+      treesit-grammars.with-all-grammars
+      vterm
+    ]);
 in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
@@ -20,11 +26,11 @@ in {
     user.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-      ((emacsPackagesFor myEmacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
+      myEmacs
 
       ## Doom dependencies
       git
-      (ripgrep.override { withPCRE2 = true; })
+      ripgrep
       gnutls # for TLS connectivity
 
       ## Optional dependencies
