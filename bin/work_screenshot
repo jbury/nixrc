@@ -1,8 +1,0 @@
-#!/usr/bin/env cached-nix-shell
-#! nix-shell -p optipng scrot
-set -eu
-
-DIR=$(date +"${HOME}/Pictures/Screenshots/Work/%Y/%m/%d")
-FILE=$(date +"%H:%M.png")
-mkdir -p "${DIR}"
-scrot "${DIR}/${FILE}" -e 'optipng $f'

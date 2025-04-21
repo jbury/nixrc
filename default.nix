@@ -1,98 +1,43 @@
-{ inputs, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-let
-  inherit (lib) mkIf mkDefault filterAttrs mapAttrsToList mapAttrs;
-  inherit (builtins) toString;
-  inherit (lib.my) mapModulesRec';
-in {
+{
   imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ]
-  # All my personal modules
-    ++ (mapModulesRec' (toString ./modules) import);
+    # include NixOS-WSL modules
+    <nixos-wsl/modules>
+  ];
 
-  environment.variables.DOTFILES = config.dotfiles.dir;
-  environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
 
-  nix = let
-    filteredInputs = filterAttrs (n: _: n != "self") inputs;
-    nixPathInputs = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
-    registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
-  in {
-    package = pkgs.nixVersions.stable;
-    extraOptions = "experimental-features = nix-command flakes";
-    nixPath = nixPathInputs ++ [ "dotfiles=${config.dotfiles.dir}" ];
-    registry = registryInputs // { dotfiles.flake = inputs.self; };
-    settings = {
-      substituters = [ "https://nix-community.cachix.org" ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-      auto-optimise-store = true;
-    };
-  };
-
-  system.configurationRevision =
-    mkIf (inputs.self ? inputs.rev) inputs.self.rev;
-  system.stateVersion = "24.11";
-
-  networking = {
-    useDHCP = mkDefault true;
-    enableIPv6 = mkDefault true;
-    useNetworkd = mkDefault true;
-    nameservers = mkDefault [];
-    nftables.enable = mkDefault true;
-
-    firewall = {
-      enable = true;
-
-      allowedTCPPorts = [ 22 80 443 ];
-      allowedTCPPortRanges = [ { from = 8080; to = 8090; } ];
-
-      allowedUDPPorts = [
-        # DHCPv6
-        546
-        # Tailscale
-        41641 3478
-      ];
-      allowedUDPPortRanges = [];
-    };
-  };
-
-
-  # A root fileSystem is needed to appease the nix flake check gods
-  fileSystems."/".device = mkDefault "/dev/disk/by-label/nixos";
-
-  home-manager.useGlobalPkgs = true;
-
-  boot = {
-    kernelPackages = mkDefault pkgs.linuxPackages_latest;
-
-    loader = {
-      systemd-boot = {
-        configurationLimit = 5;
-        enable = mkDefault true;
-        editor = false;
-      };
-      efi = {
-        canTouchEfiVariables = mkDefault true;
-        efiSysMountPoint = "/boot";
-      };
-    };
+  wsl.enable = true;
+  wsl.defaultUser = "jbury";
+  wsl.wslConf = {
+    interop.enabled = false;
+    interop.appendWindowsPath = false;
+    network.hostname = "oswald";
   };
 
   # It's dangerous to pull yourself up by your bootstraps alone, take these:
   environment.systemPackages = with pkgs; [
-    bind
-    cached-nix-shell
     curl
     git
+    vim
+    ripgrep
+    bind
+    cached-nix-shell
     pciutils
     gnumake
     unzip
-    vim
     wget
     cacert
     nh
   ];
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It's perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
+
