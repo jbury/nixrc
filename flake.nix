@@ -2,6 +2,12 @@
   description =
     "A gross nixos-wsl config. Approximately none incandescence to be found";
 
+  nixConfig = {
+    auto-optimise-store = true;
+    experimental-features = "nix-command flakes";
+    use-xdg-base-directories = true;
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -39,9 +45,7 @@
         lib = nixpkgs.lib;
       };
 
-      pkgs = import "${nixpkgs}" {
-        inherit system;
-
+      nixpkgsDefaults = {
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
           "terraform"
@@ -52,14 +56,21 @@
             {
               # Sometimes we just want to refer to "local" packages from the packages dir
               # kustomize = localpackages.kustomize;
-            })
+            }
+          )
           inputs.emacs-overlay.overlay
         ];
+      }
+
+      pkgs = import "${nixpkgs}" {
+        inherit system nixpkgsDefaults;
       };
+
     in {
       nixosConfigurations = {
-        wsl = nixpkgs.lib.nixosSystem {
+        oswald = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; }
           modules = [
             nixos-wsl.nixosModules.default
             {
