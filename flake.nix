@@ -38,14 +38,14 @@
 
   outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
     let
-      system = "x86_64-linux";
-
-      localpackages = import ./packages {
+      localpackagesForSystem = system: import ./packages {
         pkgs = nixpkgs.legacyPackages.${system};
         lib = nixpkgs.lib;
       };
+      
+      pkgsForSystem = system: extraOverlays: import nixpkgs {
+        inherit system;
 
-      nixpkgsDefaults = {
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
           "terraform"
@@ -55,24 +55,19 @@
           (final: prev:
             {
               # Sometimes we just want to refer to "local" packages from the packages dir
-              # kustomize = localpackages.kustomize;
+              # kustomize = localpackagesForSystem.kustomize;
             }
           )
-          inputs.emacs-overlay.overlay
-        ];
+          emacs-overlay.overlay
+        ] ++ extraOverlays;
       }
-
-      pkgs = import "${nixpkgs}" {
-        inherit system nixpkgsDefaults;
-      };
-
     in {
       nixosConfigurations = {
         oswald = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; }
           modules = [
-            nixos-wsl.nixosModules.default
+            nixos-wsl.nixosModules.
             {
               system.stateVersion = "24.11";
               wsl = {
