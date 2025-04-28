@@ -1,17 +1,11 @@
-{... }: {
-  imports = [ ../home.nix ./hardware-configuration.nix ];
+{ ... }: {
+  imports = [
+    ../wslHost.nix
+  ];
 
-#  settings = {
-#    username = "jbury";
-#    email = "jasondougbury@gmail.com";
-#    gitroot = "jbury";
-#    sensors = {
-#      cpu_temp = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
-#      battery = "BAT1";
-#    };
-#  };
-
-  networking.hostName = "oswald"; # Define your hostname.
+  hostSettings = {
+    email = "jason.bury@docusign.com";
+  };
 
   ## Modules
   modules = {
@@ -21,7 +15,6 @@
       cloud.azure.enable = true;
       go.enable = true;
       shell.enable = true;
-      db.postgres.enable = true;
     };
     editors = {
       emacs.enable = true;
@@ -35,9 +28,6 @@
     };
     services = {
       docker.enable = true;
-      disks = {
-        google-drive.enable = true;
-      };
     };
     stylix.enable = true;
   };

@@ -1,7 +1,18 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 let inherit (lib) mkDefault;
 in {
+  home-manager = {
+    useGlobalPkgs = true;
+
+    # I don't currently have any use for nixos-rebuild build-vm, so /etc/profiles isn't needed
+    useUserPackages = false;
+  };
+
+  home = {
+    stateVersion = "config.system.stateVersion";
+  };
+
   time.timeZone = mkDefault "America/Los_Angeles";
 
   i18n = {

@@ -56,7 +56,6 @@ in {
     # Install user packages to /etc/profiles instead. Necessary for
     # nixos-rebuild build-vm to work.
     home-manager = {
-      useUserPackages = true;
 
       # I only need a subset of home-manager's capabilities. That is, access to
       # its home.file, home.xdg.configFile and home.xdg.dataFile so I can deploy
@@ -69,9 +68,6 @@ in {
       users.${config.user.name} = {
         home = {
           file = mkAliasDefinitions options.home.file;
-          # Necessary for home-manager to work with flakes, otherwise it will
-          # look for a nixpkgs channel.
-          stateVersion = config.system.stateVersion;
         };
         xdg = {
           configFile = mkAliasDefinitions options.home.configFile;
