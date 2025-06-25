@@ -2,31 +2,18 @@
   description =
     "A gross nixos config. Approximately none incandescence to be found";
 
+  nixConfig {
+    auto-optimise-store = true;
+    experimental-features = "nix-command flakes;
+    use-xdg-base-directories = true;
+  };
+
   inputs = {
-    nixpkgs.url = "nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
-    flake-utils.url = "github:numtide/flake-utils";
-
-    lib-aggregate = {
-      url = "github:nix-community/lib-aggregate";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
-    flake-compat = {
-      url   = "github:edolstra/flake-compat";
-      flake = false;
-    };
-
-    nix-eval-jobs = {
-      url = "github:nix-community/nix-eval-jobs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -34,23 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs-wayland = {
-      url = "github:nix-community/nixpkgs-wayland";
-
-      inputs = {
-        nixpkgs.follows       = "nixpkgs";
-        flake-compat.follows  = "flake-compat";
-        lib-aggregate.follows = "lib-aggregate";
-        nix-eval-jobs.follows = "nix-eval-jobs";
-      };
-    };
-
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
 
-      inputs = {
-        nixpkgs.follows     = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
@@ -59,60 +33,24 @@
       inputs = {
         nixpkgs.follows      = "nixpkgs";
         home-manager.follows = "home-manager";
-        flake-compat.follows = "flake-compat";
-      };
-    };
-
-    # cachix stuff
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-
-      inputs = {
-        nixpkgs.follows        = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs";
-        flake-compat.follows   = "flake-compat";
-      };
-    };
-
-    devenv = {
-      url = "github:cachix/devenv/latest";
-
-      inputs = {
-# devenv uses a custom build of nix, `nix-devenv`, which follows the nixpkgs input, but applies
-# some now out-of-date patches to the boehm-gc dependency.  For details, see:
-# https://github.com/cachix/devenv/issues/1200#issuecomment-2112452403
-#        nixpkgs.follows          = "nixpkgs";
-
-        flake-compat.follows     = "flake-compat";
-        pre-commit-hooks.follows = "pre-commit-hooks";
       };
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-wsl, devenv, stylix, emacs-overlay
+  outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, emacs-overlay, stylix
     , ... }:
     let
-      inherit (lib.my) mapModulesRec mapHosts;
-
-      system = "x86_64-linux";
-
-      localpackages = import ./packages {
+      localPackagesForSystem = system: import ./packages {
         pkgs = nixpkgs.legacyPackages.${system};
         lib = nixpkgs.lib;
       };
 
-      pkgs = import "${nixpkgs}" {
+      pkgsForSystem = system: import "${nixpkgs}" {
         inherit system;
 
         config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "aspell-dict-en-science"
-          "discord"
-          "slack"
-          "spotify"
-          "sublime4"
           "terraform"
-#          "zoom-us" https://discourse.nixos.org/t/suggested-pattern-for-using-allowunfreepredicate-is-overly-permissive-due-to-overloaded-pnames/47609
-          "zoom"
         ];
 
         overlays = [
@@ -120,26 +58,26 @@
             {
               # Sometimes we just want to refer to "local" packages from the packages dir
               # kustomize = localpackages.kustomize;
-              remontoire = localpackages.remontoire;
-            })
-          (final: prev: { devenv = devenv.packages."${system}".devenv; })
-          inputs.emacs-overlay.overlay
-          # Only tested for unstable channel
-          # inputs.nixpkgs-wayland.overlay
-        ];
+            }
+          )
+          emacs-overlay.overlay
+        ]
       };
 
+      # TODO: pull this out into the per-host configs      
+      system = "x86_64-linux";
+      pkgs = pkgsForSystem {system};
+
+      # TODO: This is such a bad idea...unless?
       lib = nixpkgs.lib.extend (final: prev: {
         my = import ./lib {
-          inherit pkgs inputs;
+          inherit inputs;
           lib = final;
         };
       });
     in {
-      nixosModules = {
-        dotfiles = import ./.;
-      } // mapModulesRec ./modules import;
+      nixosModules = lib.my.mapModulesRec ./modules import;
 
-      nixosConfigurations = mapHosts ./hosts { };
+      nixosConfigurations = lib.my.mapHosts ./hosts pkgs;
     };
 }

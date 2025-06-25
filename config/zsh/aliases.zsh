@@ -19,23 +19,21 @@ alias cccc="cd ../../../.."
 
 alias l="ls"
 alias cls="clear && ls"
-alias gcl="gitlab-ci-local"
-alias zshrc="vim ~/.nixrc/config/zsh/"
-alias rezsh="source ~/.config/zsh/.zshrc"
-alias dm="datamash"
-alias vimrc="vim ~/.vimrc"
-alias sshconf="vim ~/.ssh/config"
+alias zshrc="vim ${HOME}/.nixrc/config/zsh/"
+alias rezsh="source ${HOME}/.config/zsh/.zshrc"
+alias vimrc="vim ${HOME}/.vimrc"
+alias sshconf="vim ${HOME}/.ssh/config"
 alias alsa="alsamixer"
 alias whitespace="sed 's/ /·/g;s/\t/￫/g;s/$/¶/g'"
 
 # Nix Reloaded
-alias refl="nix flake update --flake /home/jbury/.nixrc"
-alias nrf="sudo nixos-rebuild --flake /home/jbury/.nixrc/.#$(hostname)"
+alias refl="nix flake update --flake /home/${USER}/.nixrc"
+alias nrf="sudo nixos-rebuild --flake /home/${USER}/.nixrc/.#$(hostname)"
 
 # CDs
-alias ws="cd ~/workspace/"
-alias nixrc="cd ~/.nixrc"
-alias ssw="cd ~/Pictures/Screenshots/Work"
+alias ws="cd ${HOME}/workspace/"
+alias nixrc="cd ${HOME}/.nixrc"
+alias ssw="cd ${HOME}/Pictures/Screenshots/Work"
 
 # Flag Aliases
 alias ls="ls --color -F"
@@ -50,7 +48,7 @@ alias jc="journalctl -e"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 
-alias jqlogs="jq -R '. as $line | try (fromjson) catch $line'"
+alias jqlogs="jq -R '. as ${line} | try (fromjson) catch ${line}'"
 
 alias shutdown="sudo shutdown now"
 

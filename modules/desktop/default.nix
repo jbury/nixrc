@@ -28,6 +28,7 @@ in {
       pkgs.gparted
       pkgs.feh
       pkgs.keepassxc
+      pkgs.libnotify
       pkgs.sway-contrib.grimshot
       pkgs.xclip
       pkgs.qgnomeplatform # QPlatformTheme for a better Qt application inclusion in GNOME

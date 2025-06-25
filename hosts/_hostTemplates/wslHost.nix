@@ -18,7 +18,7 @@ in {
     user     = mkOpt str hostcfg.userName;
     hostname = mkOpt str hostcfg.hostName;
 
-    interop.enable = mkBoolOpt false;
+    interop.enable = mkBoolOpt true;
   };
 
   config = {
