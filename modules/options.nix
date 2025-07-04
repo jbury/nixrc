@@ -8,9 +8,9 @@ let
   inherit (lib.my) mkOpt mkOpt';
 in {
   options = {
-    user = mkOpt attrs { };
-
     dotfiles = {
+	# TODO Still migrating this to the hostsModules dir.  hostSettings has an option for dotfilesDir, 
+	# and the other dirs need to be set in some user-management module 
       dir = mkOpt path (removePrefix "/mnt"
         (findFirst pathExists (toString ../.) [ "/etc/nixos" ]));
       binDir = mkOpt path "${config.dotfiles.dir}/bin";
@@ -19,9 +19,9 @@ in {
     };
 
     home = {
-      file = mkOpt' attrs { } "Files to place directly in $HOME";
-      configFile = mkOpt' attrs { } "Files to place in $XDG_CONFIG_HOME";
-      dataFile = mkOpt' attrs { } "Files to place in $XDG_DATA_HOME";
+      file = mkOpt' attrs {} "Files to place directly in $HOME";
+      configFile = mkOpt' attrs {} "Files to place in $XDG_CONFIG_HOME";
+      dataFile = mkOpt' attrs {} "Files to place in $XDG_DATA_HOME";
       programs = mkOpt' attrs {} "Apps to configure";
       services = mkOpt' attrs {} "Services to configure";
       wayland = mkOpt' attrs {} "Wayland config";

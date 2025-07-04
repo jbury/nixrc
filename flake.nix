@@ -64,11 +64,11 @@
         ]
       };
 
-      # TODO: pull this out into the per-host configs      
+      # TODO: Having a global pkgs with a hard-coded system is not ideal for portability :(
       system = "x86_64-linux";
       pkgs = pkgsForSystem {system};
 
-      # TODO: This is such a bad idea...unless?
+      # TODO: Extending lib like this is _not_ recommended
       lib = nixpkgs.lib.extend (final: prev: {
         my = import ./lib {
           inherit inputs;

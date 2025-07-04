@@ -2,12 +2,22 @@
 
 let
 	inherit (lib) mkDefault;
+	inherit (lib.types) str;
+	inherit (lib.my) mkBoolOpt mkOpt;
+
+	cfg     = config.hostModules.home-manager;
+	hostCfg = config.hostModules.hostSettings;
 in {
-	options = {
+	options.hostModules.home-manager = {
+		manageUser   = mkBoolOpt false;
+		userName     = mkOpt str hostCfg.userName;
+		stateVersion = mkOpt str hostCfg.home.stateVersion;
 	};
 
 	config = {
-		environment.variables.DOTFILES = config.dotfiles.dir;
+		#TODO: Ensure these are set for everyone, probably by splitting this out into
+		# a home-modules file or some such nonsense.
+		environment.variables.DOTFILES     = config.dotfiles.dir;
 		environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
 		home-manager = {
@@ -15,29 +25,16 @@ in {
 	
 			# I don't currently have any use for nixos-rebuild build-vm, so /etc/profiles isn't needed
 			useUserPackages = false;
-		};
-	
-		home = {
-			username = config.hostSettings.userName;
-			homeDirectory = "/home/${config.hostSettings.userName}";
-			stateVersion = config.system.stateVersion;
-			activation = import ./home-activation.nix { inherit config pkgs lib; };
-		};
-	
-		time.timeZone = mkDefault "America/Los_Angeles";
-	
-		i18n = {
-			defaultLocale = mkDefault "en_US.UTF-8";
-			extraLocaleSettings = {
-				LC_ADDRESS = "en_US.UTF-8";
-				LC_IDENTIFICATION = "en_US.UTF-8";
-				LC_MEASUREMENT = "en_US.UTF-8";
-				LC_MONETARY = "en_US.UTF-8";
-				LC_NAME = "en_US.UTF-8";
-				LC_NUMERIC = "en_US.UTF-8";
-				LC_PAPER = "en_US.UTF-8";
-				LC_TELEPHONE = "en_US.UTF-8";
-				LC_TIME = "en_US.UTF-8";
+
+			# TODO Move under some user-management module
+			# options.nix and xdg.nix contain a fair bit of other stuff too. Need to figure out
+			# what is automagically done by nixos-wsl so I know what the optional user-management needs
+			# vs. what every system needs.
+			users.${cfg.userName} = {
+				username      = cfg.userName;
+				homeDirectory = "/home/${cfg.userName}";
+				stateVersion  = cfg.stateVersion;
+				activation    = import ./home-activation.nix { inherit config pkgs lib; };
 			};
 		};
 	};
