@@ -3,19 +3,18 @@
 > guarantees that it will work out of the box for anyone but myself. It may also
 > change drastically and without warning.
 
-Shamelessly copied from [jboyens](https://git.sr.ht/~jboyens/dotfiles) who shamelessly copied from [hlissner](https://github.com/hlissner/dotfiles)
+Originally shamelessly copied from [jboyens](https://git.sr.ht/~jboyens/dotfiles) who shamelessly copied from [hlissner](https://github.com/hlissner/dotfiles).
+
+Currently in the process of rewriting the entire thing to be a bit less automagical (the mapModules funcs hlissner created are great, but they don't have the same declarative feel I"m looking for, you know?)
 
 ------
 
-|                |                                                          |
-|----------------|----------------------------------------------------------|
-| **Shell:**     | zsh + zgenom                                             |
-| **DM:**        | greetd                                                   |
-| **WM:**        | Sway                                                     |
-| **Editor:**    | [Doom Emacs][doom-emacs]                                 |
-| **Terminal:**  | foot                                                     |
-| **Launcher:**  | rofi                                                     |
-| **Browser:**   | firefox                                                  |
+# Conventions/Standards
+## Option namespaces
+All module options created in this repo should live under `options.jbury.nixrc` to reflect the repo the options are coming from in the first place, and from there should additionally include the directory path within the repo that the module def can be found in (e.g. `options.jbury.modules.home-manager` should be created in `/modules/home-manager/default.nix`).  The only exception is 
+
+## Submodules
+
 
 ------
 

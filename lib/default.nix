@@ -1,17 +1,13 @@
-{ inputs, lib, ... }:
-
+{ lib, ... }:
 let
-  inherit (lib) makeExtensible attrValues foldr;
 
-  modules = import ./modules.nix {
-    inherit lib;
-    final.attrs = import ./attrs.nix {
-      inherit lib;
-      final = { };
-    };
-  };
-
-  mylib = makeExtensible (final:
-    modules.mapModules ./.
-    (file: import file { inherit final lib inputs; }));
-in mylib.extend (final: prev: foldr (a: b: a // b) { } (attrValues prev))
+	subLibs = {
+		options = import ./options.nix
+	};
+in {
+	inherit (subLibs.options)
+		mkOpt
+		mkOpt'
+		mkBoolOpt'
+		;
+};

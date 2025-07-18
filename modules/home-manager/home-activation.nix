@@ -1,4 +1,7 @@
 { config, pkgs, lib, ... }: let
+
+	hostCfg = config.hostModules.hostSettings;
+
 	#TODO: Someday actually break this out to something someone else might be able to use
 	defaultIdentity = {
 		name = "Jason Bury";
@@ -6,8 +9,8 @@
 	};
 
 	personalGithubKeys = {
-		pub =  "~/.ssh/${config.hostSettings.userName}_github.pub";
-		priv = "~/.ssh/${config.hostSettings.userName}_github";
+		pub =  "~/.ssh/${hostCfg.userName}_github.pub";
+		priv = "~/.ssh/${hostCfg.userName}_github";
 	};
 
 	defaultGitKeys = {
@@ -15,11 +18,7 @@
 		priv = "~/.ssh/default_git";
 	};
 
-	hostCfg = config.hostModules.hostSettings;
-in {
-
-	# Sets the right perms on ~/ and sets up needed initial git keys
-	generateSshDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+	genSshDirScript = ''
 # Make sure ~/.ssh perms are correct
 if [ -d "~/.ssh" ]; then
 	chmod 700 "~/.ssh"
@@ -49,4 +48,9 @@ if [ ! -f "${defaultGitKeys.priv}" ]; then
 fi
 	'';
 
+
+in {
+
+	# Sets the right perms on ~/ and sets up needed initial git keys
+	generateSshDir = lib.hm.dag.entryAfter ["writeBoundary"] genSshDirScript
 }

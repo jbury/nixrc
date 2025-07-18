@@ -3,25 +3,10 @@
 let
   inherit (builtins) isAttrs;
   inherit (lib) mkIf value;
-  inherit (lib.my) anyAttrs countAttrs;
 
   cfg = config.modules.desktop;
 in {
   config = mkIf (config.services.xserver.enable || cfg.swaywm.enable) {
-    assertions = [
-      {
-        assertion = (countAttrs (n: v: n == "enable" && value) cfg) < 2;
-        message =
-          "Can't have more than one desktop environment enabled at a time";
-      }
-      {
-        assertion = let srv = config.services;
-        in srv.xserver.enable || cfg.swaywm.enable || !(anyAttrs
-          (n: v: isAttrs v && anyAttrs (n: v: isAttrs v && v.enable)) cfg);
-        message = "Can't enable a desktop app without a desktop environment";
-      }
-    ];
-
     user.packages = [
       pkgs.brightnessctl
       pkgs.playerctl

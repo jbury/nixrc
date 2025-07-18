@@ -1,6 +1,6 @@
 { ... }: {
 imports = [
-	../WslHost.nix
+	../_hostTemplates/WslHost.nix
 ];
 
 hostModules.hostSettings = {

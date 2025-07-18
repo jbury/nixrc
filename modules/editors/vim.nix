@@ -2,9 +2,11 @@
 
 { config, options, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let cfg = config.modules.editors.vim;
+let
+	inherit (lib) mkIf;
+	inherit (lib.my) mkBoolOpt;
+
+	cfg = config.modules.editors.vim;
 in {
   options.modules.editors.vim = {
     enable = mkBoolOpt false;
