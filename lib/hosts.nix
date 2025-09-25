@@ -1,4 +1,4 @@
-{ lib, mkPkgs ... }:
+{ lib, mkPkgsForSystem, ... }:
 let
 
 	inherit (builtins) pathExists readDir;
@@ -19,8 +19,10 @@ let
 		];
 	};
 in {
-	mapHosts = hostsDir: {
+	mapHosts = hostsDir: mkPkgsFn: {
 		mapNixosHosts
+
+
 
 		# TODO someday if I feel like running nix on mac
 		# mapDarwinHosts

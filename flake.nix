@@ -63,8 +63,8 @@
 		};
 
 		lib = nixpkgs.lib;
-		jbury-lib = import ./lib { inherit nixpkgs.lib; };
+		jbury-lib = import ./lib { inherit nixpkgs.lib mkPkgsForSystem; };
 	in {
-		jbury-lib.mapHosts ./hosts/nixos mkPkgsForSystem;
+		jbury-lib.mapHosts ./hosts/nixos;
 	};
 }
