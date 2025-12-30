@@ -8,7 +8,7 @@ in {
 	# Defaults and options that I'll set at the per-host level if needed
 	options.jbury.nixrc.host = {
 		userName = mkOpt str "jbury";
-		hostName = mkOpt str config.networking.hostName;
+		hostname = mkOpt str config.networking.hostname;
 		email    = mkOpt str "jasondougbury@gmail.com";
 
 		dotfilesDir = mkOpt path (removePrefix "/mnt" (findFirst pathExists (toString ../../../.) [ "/etc/nixos" "~/.nixrc" ]));

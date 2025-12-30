@@ -1,12 +1,12 @@
 { inputs, config, lib, jbury-lib, ... }:
-# Default settings to use for all WSL hosts, including mapping my hostSettings to
+# Default settings to use for all WSL hosts, including mapping my hostcfg to
 # the relevant nixos-wsl config options.
 
 let
 	inherit (lib.types) str;
 	inherit (jbury-lib) mkOpt mkBoolOpt;
 
-	cfg = config.wslHost;
+	cfg = config.jbury.nixrc.wslHost;
 	hostcfg = config.jbury.nixrc.host;
 in {
 	imports = [
@@ -14,15 +14,15 @@ in {
 		./NixosHost.nix
 	];
 
-	options.wslHost = {
+	options.jbury.nixrc.wslHost = {
 		userName = mkOpt str hostcfg.userName;
-		hostName = mkOpt str hostcfg.hostName;
+		hostname = mkOpt str hostcfg.hostname;
 
 		interop.enable = mkBoolOpt true;
 	};
 
 	config = {
-		nixosHost = {
+		jbury.nixrc.nixosHost = {
 			hasDesktop    = false;
 			manageBoot    = false;
 			manageNetwork = false;
@@ -32,10 +32,10 @@ in {
 			enable = true;
 
 			defaultUser = cfg.userName;
-			wslConfg    = {
+			wslConf     = {
 				interop.enabled           = cfg.interop.enable;
 				interop.appendWindowsPath = cfg.interop.enable;
-				network.hostname          = cfg.hostName;
+				network.hostname          = cfg.hostname;
 			};
 		};
 	};

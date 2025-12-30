@@ -3,9 +3,9 @@ imports = [
 	../_hostTemplates/WslHost.nix
 ];
 
-jbury.nixrc.host = {
-	email             = "jason.bury@docusign.com";
-	hostname          = "oswald";
+config.jbury.nixrc.host = {
+	email    = "jason.bury@docusign.com";
+	hostname = "oswald";
 };
 
 ### Modules

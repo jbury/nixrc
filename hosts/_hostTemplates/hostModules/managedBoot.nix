@@ -4,15 +4,15 @@ let
 	inherit (lib) mkDefault mkIf;
 	inherit (jbury-lib) mkBoolOpt;
 
-	cfg = config.hostModules.managedBoot;
+	cfg = config.jbury.nixrc.hostModules.managedBoot;
 in {
-	options.hostModules.managedBoot = {
+	options.jbury.nixrc.hostModules.managedBoot = {
 		enable = mkBoolOpt true;
 	};
 
 	config = {
 		boot = mkIf cfg.enable {
-			kernelPackages = mkDefault pkgs.linuxPackages_latest;
+			kernelPackages = pkgs.linuxPackages_latest;
 
 			loader = {
 				systemd-boot = {
@@ -22,8 +22,7 @@ in {
 				};
 
 				efi = {
-					canTouchEfiVariables = mkDefault true;
-					efiSysMountPount = "/boot";
+					canTouchEfiVariables = true;
 				};
 			};
 		};
