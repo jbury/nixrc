@@ -9,7 +9,7 @@ config.jbury.nixrc.host = {
 };
 
 ### Modules
-#modules = {
+jbury.nixrc.modules = {
 #	dev = {
 #		cloud.enable = true;
 #		cloud.aws.enable = true;
@@ -18,10 +18,10 @@ config.jbury.nixrc.host = {
 #		go.enable = true;
 #		shell.enable = true;
 #	};
-#	editors = {
+	editors = {
 #		emacs.enable = true;
-#		vim.enable = true;
-#	};
+		vim.enable = true;
+	};
 #	shell = {
 #		direnv.enable = true;
 #		git.enable = true;
@@ -31,6 +31,6 @@ config.jbury.nixrc.host = {
 #		docker.enable = true;
 #	};
 #	stylix.enable = true;
-#};
+};
 
 }
