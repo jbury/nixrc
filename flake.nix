@@ -6,12 +6,17 @@
 		auto-optimise-store = true;
 		experimental-features = "nix-command flakes";
 		use-xdg-base-directories = true;
+		trusted-users = "@wheel";
 	};
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-		nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+		nixos-wsl = {
+			url = "github:nix-community/NixOS-WSL/main";
+
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		home-manager = {
 			url = "github:nix-community/home-manager/master";
@@ -26,12 +31,9 @@
 		};
 
 		stylix = {
-			url = "github:danth/stylix";
+			url = "github:nix-community/stylix";
 
-			inputs = {
-				nixpkgs.follows      = "nixpkgs";
-				home-manager.follows = "home-manager";
-			};
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
 	};
@@ -70,6 +72,15 @@
 			];
 		};
 	in {
+		homeConfigurations = {
+			jbury = home-manager.lib.homeManagerConfiguration {
+				inherit pkgs;
+				extraSpecialArgs = { inherit jbury-lib; };
+				modules = [
+					(import ./home-manager)
+				];
+			};
+		};	
 		nixosConfigurations = {
 			oswald = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";

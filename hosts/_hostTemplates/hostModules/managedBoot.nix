@@ -1,13 +1,12 @@
-{ config, lib, jbury-lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-	inherit (lib) mkDefault mkIf;
-	inherit (jbury-lib) mkBoolOpt;
+	inherit (lib) mkDefault mkEnableOption mkIf;
 
 	cfg = config.jbury.nixrc.hostModules.managedBoot;
 in {
 	options.jbury.nixrc.hostModules.managedBoot = {
-		enable = mkBoolOpt true;
+		enable = mkEnableOption "Nixos-managed boot";
 	};
 
 	config = {

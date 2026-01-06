@@ -5,20 +5,17 @@ let
 	inherit (lib.types) str;
 	inherit (jbury-lib) mkBoolOpt mkOpt;
 
-	cfg = config.jbury.nixrc.nixosHost;
+	cfg     = config.jbury.nixrc.hostTemplates.nixosHost;
+	hostCfg = config.jbury.nixrc.host;
 in {
 	imports = [
 		./default.nix
-		./hostModules/managedNetwork.nix
-		./hostModules/managedBoot.nix
 	];
 
-	options.jbury.nixrc.nixosHost = {
+	options.jbury.nixrc.hostTemplates.nixosHost = {
 		hasDesktop    = mkBoolOpt true;
 		manageNetwork = mkBoolOpt true;
 		manageBoot    = mkBoolOpt true;
-
-		timeZone = mkOpt str "America/Los_Angeles";
 	};
 
 	config = {
@@ -54,7 +51,7 @@ in {
 			yq-go
 		];
 
-		time.timeZone = cfg.timeZone;
+		time.timeZone = hostCfg.timeZone;
 
 		i18n = {
 			defaultLocale = mkDefault "en_US.UTF-8";

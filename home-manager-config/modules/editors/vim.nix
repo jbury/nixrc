@@ -2,12 +2,14 @@
 { config, options, lib, pkgs, ... }:
 
 let
-	inherit (lib) mkEnableOption;
+	inherit (lib) mkEnableOption mkIf;
 
-	cfg = config.jbury.nixrc.modules.editors.vim;
+	# shorthand config path for all options managed by this module
+	cfg = config.jbury.nixrc.home.modules.editors.vim;
+
 	hostcfg = config.jbury.nixrc.host;
 in {
-	options.jbury.nixrc.modules.editors.vim = {
+	options.jbury.nixrc.home.modules.editors.vim = {
 		enable = mkEnableOption "vim";
 	};
 
@@ -15,6 +17,9 @@ in {
 		home-manager.users.${hostcfg.userName} = {
 			programs.vim = {
 				enable = true;
+
+				defaultEditor = true;
+
 				settings = {
 					background = "dark";
 					copyindent = true;
@@ -85,8 +90,6 @@ in {
 					
 					packloadall
 				'';
-
-				defaultEditor = true;
 			};
 		};
 	};

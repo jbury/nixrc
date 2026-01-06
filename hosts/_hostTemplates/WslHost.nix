@@ -6,7 +6,7 @@ let
 	inherit (lib.types) str;
 	inherit (jbury-lib) mkOpt mkBoolOpt;
 
-	cfg = config.jbury.nixrc.wslHost;
+	cfg     = config.jbury.nixrc.hostTemplates.wslHost;
 	hostcfg = config.jbury.nixrc.host;
 in {
 	imports = [
@@ -14,7 +14,7 @@ in {
 		./NixosHost.nix
 	];
 
-	options.jbury.nixrc.wslHost = {
+	options.jbury.nixrc.hostTemplates.wslHost = {
 		userName = mkOpt str hostcfg.userName;
 		hostname = mkOpt str hostcfg.hostname;
 
@@ -22,7 +22,7 @@ in {
 	};
 
 	config = {
-		jbury.nixrc.nixosHost = {
+		jbury.nixrc.hostTemplates.nixosHost = {
 			hasDesktop    = false;
 			manageBoot    = false;
 			manageNetwork = false;

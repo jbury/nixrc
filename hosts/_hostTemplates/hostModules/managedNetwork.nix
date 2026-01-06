@@ -1,13 +1,12 @@
-{ config, lib, jbury-lib, ... }:
+{ config, lib, ... }:
 
 let
-	inherit (lib) mkDefault mkIf;
-	inherit (jbury-lib) mkBoolOpt;
+	inherit (lib) mkEnableOption mkIf;
 
 	cfg = config.jbury.nixrc.hostModules.managedNetwork;
 in {
 	options.jbury.nixrc.hostModules.managedNetwork = {
-		enable = mkBoolOpt true;
+		enable = mkEnableOption "Nixos-managed network";
 	};
 
 	config = {
