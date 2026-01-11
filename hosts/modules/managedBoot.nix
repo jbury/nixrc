@@ -3,9 +3,9 @@
 let
 	inherit (lib) mkDefault mkEnableOption mkIf;
 
-	cfg = config.jbury.nixrc.hostModules.managedBoot;
+	cfg = config.jbury.nixrc.hosts.modules.managedBoot;
 in {
-	options.jbury.nixrc.hostModules.managedBoot = {
+	options.jbury.nixrc.hosts.modules.managedBoot = {
 		enable = mkEnableOption "Nixos-managed boot";
 	};
 

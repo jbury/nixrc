@@ -1,10 +1,10 @@
 { ... }: {
 imports = [
-	../_hostTemplates/WslHost.nix
+	../../templates/WslHost.nix
 ];
 
 config = {
-	jbury.nixrc.host = {
+	jbury.nixrc.hostSettings = {
 		email    = "jason.bury@docusign.com";
 		hostname = "oswald";
 	};

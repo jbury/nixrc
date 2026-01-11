@@ -86,7 +86,7 @@
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					(import ./hosts/oswald)
+					(import ./hosts/profiles/oswald)
 					(import ./modules)
 				];
 			};

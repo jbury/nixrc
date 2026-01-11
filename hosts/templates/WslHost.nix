@@ -6,26 +6,25 @@ let
 	inherit (lib.types) str;
 	inherit (jbury-lib) mkOpt mkBoolOpt;
 
-	cfg     = config.jbury.nixrc.hostTemplates.wslHost;
-	hostcfg = config.jbury.nixrc.host;
+	cfg          = config.jbury.nixrc.hosts.templates.wslHost;
+	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	imports = [
 		inputs.nixos-wsl.nixosModules.default
-		./NixosHost.nix
+		./
 	];
 
-	options.jbury.nixrc.hostTemplates.wslHost = {
-		userName = mkOpt str hostcfg.userName;
-		hostname = mkOpt str hostcfg.hostname;
+	options.jbury.nixrc.hosts.templates.wslHost = {
+		userName = mkOpt str hostSettings.userName;
+		hostname = mkOpt str hostSettings.hostname;
 
 		interop.enable = mkBoolOpt true;
 	};
 
 	config = {
-		jbury.nixrc.hostTemplates.nixosHost = {
+		jbury.nixrc.hostSettings = {
+			# This won't work because this option isn't set in the default.nix, but I don't think it _SHOULD_ be.  But I want it at some top level layer or something?  idk where to put this option tbqh.
 			hasDesktop    = false;
-			manageBoot    = false;
-			manageNetwork = false;
 		};
 
 		wsl = {

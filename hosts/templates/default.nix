@@ -1,27 +1,24 @@
-{ inputs, config, lib, jbury-lib, pkgs, ... }:
+{ inputs, lib, jbury-lib, config, pkgs, ... }:
 
 let
-	inherit (lib) mkDefault mkIf;
-	inherit (lib.types) str;
-	inherit (jbury-lib) mkBoolOpt mkOpt;
-
-	cfg     = config.jbury.nixrc.hostTemplates.nixosHost;
-	hostCfg = config.jbury.nixrc.host;
+	inherit (lib)       findFirst pathExists removePrefix;
+	inherit (lib.types) path str;
+	inherit (jbury-lib) mkOpt mkBoolOpt;
 in {
-	imports = [
-		./default.nix
-	];
+	# Defaults and options that I'll set at the per-host level if needed
+	options.jbury.nixrc.hostSettings = {
+		userName = mkOpt str "jbury";
+		hostname = mkOpt str config.networking.hostname;
+		email    = mkOpt str "jasondougbury@gmail.com";
+		timeZone = mkOpt str "America/Los_Angeles";
 
-	options.jbury.nixrc.hostTemplates.nixosHost = {
-		hasDesktop    = mkBoolOpt true;
-		manageNetwork = mkBoolOpt true;
-		manageBoot    = mkBoolOpt true;
+		#TODO: Remove me
+		dotfilesDir = mkOpt path (removePrefix "/mnt" (findFirst pathExists (toString ../../../.) [ "/etc/nixos" "~/.nixrc" ]));
+
+		home.stateVersion = mkOpt str "25.05";
 	};
 
 	config = {
-		jbury.nixrc.hostModules.managedNetwork.enable = cfg.manageNetwork;
-		jbury.nixrc.hostModules.managedBoot.enable    = cfg.manageBoot;
-
 		# Packages for _every_ user to have access to - e.g. root, or steam, or whatever
 		environment.systemPackages = with pkgs; [
 			bat
@@ -51,7 +48,7 @@ in {
 			yq-go
 		];
 
-		time.timeZone = hostCfg.timeZone;
+		time.timeZone = hostSettings.timeZone;
 
 		i18n = {
 			defaultLocale = mkDefault "en_US.UTF-8";
@@ -69,6 +66,6 @@ in {
 			};
 		};
 
-		system.configurationRevision = mkIf (inputs.self ? inputs.rev) inputs.self.rev;
+		system.configurationRevision = mkIf (inputs.self ? inputs.rev) inputs.self.rev	
 	};
 }

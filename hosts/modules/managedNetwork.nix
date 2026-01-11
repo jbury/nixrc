@@ -3,9 +3,9 @@
 let
 	inherit (lib) mkEnableOption mkIf;
 
-	cfg = config.jbury.nixrc.hostModules.managedNetwork;
+	cfg = config.jbury.nixrc.hosts.modules.managedNetwork;
 in {
-	options.jbury.nixrc.hostModules.managedNetwork = {
+	options.jbury.nixrc.hosts.modules.managedNetwork = {
 		enable = mkEnableOption "Nixos-managed network";
 	};
 
