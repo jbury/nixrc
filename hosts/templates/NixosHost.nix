@@ -1,25 +1,25 @@
 { config, jbury-lib, ... }:
 
 let
-	inherit (jbury-lib) mkBoolOpt;
+	inherit (jbury-lib) mkBoolOptDef;
 
 	cfg          = config.jbury.nixrc.hosts.templates.nixosHost;
 	hostModules  = config.jbury.nixrc.hosts.modules;
+	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	imports = [
-		./
-		../modules/managedNetwork.nix
-		../modules/managedBoot.nix
+		../
 	];
 
 	options.jbury.nixrc.hosts.templates.nixosHost = {
-		hasDesktop    = mkBoolOpt true;
-		manageNetwork = mkBoolOpt true;
-		manageBoot    = mkBoolOpt true;
+		manageNetwork = mkBoolOptDef true;
+		manageBoot    = mkBoolOptDef true;
 	};
 
 	config = {
 		hostModules.managedNetwork.enable = cfg.manageNetwork;
 		hostModules.managedBoot.enable    = cfg.manageBoot;
+
+		system.stateVersion = hostSettings.stateVersion;
 	};
 }

@@ -1,21 +1,29 @@
 { inputs, lib, jbury-lib, config, pkgs, ... }:
 
 let
-	inherit (lib)       findFirst pathExists removePrefix;
+	inherit (lib)       mkDefault findFirst pathExists removePrefix;
 	inherit (lib.types) path str;
-	inherit (jbury-lib) mkOpt mkBoolOpt;
+	inherit (jbury-lib) mkOptDef mkOpt;
 in {
-	# Defaults and options that I'll set at the per-host level if needed
+	imports = [
+		./modules
+	];
+
+	# Top-level config options that dictate most per-host defaults
 	options.jbury.nixrc.hostSettings = {
-		userName = mkOpt str "jbury";
-		hostname = mkOpt str config.networking.hostname;
-		email    = mkOpt str "jasondougbury@gmail.com";
-		timeZone = mkOpt str "America/Los_Angeles";
+		userName = mkOptDef str "jbury";
+		name     = mkOptDef str "Jason Bury";
+		email    = mkOptDef str "jasondougbury@gmail.com";
+		hostname = mkOptDef str config.networking.hostname;
+		timeZone = mkOptDef str "America/Los_Angeles";
+
+		hasDesktop = mkDefault false;
+
+		# Single set point for both system.stateVersion and home-manager.stateVersion
+		stateVersion = mkOpt str;
 
 		#TODO: Remove me
-		dotfilesDir = mkOpt path (removePrefix "/mnt" (findFirst pathExists (toString ../../../.) [ "/etc/nixos" "~/.nixrc" ]));
-
-		home.stateVersion = mkOpt str "25.05";
+		dotfilesDir = mkOptDef path (removePrefix "/mnt" (findFirst pathExists (toString ../../../.) [ "/etc/nixos" "~/.nixrc" ]));
 	};
 
 	config = {
@@ -65,7 +73,5 @@ in {
 				LC_TIME           = "en_US.UTF-8";
 			};
 		};
-
-		system.configurationRevision = mkIf (inputs.self ? inputs.rev) inputs.self.rev	
 	};
 }

@@ -1,31 +1,31 @@
 { inputs, config, lib, jbury-lib, ... }:
-# Default settings to use for all WSL hosts, including mapping my hostcfg to
-# the relevant nixos-wsl config options.
 
 let
+	inherit (lib) mkForce;
 	inherit (lib.types) str;
-	inherit (jbury-lib) mkOpt mkBoolOpt;
+	inherit (jbury-lib) mkOptDef mkBoolOptDef;
 
 	cfg          = config.jbury.nixrc.hosts.templates.wslHost;
 	hostSettings = config.jbury.nixrc.hostSettings;
+
 in {
 	imports = [
+		../
 		inputs.nixos-wsl.nixosModules.default
-		./
 	];
 
 	options.jbury.nixrc.hosts.templates.wslHost = {
-		userName = mkOpt str hostSettings.userName;
-		hostname = mkOpt str hostSettings.hostname;
+		userName = mkOptDef str hostSettings.userName;
+		hostname = mkOptDef str hostSettings.hostname;
 
-		interop.enable = mkBoolOpt true;
+		interop.enable = mkBoolOptDef true;
 	};
 
 	config = {
-		jbury.nixrc.hostSettings = {
-			# This won't work because this option isn't set in the default.nix, but I don't think it _SHOULD_ be.  But I want it at some top level layer or something?  idk where to put this option tbqh.
-			hasDesktop    = false;
-		};
+		# WSL support for Linux GUI apps isn't great, so to be safe I just disable all my desktop modules
+		jbury.nixrc.hostSettings.hasDesktop = mkForce false;
+
+		system.stateVersion = hostSettings.stateVersion;
 
 		wsl = {
 			enable = true;

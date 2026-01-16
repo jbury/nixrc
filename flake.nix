@@ -75,9 +75,10 @@
 		homeConfigurations = {
 			jbury = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
-				extraSpecialArgs = { inherit jbury-lib; };
+				extraSpecialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					(import ./home-manager)
+					stylix.homeModules.stylix
+					(import ./home)
 				];
 			};
 		};	
@@ -86,8 +87,10 @@
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
+					home-manager.nixosModules.home-manager
+					stylix.nixosModules.stylix
 					(import ./hosts/profiles/oswald)
-					(import ./modules)
+					(import ./home)
 				];
 			};
 		};

@@ -4,17 +4,15 @@
 let
 	inherit (lib) mkEnableOption mkIf;
 
-	# shorthand config path for all options managed by this module
 	cfg = config.jbury.nixrc.home.modules.editors.vim;
-
-	hostcfg = config.jbury.nixrc.host;
+	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	options.jbury.nixrc.home.modules.editors.vim = {
 		enable = mkEnableOption "vim";
 	};
 
 	config = mkIf cfg.enable {
-		home-manager.users.${hostcfg.userName} = {
+		home-manager.users.${hostSettings.userName} = {
 			programs.vim = {
 				enable = true;
 

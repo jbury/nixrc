@@ -7,6 +7,8 @@ config = {
 	jbury.nixrc.hostSettings = {
 		email    = "jason.bury@docusign.com";
 		hostname = "oswald";
+
+		stateVersion = "25.11";
 	};
 
 	### Modules
