@@ -38,6 +38,8 @@
 
 	};
 
+	next thing needing doing is figuring out how to modularly import all my home modules, but home them all under jbury.nixrc.home.modules
+
 	outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
 	let
 		system = "x86_64-linux";

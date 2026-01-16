@@ -1,6 +1,7 @@
-{ jbury-lib, config, ... }: {
+{ jbury-lib, lib, config, ... }:
 
 let
+	inherit (lib.types) str;
 	inherit (jbury-lib) mkOptDef;
 
 	cfg          = config.jbury.nixrc.homeSettings;
@@ -19,9 +20,6 @@ in {
 		home-manager = {
 			useGlobalPkgs   = true;
 			useUserPackages = true;
-			stateVersion    = cfg.stateVersion;
-
-			users.${cfg.userName} = import ./modules;
 		};
 	};
 }

@@ -1,40 +1,39 @@
 { ... }: {
-imports = [
-	../../templates/WslHost.nix
-];
+	imports = [
+		../../templates/WslHost.nix
+	];
 
-config = {
-	jbury.nixrc.hostSettings = {
-		email    = "jason.bury@docusign.com";
-		hostname = "oswald";
+	config.jbury.nixrc = {
+		hostSettings = {
+			email    = "jason.bury@docusign.com";
+			hostname = "oswald";
 
-		stateVersion = "25.11";
-	};
-
-	### Modules
-	jbury.nixrc.modules = {
-	#	dev = {
-	#		cloud.enable = true;
-	#		cloud.aws.enable = true;
-	#		cloud.azure.enable = true;
-	#		cloud.gcp.enable = true;
-	#		go.enable = true;
-	#		shell.enable = true;
-	#	};
-		editors = {
-	#		emacs.enable = true;
-			vim.enable = true;
+			stateVersion = "25.11";
 		};
-	#	shell = {
-	#		direnv.enable = true;
-	#		git.enable = true;
-	#		zsh.enable = true;
-	#	};
-	#	services = {
-	#		docker.enable = true;
-	#	};
-	#	stylix.enable = true;
-	};
-};
 
+		### Modules
+		home.modules = {
+		#	dev = {
+		#		cloud.enable = true;
+		#		cloud.aws.enable = true;
+		#		cloud.azure.enable = true;
+		#		cloud.gcp.enable = true;
+		#		go.enable = true;
+		#		shell.enable = true;
+		#	};
+			editors = {
+		#		emacs.enable = true;
+				vim.enable = true;
+			};
+		#	shell = {
+		#		direnv.enable = true;
+		#		git.enable = true;
+		#		zsh.enable = true;
+		#	};
+		#	services = {
+		#		docker.enable = true;
+		#	};
+		#	stylix.enable = true;
+		};
+	};
 }

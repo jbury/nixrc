@@ -10,7 +10,7 @@ let
 
 in {
 	imports = [
-		../
+		../.
 		inputs.nixos-wsl.nixosModules.default
 	];
 

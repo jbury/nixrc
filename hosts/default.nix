@@ -3,7 +3,9 @@
 let
 	inherit (lib)       mkDefault findFirst pathExists removePrefix;
 	inherit (lib.types) path str;
-	inherit (jbury-lib) mkOptDef mkOpt;
+	inherit (jbury-lib) mkBoolOptDef mkOptDef mkOpt;
+
+	cfg = config.jbury.nixrc.hostSettings;
 in {
 	imports = [
 		./modules
@@ -17,7 +19,7 @@ in {
 		hostname = mkOptDef str config.networking.hostname;
 		timeZone = mkOptDef str "America/Los_Angeles";
 
-		hasDesktop = mkDefault false;
+		hasDesktop = mkBoolOptDef false;
 
 		# Single set point for both system.stateVersion and home-manager.stateVersion
 		stateVersion = mkOpt str;
@@ -56,7 +58,7 @@ in {
 			yq-go
 		];
 
-		time.timeZone = hostSettings.timeZone;
+		time.timeZone = cfg.timeZone;
 
 		i18n = {
 			defaultLocale = mkDefault "en_US.UTF-8";

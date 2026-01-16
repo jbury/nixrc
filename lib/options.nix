@@ -12,11 +12,11 @@ in {
 		mkOption { inherit type; };
 
 	mkOptDef = default: type:
-		mkOpt { inherit default type; };
+		mkOption { inherit default type; };
 
 	mkBoolOpt =
-		mkOpt { type = types.bool; };
+		mkOption { type = types.bool; };
 
 	mkBoolOptDef = default:
-		mkBoolOpt { inherit default; };
+		mkOption { inherit default; type = types.bool; };
 }
