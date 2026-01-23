@@ -12,7 +12,7 @@
 		};
 
 		### Modules
-		home.modules = {
+		modules = {
 		#	dev = {
 		#		cloud.enable = true;
 		#		cloud.aws.enable = true;

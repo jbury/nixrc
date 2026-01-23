@@ -7,19 +7,22 @@ let
 	cfg          = config.jbury.nixrc.homeSettings;
 	hostSettings = config.jbury.nixrc.hostSettings;
 in {
-	options.jbury.nixrc.homeSettings = {
-		name     = mkOptDef str hostSettings.name;
-		email    = mkOptDef str hostSettings.email;
-		userName = mkOptDef str hostSettings.userName;
-		homedir  = mkOptDef str "/home/${hostSettings.userName}";
+	imports = [
+		./editors
+	];
 
+	options.jbury.nixrc.homeSettings = {
 		stateVersion = mkOptDef str hostSettings.stateVersion;
 	};
 
 	config = {
 		home-manager = {
-			useGlobalPkgs   = true;
-			useUserPackages = true;
+			useGlobalPkgs     = true;
+			useUserPackages   = true;
+
+			users.${hostSettings.userName} = {
+				home.stateVersion = cfg.stateVersion;
+			};
 		};
 	};
 }

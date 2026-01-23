@@ -38,8 +38,6 @@
 
 	};
 
-	next thing needing doing is figuring out how to modularly import all my home modules, but home them all under jbury.nixrc.home.modules
-
 	outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
 	let
 		system = "x86_64-linux";
@@ -80,7 +78,6 @@
 				extraSpecialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					stylix.homeModules.stylix
-					(import ./home)
 				];
 			};
 		};	
@@ -91,8 +88,8 @@
 				modules = [
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
-					(import ./hosts/profiles/oswald)
-					(import ./home)
+					./hosts/profiles/oswald
+					./modules
 				];
 			};
 		};
