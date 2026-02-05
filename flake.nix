@@ -83,6 +83,13 @@
 			};
 		};	
 		nixosConfigurations = {
+			gwyn = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				specialArgs = { inherit jbury-lib inputs; };
+				modules = [
+					./hosts/profiles/gwyn
+				];
+			};
 			oswald = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };

@@ -9,9 +9,11 @@ in {
 		enable = mkEnableOption "Nixos-driven default user creation";
 	};
 
-	config.users.users.${hostSettings.userName} = mkIf cfg.enable {
+	config = mkIf cfg.enable {
+		users.users.${hostSettings.userName} = {
 			isNormalUser = true;
 			uid = mkDefault 1000;
 			extraGroups = [ "wheel" ];
+		};
 	};
 }
