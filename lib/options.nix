@@ -11,7 +11,7 @@ in {
 	mkOpt = type:
 		mkOption { inherit type; };
 
-	mkOptDef = default: type:
+	mkOptDef = type: default:
 		mkOption { inherit default type; };
 
 	mkBoolOpt =
