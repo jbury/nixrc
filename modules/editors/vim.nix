@@ -3,6 +3,9 @@
 
 let
 	inherit (lib) mkEnableOption mkIf;
+	
+	#DELETEME
+	inherit (lib) traceValSeq;
 
 	cfg          = config.jbury.nixrc.modules.editors.vim;
 	hostSettings = config.jbury.nixrc.hostSettings;
@@ -11,8 +14,8 @@ in {
 		enable = mkEnableOption "vim";
 	};
 
-	config = mkIf cfg.enable {
-		home-manager.users.${hostSettings.userName} = {
+	config.home-manager.users = mkIf cfg.enable {
+		${hostSettings.userName} = {
 			programs.vim = {
 				enable = true;
 	

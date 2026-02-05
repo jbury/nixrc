@@ -78,6 +78,7 @@
 				extraSpecialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					stylix.homeModules.stylix
+					
 				];
 			};
 		};	

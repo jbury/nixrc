@@ -21,7 +21,9 @@ in {
 			useUserPackages   = true;
 
 			users.${hostSettings.userName} = {
-				home.stateVersion = cfg.stateVersion;
+				home.username      = ${hostSettings.userName};
+				home.homeDirectory = "/home/${hostSettings.userName};
+				home.stateVersion  = cfg.stateVersion;
 			};
 		};
 	};
