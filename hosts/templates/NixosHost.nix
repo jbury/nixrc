@@ -8,7 +8,7 @@ let
 	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	imports = [
-		../
+		../.
 	];
 
 	options.jbury.nixrc.hosts.templates.nixosHost = {
