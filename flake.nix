@@ -78,7 +78,7 @@
 				extraSpecialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					stylix.homeModules.stylix
-					
+					./home
 				];
 			};
 		};	
@@ -88,16 +88,20 @@
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/gwyn
+
+				#	home-manager.nixosModules.home-manager
+				#	stylix.nixosModules.stylix
+					
 				];
 			};
 			oswald = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					home-manager.nixosModules.home-manager
-					stylix.nixosModules.stylix
 					./hosts/profiles/oswald
-					./modules
+
+				#	home-manager.nixosModules.home-manager
+				#	stylix.nixosModules.stylix
 				];
 			};
 		};
