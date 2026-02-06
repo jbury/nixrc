@@ -8,14 +8,14 @@ let
 	inherit (lib) traceValSeq;
 
 	cfg          = config.jbury.nixrc.modules.editors.vim;
-	hostSettings = config.jbury.nixrc.hostSettings;
+	homeSettings = config.jbury.nixrc.homeSettings;
 in {
 	options.jbury.nixrc.modules.editors.vim = {
 		enable = mkEnableOption "vim";
 	};
 
 	config.home-manager.users = mkIf cfg.enable {
-		${hostSettings.userName} = {
+		${homeSettings.userName} = {
 			programs.vim = {
 				enable = true;
 	

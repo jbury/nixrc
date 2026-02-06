@@ -5,8 +5,6 @@
 
 	config.jbury.nixrc = {
 		hostSettings = {
-			This shoudl be a home-manager thingy since none host settings cara bout email
-			email    = "jason.bury@docusign.com";
 			hostname = "oswald";
 
 			stateVersion = "25.11";

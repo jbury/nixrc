@@ -73,11 +73,18 @@
 		};
 	in {
 		homeConfigurations = {
+			standalone = home-manager.lib.homeManagerConfiguration {
+				inherit pkgs;
+				extraSpecialArgs = { inherit jbury-lib inputs; };
+				modules = [
+					./home
+					stylix.homeModules.stylix
+				];
+			};
 			jbury = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
 				extraSpecialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					stylix.homeModules.stylix
 					./home
 				];
 			};
@@ -89,8 +96,9 @@
 				modules = [
 					./hosts/profiles/gwyn
 
-				#	home-manager.nixosModules.home-manager
-				#	stylix.nixosModules.stylix
+					self.homeConfigurations.jbury
+					home-manager.nixosModules.home-manager
+					stylix.nixosModules.stylix
 					
 				];
 			};

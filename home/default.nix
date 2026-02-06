@@ -2,16 +2,19 @@
 
 let
 	inherit (lib.types) str;
-	inherit (jbury-lib) mkOptDef;
+	inherit (jbury-lib) mkOptDef mkOpt;
 
-	cfg          = config.jbury.nixrc.homeSettings;
 	hostSettings = config.jbury.nixrc.hostSettings;
+	cfg = config.jbury.nixrc.homeSettings;
 in {
 	imports = [
 		./editors
 	];
 
 	options.jbury.nixrc.homeSettings = {
+		userName = mkOptDef str "jbury";
+		hostname = mkOptDef str hostSettings.hostname;
+
 		stateVersion = mkOptDef str hostSettings.stateVersion;
 	};
 
@@ -20,9 +23,9 @@ in {
 			useGlobalPkgs     = true;
 			useUserPackages   = true;
 
-			users.${hostSettings.userName} = {
-				home.username      = ${hostSettings.userName};
-				home.homeDirectory = "/home/${hostSettings.userName};
+			users.${cfg.userName} = {
+				home.username      = cfg.userName;
+				home.homeDirectory = "/home/${cfg.userName}";
 				home.stateVersion  = cfg.stateVersion;
 			};
 		};
