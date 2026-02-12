@@ -64,7 +64,7 @@
 			overlays = [
 				(final: prev:
 					{
-						# Sometimes we just want to refer to "local" packages from the packages dir
+						# When we want "local" packages from the packages dir
 						# kustomize = localpackagesForSystem.kustomize;
 					}
 				)
@@ -73,20 +73,25 @@
 		};
 	in {
 		homeConfigurations = {
-			standalone = home-manager.lib.homeManagerConfiguration {
-				inherit pkgs;
-				extraSpecialArgs = { inherit jbury-lib inputs; };
-				modules = [
-					./home
-					stylix.homeModules.stylix
-				];
-			};
-			jbury = home-manager.lib.homeManagerConfiguration {
-				inherit pkgs;
-				extraSpecialArgs = { inherit jbury-lib inputs; };
-				modules = [
-					./home
-				];
+			# So you can just `home-manager switch --flake ${NIXRC_DIR}`
+			default = self.homeConfigurations.jbury.standalone;
+
+			jbury = {
+				standalone = home-manager.lib.homeManagerConfiguration {
+					inherit pkgs;
+					extraSpecialArgs = { inherit jbury-lib inputs; };
+					modules = [
+						./home
+						stylix.homeModules.stylix
+					];
+				};
+				nixos = home-manager.lib.homeManagerConfiguration {
+					inherit pkgs;
+					extraSpecialArgs = { inherit jbury-lib inputs; };
+					modules = [
+						./home
+					];
+				};
 			};
 		};	
 		nixosConfigurations = {
@@ -96,7 +101,7 @@
 				modules = [
 					./hosts/profiles/gwyn
 
-					self.homeConfigurations.jbury
+					self.homeConfigurations.jbury.nixos
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
 					
@@ -108,6 +113,7 @@
 				modules = [
 					./hosts/profiles/oswald
 
+				#	self.homeConfigurations.jbury.nixos
 				#	home-manager.nixosModules.home-manager
 				#	stylix.nixosModules.stylix
 				];
