@@ -72,39 +72,46 @@
 			];
 		};
 	in {
-		homeConfigurations = {
-			# So you can just `home-manager switch --flake ${NIXRC_DIR}`
-			default = self.homeConfigurations.jbury.standalone;
+		# Commenting out for now - home-manager standalone config getting host configs is confusing.
+		#homeConfigurations = {
+		#	# So you can just `home-manager switch --flake ${NIXRC_DIR}`
+		#	default = self.homeConfigurations.jbury.standalone;
 
-			jbury = {
-				standalone = home-manager.lib.homeManagerConfiguration {
-					inherit pkgs;
-					extraSpecialArgs = { inherit jbury-lib inputs; };
-					modules = [
-						./home
-						stylix.homeModules.stylix
-					];
-				};
-				nixos = home-manager.lib.homeManagerConfiguration {
-					inherit pkgs;
-					extraSpecialArgs = { inherit jbury-lib inputs; };
-					modules = [
-						./home
-					];
-				};
-			};
-		};	
+		#	jbury = {
+		#		standalone = home-manager.lib.homeManagerConfiguration {
+		#			inherit pkgs;
+		#			extraSpecialArgs = { inherit jbury-lib inputs; };
+		#			modules = [
+		#				./home
+		#				stylix.homeModules.stylix
+		#			];
+		#		};
+		#		nixos = hostSettings@{hostname, hasDesktop, stateVersion, ...}: {
+		#			home-manager.lib.homeManagerConfiguration {
+		#				inherit pkgs;
+		#				extraSpecialArgs = {
+		#					inherit jbury-lib inputs hostSettings;
+		#				};
+		#				modules = [
+		#					./home
+		#				];
+		#			};
+		#		};
+		#	};
+		#};
+
 		nixosConfigurations = {
 			gwyn = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/gwyn
+					./home
 
-					self.homeConfigurations.jbury.nixos
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
-					
+				
+					#self.homeConfigurations.jbury.nixos
 				];
 			};
 			oswald = nixpkgs.lib.nixosSystem {
@@ -112,10 +119,10 @@
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/oswald
+					./home
 
-				#	self.homeConfigurations.jbury.nixos
-				#	home-manager.nixosModules.home-manager
-				#	stylix.nixosModules.stylix
+					home-manager.nixosModules.home-manager
+					stylix.nixosModules.stylix
 				];
 			};
 		};

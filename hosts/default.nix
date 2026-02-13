@@ -13,16 +13,14 @@ in {
 
 	# Top-level config options that dictate most per-host defaults
 	options.jbury.nixrc.hostSettings = {
-		userName = mkOptDef str "jbury";
-		hostname = mkOptDef str config.networking.hostname;
+		userName   = mkOptDef str "jbury";
+		hostname   = mkOptDef str config.networking.hostname;
+		hasDesktop = mkBoolOptDef false;
 
 		# Single set point for both system.stateVersion and home-manager.stateVersion
 		stateVersion = mkOpt str;
 
 		timeZone = mkOptDef str "America/Los_Angeles";
-
-		hasDesktop = mkBoolOptDef false;
-
 
 		#TODO: Remove me
 		dotfilesDir = mkOptDef path (removePrefix "/mnt" (findFirst pathExists (toString ../../../.) [ "/etc/nixos" "~/.nixrc" ]));

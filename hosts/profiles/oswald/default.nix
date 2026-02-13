@@ -8,7 +8,7 @@
 			hostname = "oswald";
 
 			stateVersion = "25.11";
-		}
+		};
 
 		### Modules
 		modules = {
