@@ -52,7 +52,7 @@
 			inherit lib;
 			pkgs = nixpkgs.legacyPackages.${system};
 		};
-      
+
 		pkgs = import nixpkgs {
 			inherit system;
 
@@ -109,7 +109,7 @@
 					./home
 
 					home-manager.nixosModules.home-manager
-					stylix.nixosModules.stylix
+					#stylix.nixosModules.stylix
 				
 					#self.homeConfigurations.jbury.nixos
 				];
@@ -119,10 +119,9 @@
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/oswald
-					./home
+#					./home/nixos-module.nix
 
-					home-manager.nixosModules.home-manager
-					stylix.nixosModules.stylix
+					#stylix.nixosModules.stylix
 				];
 			};
 		};

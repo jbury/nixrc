@@ -11,7 +11,7 @@
 		};
 
 		### Modules
-		modules = {
+		#modules = {
 		#	dev = {
 		#		cloud.enable = true;
 		#		cloud.aws.enable = true;
@@ -20,10 +20,10 @@
 		#		go.enable = true;
 		#		shell.enable = true;
 		#	};
-			editors = {
+		#	editors = {
 		#		emacs.enable = true;
-				vim.enable = true;
-			};
+		#		vim.enable = true;
+		#	};
 		#	shell = {
 		#		direnv.enable = true;
 		#		git.enable = true;
@@ -33,6 +33,6 @@
 		#		docker.enable = true;
 		#	};
 		#	stylix.enable = true;
-		};
+		#};
 	};
 }
