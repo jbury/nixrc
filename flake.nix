@@ -107,9 +107,9 @@
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/gwyn
-					./home
+#					./home
 
-					home-manager.nixosModules.home-manager
+#					home-manager.nixosModules.home-manager
 					#stylix.nixosModules.stylix
 				
 					#self.homeConfigurations.jbury.nixos
@@ -120,7 +120,7 @@
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/oswald
-#					./home/nixos-module.nix
+					./home/nixos-module.nix
 
 					#stylix.nixosModules.stylix
 				];
