@@ -14,6 +14,7 @@ in {
 	# Top-level config options that dictate most per-host defaults
 	options.jbury.nixrc.hostSettings = {
 		userName   = mkOptDef str "jbury";
+		email      = mkOptDef str "jasondougbury@gmail.com";
 		hostname   = mkOptDef str config.networking.hostname;
 		hasDesktop = mkBoolOptDef false;
 

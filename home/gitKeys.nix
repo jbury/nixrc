@@ -1,37 +1,36 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, homeSettings, ... }:
 let
-	homeSettings = config.jbury.nixrc.homeSettings;
-
 	personalEmail = "jasondougbury@gmail.com";
 
 	personalGithubKeys = {
-		pub =  "${homeSettings.homedir}/.ssh/${homeSettings.userName}_github.pub";
-		priv = "${homeSettings.homedir}/.ssh/${homeSettings.userName}_github";
+		pub =  "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github.pub";
+		priv = "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github";
 	};
 
 	defaultGitKeys = {
-		pub  = "${homeSettings.homedir}/.ssh/default_git.pub";
-		priv = "${homeSettings.homedir}/.ssh/default_git";
+		pub  = "${homeSettings.homeDirectory}/.ssh/default_git.pub";
+		priv = "${homeSettings.homeDirectory}/.ssh/default_git";
 	};
 
 in {
-	config.home-manager.users.${homeSettings.userName}.home.activation = {
+	home.activation = {
 		generateSshDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
 # Make sure ~/.ssh exists
-if [ ! -d "${homeSettings.homedir}/.ssh" ]; then
-	mkdir "${homeSettings.homedir}/.ssh"
+if [ ! -d "${homeSettings.homeDirectory}/.ssh" ]; then
+	mkdir "${homeSettings.homeDirectory}/.ssh"
 fi
 
 # Make sure ~/.ssh perms are correct
-chmod 700 "${homeSettings.homedir}/.ssh"
+chmod 700 "${homeSettings.homeDirectory}/.ssh"
 
 # Handle personal key creation
 if [ ! -f "${personalGithubKeys.priv}" ]; then
-	${pkgs.openssl}/bin/ssh-keygen -t ed25519 -f "${personalGithubKeys.priv}" -N "${homeSettings.name}" -C "${personalEmail}"
+	${pkgs.openssl}/bin/ssh-keygen -t ed25519 -f "${personalGithubKeys.priv}" -N "${homeSettings.userName}" -C "${personalEmail}"
 	chmod 600 "${personalGithubKeys.priv}"
 	chmod 644 "${personalGithubKeys.pub}"
 	${pkgs.openssl}/bin/ssh-key add "${personalGithubKeys.pub}" --type authentication --title "${homeSettings.hostname}-personal"
 	${pkgs.openssl}/bin/ssh-key add "${personalGithubKeys.pub}" --type signing --title "${homeSettings.hostname}-personal"
+fi
 
 # Handle default key creation or symlink
 if [ ! -f "${defaultGitKeys.priv}" ]; then
@@ -40,7 +39,7 @@ if [ ! -f "${defaultGitKeys.priv}" ]; then
 		ln -s "${personalGithubKeys.pub}" "${defaultGitKeys.pub}"
 		ln -s "${personalGithubKeys.priv}" "${defaultGitKeys.priv}"
 	else
-		${pkgs.openssl}/bin/ssh-keygen -t ed25519 -f "${defaultGitKeys.priv}" -N "${homeSettings.name}" -C "${homeSettings.email}"
+		${pkgs.openssl}/bin/ssh-keygen -t ed25519 -f "${defaultGitKeys.priv}" -N "${homeSettings.userName}" -C "${homeSettings.email}"
 		chmod 600 "${defaultGitKeys.priv}"
 		chmod 644 "${defaultGitKeys.pub}"
 		${pkgs.openssl}/bin/ssh-key add "${defaultGitKeys.pub}" --type authentication --title "${homeSettings.hostname}-default"

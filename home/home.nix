@@ -1,31 +1,21 @@
-## This is the home-manager configuration module for a user (jbury by default)
-{ jbury-lib, lib, config, ... }:
-
-let
-	inherit (lib.types) str;
-	inherit (jbury-lib) mkOpt mkOptDef mkBoolOpt;
-
-	cfg = config.jbury.nixrc.homeSettings;
-in {
+## This is the home-manager configuration module that will configure a home-manager user the way _I_ like it.
+{ homeSettings, ... }: {
 	imports = [
 		./editors
 		./gitKeys.nix
 	];
 
-	options.jbury.nixrc.homeSettings = {
-		userName   = mkOptDef str "jbury";
-		homedir    = mkOptDef str "/home/${cfg.userName}";
-		hostname   = mkOpt str;
-		hasDesktop = mkBoolOpt;
-
-		stateVersion = mkOpt str;
-	};
-
 	config = {
+		jbury.nixrc.home.modules = {
+			editors = {
+				vim.enable = true;
+			};
+		};
+
 		home = {
-			username      = cfg.userName;
-			homeDirectory = cfg.homedir;
-			stateVersion  = cfg.stateVersion;
+			username      = homeSettings.userName;
+			homeDirectory = homeSettings.homeDirectory;
+			stateVersion  = homeSettings.stateVersion;
 		};
 
 		programs.home-manager.enable = true;

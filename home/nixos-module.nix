@@ -7,19 +7,22 @@ let
 	hostSettings = config.jbury.nixrc.hostSettings;
 
 	homeSettings = {
-		userName     = hostSettings.userName;
-		hostname     = hostSettings.hostname;
-		hasDesktop   = hostSettings.hasDesktop;
-		stateVersion = hostSettings.stateVersion;
+		userName      = hostSettings.userName;
+		homeDirectory = "/home/${hostSettings.userName}";
+		email         = hostSettings.email;
+		hostname      = hostSettings.hostname;
+		hasDesktop    = hostSettings.hasDesktop;
+		stateVersion  = hostSettings.stateVersion;
 	};
 in {
 	imports = [
 		inputs.home-manager.nixosModules.home-manager {
 			home-manager = {
-				useGlobalPkgs = true;
+				useGlobalPkgs   = true;
+				#useUserPackages = true;
 
 				users.${homeSettings.userName}.imports = [ ./home.nix ];
-				extraSpecialArgs = { config.jbury.nixrc.homeSettings = homeSettings; };
+				extraSpecialArgs = { inherit homeSettings; };
 			};
 		}
 	];
