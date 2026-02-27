@@ -17,6 +17,7 @@ in {
 
 		settings = {
 			background = "dark";
+
 			copyindent = true;
 			# Default to hard tabs
 			expandtab = false;
@@ -44,7 +45,7 @@ in {
 			set showmatch
 			set hlsearch
 			set incsearch
-				
+			
 			hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
 			
 			highlight ExtraWhitespace ctermbg=red guibg=red
@@ -60,6 +61,10 @@ in {
 			set laststatus=2
 			
 			set autoread
+			
+			" Nix language config
+			"" LnL7/vim-nix defines some default style recomendations for .nix files that overwrite my settings, which I _really_ do not want.
+			let g:nix_recommended_style = 0
 			
 			" Golang stuff
 			let g:go_def_mode='gopls'
