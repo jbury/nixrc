@@ -25,5 +25,7 @@ in {
 				extraSpecialArgs = { inherit homeSettings; };
 			};
 		}
+
+		./stylix.nix
 	];
 }

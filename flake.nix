@@ -107,12 +107,7 @@
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
 					./hosts/profiles/gwyn
-#					./home
-
-#					home-manager.nixosModules.home-manager
-					#stylix.nixosModules.stylix
-				
-					#self.homeConfigurations.jbury.nixos
+					./home/nixos-module.nix
 				];
 			};
 			oswald = nixpkgs.lib.nixosSystem {
@@ -121,8 +116,6 @@
 				modules = [
 					./hosts/profiles/oswald
 					./home/nixos-module.nix
-
-					#stylix.nixosModules.stylix
 				];
 			};
 		};
