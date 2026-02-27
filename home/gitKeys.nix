@@ -1,6 +1,6 @@
 { config, pkgs, lib, homeSettings, ... }:
 let
-	personalEmail = "jasondougbury@gmail.com";
+	personalEmail = "2317537+jbury@users.noreply.github.com";
 
 	personalGithubKeys = {
 		pub =  "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github.pub";
