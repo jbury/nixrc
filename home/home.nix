@@ -2,7 +2,7 @@
 { homeSettings, ... }: {
 	imports = [
 		./editors
-		./gitKeys.nix
+		./activation
 	];
 
 	config = {
