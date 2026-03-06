@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
 	inherit (lib) mkIf;
@@ -7,8 +7,6 @@ let
 
 	schemeName = "tokyodark-terminal.yaml";
 in {
-	imports = [ inputs.stylix.nixosModules.stylix ];
-
 	config.stylix = {
 		enable = true;
 
@@ -40,6 +38,6 @@ in {
 			};
 		};
 
-		#image = mkIf hostSettings.hasDesktop ./desktop/wallpaper.png;
+		image = mkIf hostSettings.hasDesktop ./desktop/wallpaper.png;
 	};
 }

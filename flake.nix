@@ -6,7 +6,7 @@
 		auto-optimise-store = true;
 		experimental-features = "nix-command flakes";
 		use-xdg-base-directories = true;
-		trusted-users = "@wheel";
+		trusted-users = [ "@wheel" "root" ];
 		ssl-cert-file = "/etc/ssl/certs/ca-bundle.crt";
 	};
 
@@ -41,6 +41,8 @@
 
 	outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
 	let
+		#TODO this is apparently something I can refactor away with a new pattern
+		# https://github.com/NobbZ/nixos-config/pull/1387
 		system = "x86_64-linux";
 
 		lib = nixpkgs.lib;

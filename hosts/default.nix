@@ -23,8 +23,7 @@ in {
 
 		timeZone = mkOptDef str "America/Los_Angeles";
 
-		#TODO: Remove me
-		dotfilesDir = mkOptDef path (removePrefix "/mnt" (findFirst pathExists (toString ../../../.) [ "/etc/nixos" "~/.nixrc" ]));
+		dotfilesDir = "~/.nixrc";
 	};
 
 	config = {

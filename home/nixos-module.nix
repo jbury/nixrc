@@ -1,6 +1,6 @@
 ## This is the nixos module that _wraps_ the home-manger configuration
 ## (which lives in home.nix).  Confusing?  Yeah, but I've not yet thought
-## of a better way.
+## of a better way.  Maybe when I find a use for standalone home-manager?
 { inputs, config, ... }:
 
 let
@@ -26,6 +26,7 @@ in {
 			};
 		}
 
+		inputs.stylix.nixosModules.stylix
 		./stylix.nix
 	];
 }
