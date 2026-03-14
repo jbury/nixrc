@@ -1,4 +1,4 @@
-{ ... }: {
+{ homeSettings, ... }: {
 	imports = [
 		./nix-index.nix
 		./zsh.nix
@@ -15,8 +15,8 @@
 		l = "ls";
 		cls = "clear && ls";
 
-		nixrc = "pushd \${HOME}/.nixrc";
-		nrf = "nixos-rebuild --flake \${HOME}/.nixrc/.#$(hostname)";
-		refl = "nix flake update --flake \${HOME}/.nixrc/";
+		nixrc = "pushd ${homeSettings.homeDirectory}/.nixrc";
+		nrf = "sudo nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#$(hostname)";
+		refl = "nix flake update --flake ${homeSettings.homeDirectory}/.nixrc/";
 	};
 }

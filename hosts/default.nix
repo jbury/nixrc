@@ -27,6 +27,14 @@ in {
 	};
 
 	config = {
+		nix.settings = {
+			auto-optimise-store = true;
+			experimental-features = "nix-command flakes";
+			use-xdg-base-directories = true;
+			trusted-users = [ "@wheel" "root" ];
+			ssl-cert-file = "/etc/ssl/certs/ca-bundle.crt";
+		};
+
 		# Packages for _every_ user to have access to - e.g. root, or steam, or whatever
 		environment.systemPackages = with pkgs; [
 			bat

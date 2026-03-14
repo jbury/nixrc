@@ -19,7 +19,7 @@ in {
 		inputs.home-manager.nixosModules.home-manager {
 			home-manager = {
 				useGlobalPkgs   = true;
-				#useUserPackages = true;
+				useUserPackages = true;
 
 				users.${homeSettings.userName}.imports = [ ./home.nix ];
 				extraSpecialArgs = { inherit homeSettings; };

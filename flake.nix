@@ -2,14 +2,6 @@
 	description =
 	"A gross nixos-wsl config. Approximately none incandescence to be found";
 
-	nixConfig = {
-		auto-optimise-store = true;
-		experimental-features = "nix-command flakes";
-		use-xdg-base-directories = true;
-		trusted-users = [ "@wheel" "root" ];
-		ssl-cert-file = "/etc/ssl/certs/ca-bundle.crt";
-	};
-
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
