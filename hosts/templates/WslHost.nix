@@ -32,9 +32,15 @@ in {
 
 			defaultUser = cfg.userName;
 			wslConf     = {
-				interop.enabled           = cfg.interop.enable;
-				interop.appendWindowsPath = cfg.interop.enable;
-				network.hostname          = cfg.hostname;
+				interop = {
+					enabled           = cfg.interop.enable;
+					appendWindowsPath = cfg.interop.enable;
+				};
+
+				network = {
+					hostname      = cfg.hostname;
+					generateHosts = false;
+				};
 			};
 		};
 	};
