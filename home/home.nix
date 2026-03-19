@@ -15,16 +15,6 @@
 		./shell
 	];
 
-	config.jbury.nixrc.home.modules = {
-		shell = {
-			zsh.enable       = true;
-			nix-index.enable = true;
-		};
-		editors = {
-			vim.enable = true;
-		};
-	};
-
 	## These are seperated out from my module enable settings because
 	## these will _probably_ rarely need updating at all, and the separation
 	## serves as a reminder of my original intention here (for whatever future

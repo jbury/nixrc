@@ -4,6 +4,11 @@
 		./zsh.nix
 	];
 
+	config.jbury.nixrc.home.modules.shell = {
+		zsh.enable       = true;
+		nix-index.enable = true;
+	};
+
 	config.home.shellAliases = {
 		gits = "git status";
 		gpr = "git pull --rebase";

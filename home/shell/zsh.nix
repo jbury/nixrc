@@ -15,6 +15,12 @@ in {
     programs.zsh = {
 			enable = true;
 
+			envExtra = ''
+				# Don't pull in any of the zsh defaults
+				setopt no_global_rcs
+			'';
+
+			# Actually enables the nix-index command-not-found behaviour
 			initContent = ''
 				source "${pkgs.nix-index}/etc/profile.d/command-not-found.sh"
 			'';

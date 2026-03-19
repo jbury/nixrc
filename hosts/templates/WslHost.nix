@@ -39,7 +39,7 @@ in {
 
 				network = {
 					hostname      = cfg.hostname;
-					generateHosts = false;
+#					generateHosts = false;
 				};
 			};
 		};
