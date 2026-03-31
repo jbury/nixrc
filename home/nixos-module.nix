@@ -2,18 +2,19 @@
 ## (which lives in home.nix).  Confusing?  Yeah, but I've not yet thought
 ## of a better way.  Maybe when I find a use for standalone home-manager?
 { inputs, config, pkgs, ... }:
-
 let
-	hostSettings = config.jbury.nixrc.hostSettings;
-
-	homeSettings = {
-		userName      = hostSettings.userName;
-		homeDirectory = "/home/${hostSettings.userName}";
-		email         = hostSettings.email;
-		hostname      = hostSettings.hostname;
-		hasDesktop    = hostSettings.hasDesktop;
-		stateVersion  = hostSettings.stateVersion;
-	};
+	homeSettings = (
+		let
+			hostSettings = config.jbury.nixrc.hostSettings;
+		in {
+			userName      = hostSettings.userName;
+			homeDirectory = "/home/${hostSettings.userName}";
+			email         = hostSettings.email;
+			hostname      = hostSettings.hostname;
+			hasDesktop    = hostSettings.hasDesktop;
+			stateVersion  = hostSettings.stateVersion;
+		}
+	);
 in {
 	imports = [
 		inputs.home-manager.nixosModules.home-manager {

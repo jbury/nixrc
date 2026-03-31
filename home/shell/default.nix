@@ -21,7 +21,7 @@
 		cls = "clear && ls";
 
 		nixrc = "pushd ${homeSettings.homeDirectory}/.nixrc";
-		nrf = "sudo nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#$(hostname)";
+		nrf = "sudo nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#${homeSettings.hostname}";
 		refl = "nix flake update --flake ${homeSettings.homeDirectory}/.nixrc/";
 	};
 }

@@ -12,6 +12,6 @@ in {
 	config.programs.nix-index = mkIf cfg.enable {
 		enable = true;
 
-		enableZshIntegration = true;
+		enableZshIntegration = config.jbury.nixrc.home.modules.shell.zsh.enable;
 	};
 }

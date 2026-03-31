@@ -1,20 +1,29 @@
 { config, pkgs, lib, homeSettings, ... }:
 let
-	personalEmail = "2317537+jbury@users.noreply.github.com";
+	inherit (lib) mkEnableOption mkIf;
 
-	personalGithubKeys = {
-		pub =  "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github.pub";
-		priv = "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github";
-	};
-
-	defaultGitKeys = {
-		pub  = "${homeSettings.homeDirectory}/.ssh/default_git.pub";
-		priv = "${homeSettings.homeDirectory}/.ssh/default_git";
-	};
+	cfg = config.jbury.nixrc.home.modules.activation.git-keys;
 
 in {
-	home.activation = {
-		generateSshDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+	options.jbury.nixrc.home.modules.activation.git-keys = {
+		enable = mkEnableOption "git-keys";
+	};
+
+	config.home.activation = mkIf cfg.enable {
+		generateSshDir = lib.hm.dag.entryAfter ["writeBoundary"] (
+			let
+				personalEmail = "2317537+jbury@users.noreply.github.com";
+
+				personalGithubKeys = {
+					pub =  "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github.pub";
+					priv = "${homeSettings.homeDirectory}/.ssh/${homeSettings.userName}_github";
+				};
+
+				defaultGitKeys = {
+					pub  = "${homeSettings.homeDirectory}/.ssh/default_git.pub";
+					priv = "${homeSettings.homeDirectory}/.ssh/default_git";
+				};
+			in ''
 # Make sure ~/.ssh exists
 if [ ! -d "${homeSettings.homeDirectory}/.ssh" ]; then
 	mkdir "${homeSettings.homeDirectory}/.ssh"
@@ -46,6 +55,7 @@ if [ ! -f "${defaultGitKeys.priv}" ]; then
 		${pkgs.openssl}/bin/ssh-key add "${defaultGitKeys.pub}" --type signing --title "${homeSettings.hostname}-default"
 	fi
 fi
-		'';
+			''
+		);
 	};
 }
