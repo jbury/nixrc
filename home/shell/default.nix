@@ -1,27 +1,57 @@
 { homeSettings, ... }: {
 	imports = [
-		./nix-index.nix
-		./zsh.nix
+		./zsh
 	];
 
 	config.jbury.nixrc.home.modules.shell = {
-		zsh.enable       = true;
-		nix-index.enable = true;
+		zsh.enable = true;
 	};
 
 	config.home.shellAliases = {
-		gits = "git status";
-		gpr = "git pull --rebase";
+		# Short Hands
+		sl = "ls"; # gottagofast
 
 		c = "cd ..";
 		cc = "cd ../..";
 		ccc = "cd ../../..";
+		cccc = "cd ../../../..";
 
 		l = "ls";
 		cls = "clear && ls";
+		whitespace = "sed 's/ /·/g;s/\t/￫/g;s/$/¶/g'";
 
-		nixrc = "pushd ${homeSettings.homeDirectory}/.nixrc";
-		nrf = "sudo nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#${homeSettings.hostname}";
+		# Nix Reloaded
 		refl = "nix flake update --flake ${homeSettings.homeDirectory}/.nixrc/";
+		nrf = "nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#${homeSettings.hostname}";
+		nixgc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+
+		# CDs
+		ws = "cd ${homeSettings.homeDirectory}/workspace/";
+		nixrc = "cd ${homeSettings.homeDirectory}/.nixrc";
+		sshconf = "vim ${homeSettings.homeDirectory}/.ssh/config";
+
+		# Flag 'Em Down
+		ls = "ls --color -F";
+		df = "df -BG";
+		grep="grep --color=never";
+		grap="grep --color=always";
+		mkdir = "mkdir -pv";
+		wget = "wget -c"; # TODO: Dependency
+		ports = "netstat -tulanp"; #TODO: Dependency
+
+		jc = "journalctl -e";
+		sc = "systemctl";
+		ssc= "sudo systemctl";
+
+		shutdown = "sudo shutdown now";
+
+		#TODO: Git stuff
+		gits = "git status";
+		gpr = "git pull --rebase";
+		repo = "basename \"$(git rev-parse --show-toplevel)\"";
+
+    xargs = "xargs "; # This is the dumbest most batshit insane thing I've ever seen
+# Since aliases are recursive, making xargs an alias causes all other aliased commands to automatically expand
+# which means xargs now respects my aliases.
 	};
 }

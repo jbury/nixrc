@@ -4,6 +4,6 @@
 	];
 
 	config.jbury.nixrc.home.modules.activation = {
-		git-keys.enable = false;
+		git-keys.enable = true;
 	};
 }

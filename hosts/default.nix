@@ -33,7 +33,7 @@ in {
 				experimental-features    = "nix-command flakes";
 				use-xdg-base-directories = true;
 				trusted-users            = [ "@wheel" "root" ];
-				ssl-cert-file            = "/etc/ssl/certs/ca-bundle.crt";
+#				ssl-cert-file            = "/etc/ssl/certs/ca-bundle.crt";
 			};
 
 			gc = {

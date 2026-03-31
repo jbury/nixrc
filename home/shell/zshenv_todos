@@ -1,0 +1,18 @@
+export EDITOR=vim #TODO: Dependency
+export TF_PLUGIN_CACHE_DIR="${HOME}/.terraform.d/plugin-cache" #TODO: Dependency
+
+pow () {
+        local BAT_NAME="BAT1"
+        local BAT_CAP
+        BAT_CAP=$(tr -d '\n' < "/sys/class/power_supply/${BAT_NAME}/capacity")
+        local BAT_STATUS
+        BAT_STATUS=$(tr -d '\n' < "/sys/class/power_supply/${BAT_NAME}/status")
+        if [ "$BAT_STATUS" = "Discharging" ]
+        then
+                echo "${BAT_CAP}-"
+        else
+                echo "${BAT_CAP}+"
+        fi
+}
+
+alias jqlogs="jq -R '. as $line | try (fromjson) catch $line'"
