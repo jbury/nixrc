@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, homeSettings, ... }:
 
 let
 	inherit (lib) mkEnableOption mkIf;
@@ -18,9 +18,9 @@ in {
 setopt no_global_rcs
 
 # Allow some kinda cool dotenv-esque behaviours
-if [[ -f "${HOME}/.env" ]]; then
+if [[ -f "${homeSettings.homeDirectory}/.env" ]]; then
 	set -o allexport
-	source "${HOME}/.env"
+	source "${homeSettings.homeDirectory}/.env"
 	set +o allexport
 fi
 
