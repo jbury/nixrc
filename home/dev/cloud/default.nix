@@ -36,7 +36,9 @@
 
 		#TODO: I suspect the pkgs I'm using in home-manager is not getting the configs from flake.nix, so it's not seeing that terraform has an allowUnfreePredicate set.
 		#terraform
-		terraform-docs
+		#terraform-docs
+		#Also need to make sure to set up my plugin cache
+		#export TF_PLUGIN_CACHE_DIR="${HOME}/.terraform.d/plugin-cache" #TODO: Dependency
 	];
 
 	config.home.shellAliases = {
