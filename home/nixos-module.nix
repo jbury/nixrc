@@ -21,6 +21,7 @@ in {
 			home-manager = {
 				useGlobalPkgs   = true;
 				useUserPackages = true;
+				#TODO: maybe?
 				#startAsUserService = true;
 
 				users.${homeSettings.userName}.imports = [ ./home.nix ];
@@ -32,6 +33,4 @@ in {
 		./stylix.nix
 	];
 
-	#For now
-	#config.users.users.${homeSettings.userName}.shell = pkgs.zsh;
 }
