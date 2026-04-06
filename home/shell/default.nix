@@ -22,7 +22,7 @@
 
 		# Nix Reloaded
 		refl = "nix flake update --flake ${homeSettings.homeDirectory}/.nixrc/";
-		nrf = "nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#${homeSettings.hostname}";
+		nrf = "sudo nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#${homeSettings.hostname}";
 		nixgc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
 
 		# CDs
