@@ -67,7 +67,7 @@
 			];
 		};
 	in {
-		# Commenting out for now - home-manager standalone config getting host configs is confusing.
+		##TODO: Commenting out for now - home-manager standalone config getting host configs is confusing.
 		#homeConfigurations = {
 		#	# So you can just `home-manager switch --flake ${NIXRC_DIR}`
 		#	default = self.homeConfigurations.jbury.standalone;
