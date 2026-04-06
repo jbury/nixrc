@@ -33,14 +33,14 @@
 		# Flag 'Em Down
 		ls = "ls --color -F";
 		df = "df -BG";
-		grep="grep --color=never";
-		grap="grep --color=always";
+		grep = "grep --color=never";
+		grap = "grep --color=always";
 		mkdir = "mkdir -pv";
 		ports = "ss -tulanp";
 
-		jc = "journalctl -e";
-		sc = "systemctl";
-		ssc= "sudo systemctl";
+		jc  = "journalctl -e";
+		sc  = "systemctl";
+		ssc = "sudo systemctl";
 
 		shutdown = "sudo shutdown now";
 
