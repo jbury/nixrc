@@ -33,6 +33,11 @@ else
 	umask 077
 fi
 '';
+
+			shellAliases = {
+				cleanzsh = "find ${homeSettings.homeDirectory}/.config/zsh -type f -name '*.zwc' -delete";
+				rezsh    = "source ${homeSettings.homeDirectory}/.config/zsh/.zshrc";
+			};
 		};
 
 		programs.nix-index = {
