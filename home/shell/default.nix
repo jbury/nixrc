@@ -36,8 +36,7 @@
 		grep="grep --color=never";
 		grap="grep --color=always";
 		mkdir = "mkdir -pv";
-		wget = "wget -c"; # TODO: Dependency
-		ports = "netstat -tulanp"; #TODO: Dependency
+		ports = "ss -tulanp";
 
 		jc = "journalctl -e";
 		sc = "systemctl";
