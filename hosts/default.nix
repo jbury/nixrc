@@ -22,8 +22,6 @@ in {
 		stateVersion = mkOpt str;
 
 		timeZone = mkOptDef str "America/Los_Angeles";
-
-		dotfilesDir = "~/.nixrc";
 	};
 
 	config = {

@@ -13,7 +13,7 @@ in {
 
 	config = mkIf cfg.enable {
 
-		home.file."${zdotdir}" = {
+		xdg.configFile."zsh" = {
 			source    = ./config;
 			recursive = true;
 		};
@@ -61,7 +61,7 @@ in {
 
 			localVariables = {
 				DIRSTACKSIZE = "9";
-				WORDCHARS = '_-*?[]~&.;!#$%^(){}<>';
+				WORDCHARS = "_-*?[]~&.;!#$%^(){}<>";
 			};
 
 			history = {
@@ -85,9 +85,9 @@ in {
 		};
 
 
-		programs.nix-index = {
-			enable = true;
-			enableZshIntegration = true;
-		};
+#		programs.nix-index = {
+#			enable = true;
+#			enableZshIntegration = true;
+#		};
 	};
 }

@@ -21,13 +21,13 @@
 		whitespace = "sed 's/ /·/g;s/\t/￫/g;s/$/¶/g'";
 
 		# Nix Reloaded
-		refl = "nix flake update --flake ${homeSettings.homeDirectory}/.nixrc/";
-		nrf = "sudo nixos-rebuild --flake ${homeSettings.homeDirectory}/.nixrc/.#${homeSettings.hostname}";
+		refl = "nix flake update --flake /nixrc/";
+		nrf = "sudo nixos-rebuild --flake /nixrc/.#${homeSettings.hostname}";
 		nixgc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
 
 		# CDs
 		ws = "cd ${homeSettings.homeDirectory}/workspace/";
-		nixrc = "cd ${homeSettings.homeDirectory}/.nixrc";
+		nixrc = "cd /nixrc/";
 		sshconf = "vim ${homeSettings.homeDirectory}/.ssh/config";
 
 		# Flag 'Em Down
