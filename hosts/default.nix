@@ -45,13 +45,11 @@ in {
 
 		# Packages for _every_ user to have access to - e.g. root, or steam, or whatever
 		environment.systemPackages = with pkgs; [
-			bat
 			bind
 			cacert
 			cached-nix-shell
 			curl
 			envsubst
-			file
 			git
 			gnumake
 			gnupg

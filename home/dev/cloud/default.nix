@@ -1,10 +1,14 @@
 { pkgs, ... }: {
 	imports = [
+		./aws.nix
 		./azure.nix
+		./gcp.nix
 	];
 
 	config.jbury.nixrc.home.modules.dev.cloud = {
+		aws.enable   = false;
 		azure.enable = true;
+		gcp.enable   = false;
 	};
 
 	config.programs = {
