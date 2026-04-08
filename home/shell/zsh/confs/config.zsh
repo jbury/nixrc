@@ -27,11 +27,11 @@ if [[ "${TERM}" != "dumb" ]]; then
 	fi
 
 	# Source our remaining config files
-	source "${ZDOTDIR}/plugins.zsh"
-	source "${ZDOTDIR}/completion.zsh"
-	source "${ZDOTDIR}/keybinds.zsh"
-	source "${ZDOTDIR}/functions.zsh"
-	source "${ZDOTDIR}/prompt.zsh"
+	source "${ZCONFDIR}/plugins.zsh"
+	source "${ZCONFDIR}/completion.zsh"
+	source "${ZCONFDIR}/keybinds.zsh"
+	source "${ZCONFDIR}/functions.zsh"
+	source "${ZCONFDIR}/prompt.zsh"
 
 	# If you have host-local configuration, put it here
 	if [ -f "${ZDOTDIR}/local.zsh" ]; then

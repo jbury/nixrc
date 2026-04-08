@@ -21,8 +21,6 @@ in {
 			home-manager = {
 				useGlobalPkgs   = true;
 				useUserPackages = true;
-				#TODO: maybe?
-				#startAsUserService = true;
 
 				users.${homeSettings.userName}.imports = [ ./home.nix ];
 				extraSpecialArgs = { inherit homeSettings; };

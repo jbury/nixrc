@@ -5,7 +5,8 @@ let
 
 	cfg = config.jbury.nixrc.home.modules.shell.zsh;
 
-	zdotdir = "${config.xdg.configHome}/zsh";
+	zdotdir  = "${config.xdg.configHome}/zsh";
+	zconfdir = "${zdotdir}/confs";
 in {
 	options.jbury.nixrc.home.modules.shell.zsh = {
 		enable = mkEnableOption "zsh";
@@ -13,16 +14,18 @@ in {
 
 	config = mkIf cfg.enable {
 
-		xdg.configFile."zsh" = {
-			source    = ./config;
+		xdg.configFile."zsh/confs" = {
+			source    = ./confs;
+#			target    = "./zsh/confs";
 			recursive = true;
+			force     = true;
 		};
 
 		programs.zsh = {
 			enable = true;
 
 			# Content added to the generated .zshrc file
-			initContent = ''source "${zdotdir}/config.zsh"'';
+			initContent = ''source "${zconfdir}/config.zsh"'';
 
 			shellAliases = {
 				cleanzsh = "find ${zdotdir} -type f -name '*.zwc' -delete";
@@ -62,6 +65,7 @@ in {
 			localVariables = {
 				DIRSTACKSIZE = "9";
 				WORDCHARS = "_-*?[]~&.;!#$%^(){}<>";
+				ZCONFDIR = "${zconfdir}";
 			};
 
 			history = {
@@ -85,6 +89,7 @@ in {
 		};
 
 
+# Generating this database is slow as hell on some machines, and it's not really critical, feature-wise, for me.
 #		programs.nix-index = {
 #			enable = true;
 #			enableZshIntegration = true;
