@@ -28,7 +28,8 @@ in {
 		nix = {
 			settings = {
 				auto-optimise-store      = true;
-				experimental-features    = "nix-command flakes";
+				download-buffer-size     = 524288000; # 500 MiB
+				experimental-features    = ["nix-command" "flakes"];
 				use-xdg-base-directories = true;
 				trusted-users            = [ "@wheel" "root" ];
 				ssl-cert-file            = "/etc/ssl/certs/ca-bundle.crt";
