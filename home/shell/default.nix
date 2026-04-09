@@ -1,9 +1,11 @@
 { homeSettings, ... }: {
 	imports = [
+		./git
 		./zsh
 	];
 
 	config.jbury.nixrc.home.modules.shell = {
+		git.enable = true;
 		zsh.enable = true;
 	};
 
@@ -44,12 +46,7 @@
 
 		shutdown = "sudo shutdown now";
 
-		#TODO: Git stuff
-		gits = "git status";
-		gpr = "git pull --rebase";
-		repo = "basename \"$(git rev-parse --show-toplevel)\"";
-
-    xargs = "xargs "; # This is the dumbest most batshit insane thing I've ever seen
+		xargs = "xargs "; # This is the dumbest most batshit insane thing I've ever seen
 # Since aliases are recursive, making xargs an alias causes all other aliased commands to automatically expand
 # which means xargs now respects my aliases.
 	};
