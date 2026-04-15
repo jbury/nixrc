@@ -10,7 +10,8 @@ in {
 	};
 
 	config = {
-		networking = mkIf cfg.enable {
+    networking = mkIf cfg.enable {
+      networkmanager.enable = true;
 			useDHCP     = true;
 			enableIPv6  = true;
 			nameservers = [];

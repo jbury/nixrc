@@ -103,7 +103,15 @@
 					./hosts/profiles/gwyn
 					./home/nixos-module.nix
 				];
-			};
+      };
+      lautrec = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit jbury-lib inputs; };
+        modules = [
+          ./hosts/profiles/lautrec
+          ./home/nixos-module.nix
+        ];
+      };
 			oswald = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
