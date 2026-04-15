@@ -12,6 +12,10 @@
 			hasDesktop = true;
 
 			stateVersion = "26.05";
-		};
-	};
+    };
+  };
+
+  config.networking.interfaces = {
+    wlp1s0.useDHCP = true;
+  };
 }

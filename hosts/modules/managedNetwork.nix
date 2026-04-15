@@ -12,8 +12,8 @@ in {
 
 	config = {
 		networking = mkIf cfg.enable {
-			hostName    = hostSettings.hostname;
-			useDHCP     = true;
+      hostName    = hostSettings.hostname;
+      useDHCP     = false;
 			enableIPv6  = true;
 			nameservers = [];
 
