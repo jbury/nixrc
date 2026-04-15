@@ -1,13 +1,15 @@
 { ... }: {
 	imports = [
-    ../../templates/NixosHost.nix
-    ./hardware-configuration.nix
-    ./disk-configuration.nix
+		../../templates/NixosHost.nix
+		./boot-configuration.nix
+		./hardware-configuration.nix
+		./disk-configuration.nix
 	];
 
 	config.jbury.nixrc = {
 		hostSettings = {
-			hostname = "lautrec";
+			hostname   = "lautrec";
+			hasDesktop = true;
 
 			stateVersion = "26.05";
 		};

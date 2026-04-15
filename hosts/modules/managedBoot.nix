@@ -22,6 +22,7 @@ in {
 
 				efi = {
 					canTouchEfiVariables = true;
+					efiSysMountPoint = "/boot";
 				};
 			};
 		};

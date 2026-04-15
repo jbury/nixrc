@@ -32,6 +32,7 @@ in {
 				experimental-features    = ["nix-command" "flakes"];
 				use-xdg-base-directories = true;
 				trusted-users            = [ "@wheel" "root" ];
+				#TODO: remove
 				ssl-cert-file            = "/etc/ssl/certs/ca-bundle.crt";
 			};
 
