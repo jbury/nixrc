@@ -16,7 +16,6 @@ in {
 
 		xdg.configFile."zsh/confs" = {
 			source    = ./confs;
-#			target    = "./zsh/confs";
 			recursive = true;
 			force     = true;
 		};

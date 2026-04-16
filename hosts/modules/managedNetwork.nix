@@ -19,5 +19,8 @@ in {
 
       networkmanager.enable = true;
 		};
+
+		programs.ssh.startAgent          = true;
+		services.openssh.startWhenNeeded = true;
 	};
 }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ homeSettings, config, lib, pkgs, ... }:
 
 let
 	inherit (lib) mkEnableOption mkIf;
@@ -14,6 +14,10 @@ in {
 			enable = true;
 
 			settings = {
+				user = {
+					name  = homeSettings.userName;
+					email = homeSettings.email;
+				};
 				advice = {
 					skippedCherryPicks = "false";
 				};
@@ -83,12 +87,12 @@ in {
 					#gpgSign = "true";
 				};
 				url = {
-					"git@gitlab.com:" = {
-						insteadOf = "https://gitlab.com/";
-#						insteadOf = "gitlab.com/";
+					"ssh://git@gitlab.com:" = {
+						insteadOf = "https://gitlab.com";
+#						insteadOf = "gitlab.com";
 					};
-					"git@github.com:" = {
-						insteadOf = "https://github.com/";
+					"ssh://git@github.com:" = {
+						insteadOf = "https://github.com";
 #						insteadOf = "github.com/";
 					};
 				};
