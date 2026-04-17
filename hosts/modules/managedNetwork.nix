@@ -10,8 +10,8 @@ in {
 		enable = mkEnableOption "Nixos-managed network";
 	};
 
-	config = {
-		networking = mkIf cfg.enable {
+	config = mkIf cfg.enable {
+		networking = {
       hostName    = hostSettings.hostname;
       useDHCP     = false;
 			enableIPv6  = true;
