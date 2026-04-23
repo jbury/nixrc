@@ -1,8 +1,8 @@
 { inputs, lib, jbury-lib, config, pkgs, ... }:
 
 let
-	inherit (lib)       mkDefault findFirst pathExists removePrefix;
-	inherit (lib.types) path str;
+	inherit (lib)       mkDefault;
+	inherit (lib.types) str;
 	inherit (jbury-lib) mkBoolOptDef mkOptDef mkOpt;
 
 	cfg = config.jbury.nixrc.hostSettings;
@@ -63,6 +63,7 @@ in {
 			unzip
 			vim
 			wget
+			xdg-user-dirs # Apparently some packages look for this specifically??
 			yq-go
 		];
 

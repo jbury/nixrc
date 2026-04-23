@@ -5,6 +5,13 @@
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+		nixpkgs-wayland = {
+			url = "github:nix-community/nixpkgs-wayland";
+
+			#TODO: Supposedly this isn't needed to prevent an extra nixpkgs eval?
+			# inputs.nixpkgs.follows = "nixpkgs";
+		};
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
 		nixos-wsl = {
@@ -33,7 +40,7 @@
 
 	};
 
-	outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
+	outputs = inputs@{ self, nixpkgs, nixpkgs-wayland, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
 	let
 		#TODO this is apparently something I can refactor away with a new pattern
 		# https://github.com/NobbZ/nixos-config/pull/1387
@@ -64,7 +71,8 @@
 						# When we want "local" packages from the packages dir
 						# kustomize = localpackagesForSystem.kustomize;
 					}
-				)
+					)
+				nixpkgs-wayland.overlay
 				emacs-overlay.overlay
 			];
 		};
@@ -102,22 +110,25 @@
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
+					{ nixpkgs.pkgs = pkgs; }
 					./hosts/profiles/gwyn
 					./home/nixos-module.nix
 				];
-      };
-      lautrec = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit jbury-lib inputs; };
-        modules = [
-          ./hosts/profiles/lautrec
-          ./home/nixos-module.nix
-        ];
-      };
+			};
+			lautrec = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				specialArgs = { inherit jbury-lib inputs; };
+				modules = [
+					{ nixpkgs.pkgs = pkgs; }
+					./hosts/profiles/lautrec
+					./home/nixos-module.nix
+				];
+			};
 			oswald = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
+					{ nixpkgs.pkgs = pkgs; }
 					./hosts/profiles/oswald
 					./home/nixos-module.nix
 				];

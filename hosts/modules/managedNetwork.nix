@@ -20,7 +20,15 @@ in {
       networkmanager.enable = true;
 		};
 
-		programs.ssh.startAgent          = true;
+		programs.ssh = {
+			startAgent = true;
+			# This was barely a realistic concern in 2016,  but I'm Greek, not Roamin.
+			extraConfig = ''
+				Host *
+					UseRoaming no
+			'';
+		};
+
 		services.openssh.startWhenNeeded = true;
 	};
 }
