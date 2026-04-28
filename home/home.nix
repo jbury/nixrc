@@ -2,6 +2,7 @@
 # Does some basic home-manager configuration, and imports my home-manager modules.
 { homeSettings, ... }: {
 	imports = [
+		./desktop
 		./dev
 		./editors
 		./activation

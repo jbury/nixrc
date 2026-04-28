@@ -163,7 +163,7 @@ in {
 						config.home-manager.users.${homeSettings.userName}.home.profileDirectory
 					];
 					themes = [ "Paper" "Paper-Mono-Dark" "Adwaita" "hicolor" ];
-					mkPath = { basePath, theme, }: "${basePath}/share/icons/${theme}";
+					mkPath = { basePath, theme }: "${basePath}/share/icons/${theme}";
 				in concatMapStringsSep ":" mkPath (cartesianProduct {
 					basePath = basePaths;
 					theme = themes;
@@ -188,10 +188,9 @@ in {
 				padding = "20,16";
 				width = 440;
 			};
-
 		};
 
-		home.packages = {
+		home.packages = [
 			pkgs.autotiling
 			pkgs.gammastep
 			pkgs.grim
@@ -211,7 +210,7 @@ in {
 			pkgs.wob
 			pkgs.wofi
 			pkgs.ydotool
-		};
+		];
 	};
 }
 
