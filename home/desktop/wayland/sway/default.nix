@@ -133,11 +133,10 @@ in {
 				systemd.enable = true;
 				swaynag.enable = true;
 			};
-		};
 
-		home.programs.swaylock.enable = true;
+		programs.swaylock.enable = true;
 
-		home.services = {
+		services = {
 			swayidle = {
 				enable = true;
 
@@ -156,21 +155,7 @@ in {
 				];
 			};
 
-			mako = let
-				iconPath = let
-					basePaths = [
-						"/run/current-system/sw"
-						config.home-manager.users.${homeSettings.userName}.home.profileDirectory
-					];
-					themes = [ "Paper" "Paper-Mono-Dark" "Adwaita" "hicolor" ];
-					mkPath = { basePath, theme }: "${basePath}/share/icons/${theme}";
-				in concatMapStringsSep ":" mkPath (cartesianProduct {
-					basePath = basePaths;
-					theme = themes;
-				});
-			in {
-				inherit iconPath;
-
+			mako = { 
 				enable = true;
 				output = "eDP-1";
 				actions = true;

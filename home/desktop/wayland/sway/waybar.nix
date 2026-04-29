@@ -7,7 +7,7 @@ let
 in {
 
 	config = mkIf cfg.enable {
-		home.programs.waybar = {
+		programs.waybar = {
 			enable = true;
 
 			systemd.enable = true;

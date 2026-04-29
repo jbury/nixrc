@@ -1,11 +1,11 @@
 { options, config, lib, pkgs, inputs, ... }:
+#TODO: NO
 with lib;
-with lib.my;
 let
 	cfg = config.jbury.nixrc.home.modules.desktop.wayland.sway;
 in {
   config = mkIf cfg.enable {
-    home.wayland.windowManager.sway = let
+    wayland.windowManager.sway = let
       super = "Mod4";
       alt = "Mod1";
       control = "Ctrl";

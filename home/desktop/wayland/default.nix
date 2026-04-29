@@ -14,7 +14,7 @@ in {
 	};
 
 	config = mkIf cfg.enable {
-		config.jbury.nixrc.home.modules.desktop.wayland.sway.enable = true;
+		jbury.nixrc.home.modules.desktop.wayland.sway.enable = true;
 
 		xdg.portal = {
 			enable = true;
