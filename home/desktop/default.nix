@@ -4,7 +4,11 @@ let
 	inherit (lib) mkIf;
 in {
 	imports = [
+		#TODO: break signal/slack/keepass into specific apps, maybe.
+		#./apps
+#		./browsers
 		./wayland
+		./term
 	];
 
 	config = mkIf homeSettings.hasDesktop { 
@@ -19,6 +23,8 @@ in {
 				pkgs.gparted
 				pkgs.feh
 				pkgs.keepassxc
+				pkgs.signal-desktop
+				pkgs.slack
 				pkgs.xclip
 				pkgs.xdg-utils
 				pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice

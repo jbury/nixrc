@@ -63,6 +63,7 @@
 			config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
 				"aspell-dict-en-science"
 				"terraform"
+				"slack"
 			];
 
 			overlays = [
