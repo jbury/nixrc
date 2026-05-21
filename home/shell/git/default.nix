@@ -29,7 +29,7 @@ in {
 					gud = "!cat $XDG_STATE_HOME/git/giantdad.txt";
 				};
 				branch = {
-					sort = "-comitterdate";
+					sort = "-committerdate";
 				};
 				column = {
 					ui = "auto";
