@@ -147,31 +147,30 @@ in {
 					}
 				];
 
-				events = [
-					{
-						event = "before-sleep";
-						command = "${pkgs.swaylock}/bin/swaylock -fFe -c000000";
-					}
-				];
+				events = {
+					before-sleep = "${pkgs.swaylock}/bin/swaylock -fFe -c000000";
+				};
 			};
 
 			mako = { 
 				enable = true;
-				output = "eDP-1";
-				actions = true;
-				anchor = "top-right";
-				borderRadius = 2;
-				borderSize = 1;
-				height = 1000;
-				icons = true;
-				# I know better than you, notification sender.
-				ignoreTimeout = true;
-				defaultTimeout = 10;
-				margin = "4,26";
-				markup = true;
-				maxVisible = -1;
-				padding = "20,16";
-				width = 440;
+				settings = {
+					output = "eDP-1";
+					actions = true;
+					anchor = "top-right";
+					border-radius = 2;
+					border-size = 1;
+					height = 1000;
+					icons = true;
+					# I know better than you, notification sender.
+					ignore-timeout = true;
+					default-timeout = 10;
+					margin = "4,26";
+					markup = true;
+					max-visible = -1;
+					padding = "20,16";
+					width = 440;
+				};
 			};
 		};
 
