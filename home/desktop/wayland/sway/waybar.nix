@@ -8,9 +8,9 @@ in {
 
 	config = mkIf cfg.enable {
 		programs.waybar = {
-			enable = true;
+			enable = false;
 
-			systemd.enable = true;
+			systemd.enable = false;
 
 			settings = [{
 				layer = "bottom";
