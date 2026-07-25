@@ -36,6 +36,7 @@ in {
 			};
 
 			sessionVariables = {
+				XDG_DESKTOP_DIR     = "${homeSettings.homeDirectory}/Desktop";
 				XDG_SCREENSHOTS_DIR = "${homeSettings.homeDirectory}/screenshots";
 			};
 		};
