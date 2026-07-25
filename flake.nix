@@ -12,13 +12,19 @@
 			# inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+		nixos-hardware.url = "github:nixos/nixos-hardware";
+
+		nix-darwin = {
+			url = "github:nix-darwin/nix-darwin/master";
+
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		nixos-wsl = {
 			url = "github:nix-community/NixOS-WSL/main";
 
 			inputs.nixpkgs.follows = "nixpkgs";
-    };
+		};
 
 		home-manager = {
 			url = "github:nix-community/home-manager/master";
@@ -40,7 +46,7 @@
 
 	};
 
-	outputs = inputs@{ self, nixpkgs, nixpkgs-wayland, nixos-wsl, home-manager, emacs-overlay, stylix, ... }:
+	outputs = inputs@{ self, nixpkgs, nixpkgs-wayland, nixos-wsl, nix-darwin, home-manager, emacs-overlay, stylix, ... }:
 	let
 		#TODO this is apparently something I can refactor away with a new pattern
 		# https://github.com/NobbZ/nixos-config/pull/1387
@@ -132,6 +138,18 @@
 					{ nixpkgs.pkgs = pkgs; }
 					./hosts/profiles/oswald
 					./home/nixos-module.nix
+				];
+			};
+		};
+
+		darwinConfigurations = {
+			seath = nix-darwin.lib.darwinSystem {
+				system = "aarch64-darwin";
+				specialArgs = { inherit jbury-lib inputs; };
+				modules = [
+					{ nixpkgs.pkgs = pkgs; }
+					./hosts/profiles/seath
+					./home/nix-darwin-module.nix
 				];
 			};
 		};

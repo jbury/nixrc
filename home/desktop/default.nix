@@ -6,7 +6,7 @@ in {
 	imports = [
 		#TODO: break signal/slack/keepass into specific apps, maybe.
 		#./apps
-#		./browsers
+		./browsers
 		./wayland
 		./term
 	];

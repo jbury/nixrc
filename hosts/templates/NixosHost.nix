@@ -17,11 +17,11 @@ in {
 	};
 
 	config = {
-    jbury.nixrc.hosts.modules = {
-      managedNetwork.enable = cfg.manageNetwork;
-      managedBoot.enable    = cfg.manageBoot;
-      managedUsers.enable   = cfg.manageUsers;
-    };
+		jbury.nixrc.hosts.modules = {
+			managedNetwork.enable = cfg.manageNetwork;
+			managedBoot.enable    = cfg.manageBoot;
+			managedUsers.enable   = cfg.manageUsers;
+		};
 
 		system.stateVersion = hostSettings.stateVersion;
 	};

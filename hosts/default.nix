@@ -31,9 +31,8 @@ in {
 				download-buffer-size     = 524288000; # 500 MiB
 				experimental-features    = ["nix-command" "flakes"];
 				use-xdg-base-directories = true;
+				#MACTODO: This isn't quite true on macs, where we instead want @admin
 				trusted-users            = [ "@wheel" "root" ];
-				#TODO: remove
-				ssl-cert-file            = "/etc/ssl/certs/ca-bundle.crt";
 			};
 
 			gc = {

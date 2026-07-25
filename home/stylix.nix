@@ -24,7 +24,7 @@ in {
 				name    = "Iosevka Aile";
 			};
 			monospace = {
-				package = (pkgs.iosevka-bin.override { variant = "SGr-IosevkaFixed"; });
+				package = (pkgs.iosevka-bin.override { variant = "SGr-IosevkaTerm"; });
 				name    = "Iosevka Term";
 			};
 			emoji = {

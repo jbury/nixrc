@@ -5,18 +5,6 @@ let
 
 in {
 config = mkIf homeSettings.hasDesktop {
-	home.packages = [
-		pkgs.firefox
-		(pkgs.makeDesktopItem {
-			name = "firefox";
-			desktopName = "Firefox";
-			genericName = "Open a Firefox window";
-			icon = "firefox";
-			exec = "${pkgs.firefox-bin}/bin/firefox";
-			categories = [ "Network" ];
-		})
-	];
-
     #env.XDG_DESKTOP_DIR = "$HOME/";
     #env.BROWSER = "firefox";
     #env.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";

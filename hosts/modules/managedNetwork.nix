@@ -12,12 +12,12 @@ in {
 
 	config = mkIf cfg.enable {
 		networking = {
-      hostName    = hostSettings.hostname;
-      useDHCP     = false;
+			hostName    = hostSettings.hostname;
+			useDHCP     = false;
 			enableIPv6  = true;
 			nameservers = [];
 
-      networkmanager.enable = true;
+			networkmanager.enable = true;
 		};
 
 		programs.ssh = {
