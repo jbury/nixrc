@@ -11,6 +11,7 @@ in {
 	];
 
 	options.jbury.nixrc.hosts.templates.nixosHost = {
+		docker        = mkBoolOptDef true;
 		manageNetwork = mkBoolOptDef true;
 		manageBoot    = mkBoolOptDef true;
 		manageUsers   = mkBoolOptDef true;
@@ -18,6 +19,7 @@ in {
 
 	config = {
 		jbury.nixrc.hosts.modules = {
+			docker.enable         = cfg.docker;
 			managedNetwork.enable = cfg.manageNetwork;
 			managedBoot.enable    = cfg.manageBoot;
 			managedUsers.enable   = cfg.manageUsers;

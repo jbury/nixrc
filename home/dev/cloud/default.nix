@@ -6,8 +6,8 @@
 	];
 
 	config.jbury.nixrc.home.modules.dev.cloud = {
-		aws.enable   = false;
-		azure.enable = true;
+		aws.enable   = true;
+		azure.enable = false;
 		gcp.enable   = false;
 	};
 
@@ -42,8 +42,8 @@
 	];
 
 	config.home.shellAliases = {
-		kc = "kubectl";
 		k = "kubectl";
+		kc = "kubectl";
 		kccc = "kubectl config current-context";
 
 		tf = "terraform";
