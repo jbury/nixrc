@@ -5,6 +5,8 @@
 	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	config = mkIf hostSettings.hasDesktop {
+		hardware.pulseaudio.enable = true;
+
 		security = {
 			# Wayland needs strict security policy stuff
 			polkit.enable         = true;
@@ -15,7 +17,7 @@ in {
 			xserver.enable = mkForce false;
 
 			udev.extraRules = ''
-				KERNEL=="uinput", GROUP="inpu", MODE="0660", OPTIONS+="static_node=uinput"
+				KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
 			'';
 		};
 
