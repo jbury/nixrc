@@ -5,8 +5,11 @@
 	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	config = mkIf hostSettings.hasDesktop {
-		# Wayland needs strict security policy stuff
-		security.polkit.enable = true;
+		security = {
+			# Wayland needs strict security policy stuff
+			polkit.enable         = true;
+			pam.services.swaylock = {};
+		};
 
 		services = {
 			xserver.enable = mkForce false;
