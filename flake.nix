@@ -48,30 +48,20 @@
 
 	outputs = inputs@{ self, nixpkgs, nixpkgs-wayland, nixos-wsl, nix-darwin, home-manager, emacs-overlay, stylix, ... }:
 	let
-		#TODO this is apparently something I can refactor away with a new pattern
-		# https://github.com/NobbZ/nixos-config/pull/1387
-		system = "x86_64-linux";
-
 		lib = nixpkgs.lib;
 
 		jbury-lib = import ./lib {
 			inherit lib;
 		};
 
-		localPackages = import ./packages {
-			inherit lib;
-			pkgs = nixpkgs.legacyPackages.${system};
-		};
-
-		pkgs = import nixpkgs {
-			inherit system;
-
-			config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+		nixpkgs = {
+			config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 				"aspell-dict-en-science"
 				"terraform"
 				"slack"
 			];
 
+			#TODO wayland overlay only needed on NixOS, emacs-overlay idk what needs it, but probably not everything.
 			overlays = [
 				(final: prev:
 					{
@@ -83,6 +73,7 @@
 				emacs-overlay.overlay
 			];
 		};
+
 	in {
 		##TODO: Commenting out for now - home-manager standalone config getting host configs is confusing.
 		#homeConfigurations = {
@@ -114,29 +105,16 @@
 
 		nixosConfigurations = {
 			gwyn = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					{ nixpkgs.pkgs = pkgs; }
 					./hosts/profiles/gwyn
 					./home/nixos-module.nix
 				];
 			};
 			lautrec = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					{ nixpkgs.pkgs = pkgs; }
 					./hosts/profiles/lautrec
-					./home/nixos-module.nix
-				];
-			};
-			oswald = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				specialArgs = { inherit jbury-lib inputs; };
-				modules = [
-					{ nixpkgs.pkgs = pkgs; }
-					./hosts/profiles/oswald
 					./home/nixos-module.nix
 				];
 			};
@@ -144,10 +122,8 @@
 
 		darwinConfigurations = {
 			seath = nix-darwin.lib.darwinSystem {
-				system = "aarch64-darwin";
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
-					{ nixpkgs.pkgs = pkgs; }
 					./hosts/profiles/seath
 					./home/nix-darwin-module.nix
 				];

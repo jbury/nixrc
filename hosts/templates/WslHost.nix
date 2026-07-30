@@ -1,7 +1,7 @@
 { inputs, config, lib, jbury-lib, ... }:
 
 let
-	inherit (lib) mkForce;
+	inherit (lib) mkForce mkDefault;
 	inherit (lib.types) str;
 	inherit (jbury-lib) mkOptDef mkBoolOptDef;
 
@@ -19,13 +19,22 @@ in {
 		hostname = mkOptDef str hostSettings.hostname;
 
 		interop.enable = mkBoolOptDef false;
+
+		docker = mkBoolOptDef true;
 	};
 
 	config = {
 		# WSL support for Linux GUI apps isn't great, so to be safe I just disable all my desktop modules
-		jbury.nixrc.hostSettings.hasDesktop = mkForce false;
+		jbury.nixrc = {
+			hostSettings.hasDesktop = mkForce false;
+
+			hosts.modules.docker.enable = cfg.docker;
+		};
 
 		system.stateVersion = hostSettings.stateVersion;
+
+		# I don't bother generating a hardware-configuration.nix for nixos-wsl profiles, which is where this should _usually_ be defined, so just set it at the wsl template level instead.
+		nixpkgs.hostPlaform = mkDefault "x86_64-linux";
 
 		wsl = {
 			enable = true;
