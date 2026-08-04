@@ -4,6 +4,8 @@
 	];
 
 	config.jbury.nixrc.home.modules.activation = {
-		git-keys.enable = true;
+		#TODO Non-password-protected git keys are no bueno
+		# Disable auto key generation til I fix that
+		git-keys.enable = false;
 	};
 }
