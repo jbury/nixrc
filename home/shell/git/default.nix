@@ -185,7 +185,8 @@ in {
 		# This makes me giggle
 		xdg.stateFile."git/giantdad.txt".source = ./giantdad.txt;
 
-		xdg.configFile."zsh/git-stata.zsh".source = ./stata.zsh;
+		#TODO This causes all sorts of dumb, so we're gonna not do it right now.
+		#xdg.configFile."zsh/git-stata.zsh".source = ./stata.zsh;
 		#TODO: Figure out how this is supposed to work to get stata goin'
 		#programs.zsh.siteFunctions = {
 		#	stata = '''';
