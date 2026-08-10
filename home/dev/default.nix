@@ -3,15 +3,20 @@
 		./cloud
 	];
 
-	config.home = {
-		shellAliases = {
-			jqlogs = "jq -R '. as $line | try (fromjson) catch $line'";
+	config = {
+		home = {
+			shellAliases = {
+				jqlogs = "jq -R '. as $line | try (fromjson) catch $line'";
+			};
+
+			packages = [
+				pkgs.devenv
+			];
 		};
 
-		packages = [
-			pkgs.devenv
-			pkgs.direnv
-		];
-
+		programs.direnv = {
+			enable = true;
+			enableZshIntegration = true;
+		};
 	};
 }
