@@ -11,7 +11,7 @@ in {
 
 	config = mkIf cfg.enable {
 		users.users.${hostSettings.userName} = {
-			extraGroups = [ "wheel" "networkmanager" "docker" "audio" ];
+			extraGroups = [ "wheel" "networkmanager" "audio" ];
 			isNormalUser = true;
 			group = "users";
 			uid = mkDefault 1000;

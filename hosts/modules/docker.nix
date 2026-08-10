@@ -3,7 +3,8 @@
 let
 	inherit (lib) mkDefault mkEnableOption mkIf;
 
-	cfg = config.jbury.nixrc.hosts.modules.docker;
+	cfg          = config.jbury.nixrc.hosts.modules.docker;
+	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	options.jbury.nixrc.hosts.modules.docker = {
 		enable = mkEnableOption "Docker";
@@ -28,5 +29,9 @@ in {
 				DOCKER_BUILDKIT      = "1";
 			};
 		};
+
+		users.groups.docker.members = [
+			hostSettings.userName
+		];
 	};
 }
