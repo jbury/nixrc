@@ -53,27 +53,6 @@
 		jbury-lib = import ./lib {
 			inherit lib;
 		};
-
-		nixpkgs = {
-			config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-				"aspell-dict-en-science"
-				"terraform"
-				"slack"
-			];
-
-			#TODO wayland overlay only needed on NixOS, emacs-overlay idk what needs it, but probably not everything.
-			overlays = [
-				(final: prev:
-					{
-						# When we want "local" packages from the packages dir
-						# kustomize = localpackagesForSystem.kustomize;
-					}
-					)
-				nixpkgs-wayland.overlay
-				emacs-overlay.overlay
-			];
-		};
-
 	in {
 		##TODO: Commenting out for now - home-manager standalone config getting host configs is confusing.
 		#homeConfigurations = {
@@ -107,6 +86,7 @@
 			gwyn = nixpkgs.lib.nixosSystem {
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
+					./nix-pkgs.nix
 					./hosts/profiles/gwyn
 					./home/nixos-module.nix
 				];
@@ -114,6 +94,7 @@
 			lautrec = nixpkgs.lib.nixosSystem {
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
+					./nix-pkgs.nix
 					./hosts/profiles/lautrec
 					./home/nixos-module.nix
 				];
@@ -124,6 +105,7 @@
 			seath = nix-darwin.lib.darwinSystem {
 				specialArgs = { inherit jbury-lib inputs; };
 				modules = [
+					./nix-pkgs.nix
 					./hosts/profiles/seath
 					./home/nix-darwin-module.nix
 				];

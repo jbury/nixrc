@@ -34,7 +34,7 @@ in {
 		system.stateVersion = hostSettings.stateVersion;
 
 		# I don't bother generating a hardware-configuration.nix for nixos-wsl profiles, which is where this should _usually_ be defined, so just set it at the wsl template level instead.
-		nixpkgs.hostPlaform = mkDefault "x86_64-linux";
+		nixpkgs.hostPlatform = mkDefault "x86_64-linux";
 
 		wsl = {
 			enable = true;

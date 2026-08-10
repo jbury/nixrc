@@ -1,10 +1,14 @@
-{ config, lib, ... }:
+{ inputs, config, lib, ... }:
  let
 	inherit (lib) mkIf mkForce;
 
 	hostSettings = config.jbury.nixrc.hostSettings;
 in {
 	config = mkIf hostSettings.hasDesktop {
+		nixpkgs.overlays = [
+			inputs.nixpkgs-wayland.overlay
+		];
+
 		security = {
 			# Wayland needs strict security policy stuff
 			polkit.enable         = true;
