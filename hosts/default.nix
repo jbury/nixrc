@@ -31,8 +31,7 @@ in {
 				download-buffer-size     = 524288000; # 500 MiB
 				experimental-features    = ["nix-command" "flakes"];
 				use-xdg-base-directories = true;
-				#MACTODO: This isn't quite true on macs, where we instead want @admin
-				trusted-users            = [ "@wheel" "root" ];
+				trusted-users            = [ "root" ] ++ (if pkgs.stdenv.isDarwin then [ "@admin" ] else [ "@wheel" ]);
 			};
 
 			gc = {
