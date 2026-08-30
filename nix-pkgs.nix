@@ -6,6 +6,7 @@
 				"aspell-dict-en-science"
 				"terraform"
 				"slack"
+				"discord"
 			];
 
 		overlays = [

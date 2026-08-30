@@ -4,8 +4,6 @@ let
 	inherit (lib) mkIf;
 in {
 	imports = [
-		#TODO: break signal/slack/keepass into specific apps, maybe.
-		#./apps
 		./browsers
 		./wayland
 		./term
@@ -19,6 +17,7 @@ in {
 		home = {
 			packages = [
 				pkgs.brightnessctl
+				pkgs.discord
 				pkgs.playerctl
 				pkgs.gparted
 				pkgs.feh

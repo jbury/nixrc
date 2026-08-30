@@ -136,6 +136,8 @@ in {
 
 		programs.swaylock.enable = true;
 
+		programs.rofi.enable = true;
+
 		services = {
 			swayidle = {
 				enable = true;
