@@ -18,15 +18,15 @@ in {
 			packages = [
 				pkgs.brightnessctl
 				pkgs.discord
-				pkgs.playerctl
-				pkgs.gparted
 				pkgs.feh
+				pkgs.gparted
 				pkgs.keepassxc
+				pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice
+				pkgs.playerctl
 				pkgs.signal-desktop
 				pkgs.slack
 				pkgs.xclip
 				pkgs.xdg-utils
-				pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice
 			];
 
 			shellAliases = {
