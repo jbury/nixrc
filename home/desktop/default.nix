@@ -23,6 +23,7 @@ in {
 				pkgs.keepassxc
 				pkgs.optipng # I take a _lot_ of screenshots, so making them small is nice
 				pkgs.playerctl
+				pkgs.rclone
 				pkgs.signal-desktop
 				pkgs.slack
 				pkgs.xclip
@@ -32,6 +33,9 @@ in {
 			shellAliases = {
 				y = "xclip -selection clipboard -in";
 				p = "xclip -selection clipboard -out";
+
+				memesdown = "rclone sync google-drive:/memes/ ~/Pictures/memes/";
+				kpdown = "rclone sync --interactive google-drive:/Adult\\ Stuff/Personal.kdbx ~/";
 			};
 
 			sessionVariables = {
