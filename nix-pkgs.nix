@@ -7,6 +7,7 @@
 				"terraform"
 				"slack"
 				"discord"
+				"discord-unwrapped"
 			];
 
 		overlays = [
