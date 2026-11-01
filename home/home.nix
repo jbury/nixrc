@@ -18,6 +18,8 @@
 			username      = homeSettings.userName;
 			homeDirectory = homeSettings.homeDirectory;
 			stateVersion  = homeSettings.stateVersion;
+
+			preferXdgDirectories = true;
 		};
 	};
 }
