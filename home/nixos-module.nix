@@ -12,7 +12,7 @@ let
 			email         = hostSettings.email;
 			hostname      = hostSettings.hostname;
 			hasDesktop    = hostSettings.hasDesktop;
-			stateVersion  = hostSettings.stateVersion;
+			stateVersion  = hostSettings.homeStateVersion;
 		}
 	);
 in {

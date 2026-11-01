@@ -4,10 +4,11 @@
 		config.allowUnfreePredicate = pkg:
 			builtins.elem (lib.getName pkg) [
 				"aspell-dict-en-science"
-				"terraform"
-				"slack"
+				"claude-code"
 				"discord"
 				"discord-unwrapped"
+				"slack"
+				"terraform"
 			];
 
 		overlays = [

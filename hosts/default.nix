@@ -12,7 +12,7 @@ in {
 	];
 
 	# Top-level config options that dictate most per-host defaults
-	options.jbury.nixrc.hostSettings = {
+	options.jbury.nixrc.hostSettings = rec {
 		userName   = mkOptDef str "jbury";
 		email      = mkOptDef str "2317537+jbury@users.noreply.github.com";
 		hostname   = mkOptDef str config.networking.hostname;
@@ -20,6 +20,7 @@ in {
 
 		# Single set point for both system.stateVersion and home-manager.stateVersion
 		stateVersion = mkOpt str;
+		homeStateVersion = mkOptDef str stateVersion;
 
 		timeZone = mkOptDef str "America/Los_Angeles";
 	};
