@@ -32,7 +32,7 @@ in {
 				download-buffer-size     = 524288000; # 500 MiB
 				experimental-features    = ["nix-command" "flakes"];
 				use-xdg-base-directories = true;
-				trusted-users            = [ "root" ] ++ (if pkgs.stdenv.isDarwin then [ "@admin" ] else [ "@wheel" ]);
+				trusted-users            = [ "root" ] ++ (if pkgs.stdenv.hostPlatform.isDarwin then [ "@admin" ] else [ "@wheel" ]);
 			};
 
 			gc = {
