@@ -1,2 +1,3 @@
+- https://github.com/jboyens/dotfiles/tree/main
+- https://github.com/sentientmonkey/nix-config/tree/main
 - https://github.com/liamawhite/os/tree/main
-- 
