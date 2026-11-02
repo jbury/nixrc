@@ -69,15 +69,6 @@ in {
           "${super}+minus" = "scratchpad show";
           "${super}+${shift}+minus" = "move scratchpad";
 
-          "${super}+Left" = "resize grow width 40 px";
-          "${super}+Down" = "resize grow height 40 px";
-          "${super}+Up" = "resize grow height 40 px";
-          "${super}+Right" = "resize grow width 40 px";
-          "${super}+${control}+Left" = "resize shrink width 40 px";
-          "${super}+${control}+Down" = "resize shrink height 40 px";
-          "${super}+${control}+Up" = "resize shrink height 40 px";
-          "${super}+${control}+Right" = "resize shrink width 40 px";
-
           "XF86AudioRaiseVolume" =
             "exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob";
           "XF86AudioLowerVolume" =
