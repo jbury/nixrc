@@ -12,7 +12,6 @@ in {
 			settings = {
 				main = {
 					term = "xterm-256color";
-					font = "Iosevka Term:size=12";
 
 					dpi-aware = mkForce "yes";
 				};

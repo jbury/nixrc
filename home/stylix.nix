@@ -16,16 +16,16 @@ in {
 
 		fonts = {
 			serif = {
-				package = (pkgs.iosevka-bin.override { variant = "Etoile"; });
-				name    = "Iosevka Etoile";
+				package = pkgs.nerd-fonts.iosevka;
+				name    = "Iosevka Etoile Nerd Font";
 			};
 			sansSerif = {
-				package = (pkgs.iosevka-bin.override { variant = "Aile"; });
-				name    = "Iosevka Aile";
+				package = pkgs.nerd-fonts.iosevka;
+				name    = "Iosevka Aile Nerd Font";
 			};
 			monospace = {
-				package = (pkgs.iosevka-bin.override { variant = "SGr-IosevkaTerm"; });
-				name    = "Iosevka Term";
+				package = pkgs.nerd-fonts.iosevka;
+				name    = "Iosevka Mono Nerd Font";
 			};
 			emoji = {
 				package = pkgs.noto-fonts-color-emoji;
