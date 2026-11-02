@@ -27,7 +27,8 @@ in {
           "${super}+l" = "exec swaylock -Fe -c000000";
           "${super}+f" = "exec firefox";
           "${super}+k" = "exec keepassxc";
-          "${super}+s" = "exec ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland";
+					"${super}+s" = "exec ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland";
+					"${super}+m" = "exec spotify";
 
           "${super}+q" = "kill";
 					#"${super}+space" = "exec $DOTFILES/bin/rofi/appmenu";
