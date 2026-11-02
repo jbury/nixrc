@@ -1,4 +1,4 @@
-{ inputs, config, lib, ... }:
+{ inputs, config, lib, pkgs, ... }:
  let
 	inherit (lib) mkIf mkForce;
 
@@ -16,7 +16,14 @@ in {
 		};
 
 		services = {
-			pulseaudio.enable = true;
+			pulseaudio.enable = false;
+
+			pipewire = {
+				enable            = true;
+				alsa.enable       = true;
+				alsa.support32Bit = true;
+				pulse.enable      = true;
+			};
 
 			xserver.enable = mkForce false;
 
@@ -25,8 +32,14 @@ in {
 			'';
 		};
 
+		environment.systemPackages = [
+			pkgs.pamixer
+		];
+
 		# https://github.com/nix-community/home-manager/blob/0d02ec1d0a05f88ef9e74b516842900c41f0f2fe/modules/misc/xdg-portal.nix#L39
 		environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
+
+
 	};
 }
 
