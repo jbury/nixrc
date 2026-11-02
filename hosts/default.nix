@@ -19,7 +19,7 @@ in {
 		hasDesktop = mkBoolOptDef false;
 
 		# Single set point for both system.stateVersion and home-manager.stateVersion
-		stateVersion = mkOpt str;
+		stateVersion     = mkOpt str;
 		homeStateVersion = mkOptDef str stateVersion;
 
 		timeZone = mkOptDef str "America/Los_Angeles";
