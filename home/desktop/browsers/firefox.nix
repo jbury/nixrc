@@ -8,7 +8,7 @@ let
 	profileName = homeSettings.userName;
 in {
 	config = mkIf homeSettings.hasDesktop {
-		stylix.targets.firefox.profileNames = [ "jbury" ];
+		stylix.targets.firefox.profileNames = [ profileName ];
 
 		home.sessionVariables = {
 			BROWSER = "firefox";
@@ -24,9 +24,9 @@ in {
 				isDefault = true;
 
 				userChrome = concatMapStringsSep "\n" readFile [
-					./styles/window_control_placeholder_support.css
-					./styles/tabs_on_bottom.css
-					./styles/userChrome.css
+					# ./styles/window_control_placeholder_support.css
+					./styles/tabs_on_bottom_v2.css
+					# ./styles/userChrome.css
 				];
 
 				settings = {
