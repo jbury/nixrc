@@ -26,6 +26,7 @@ in {
 				pkgs.rclone
 				pkgs.signal-desktop
 				pkgs.slack
+				pkgs.spotify
 				pkgs.xclip
 				pkgs.xdg-utils
 			];

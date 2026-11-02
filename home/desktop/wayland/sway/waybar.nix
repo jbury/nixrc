@@ -35,7 +35,7 @@ in {
 				];
 
 				"cpu" = {
-					format = "{usage}% ";
+					format = "{usage}%  ";
 					interval = 1;
 					tooltip = true;
 				};
@@ -55,37 +55,37 @@ in {
 					interval = 2;
 					interface = "eth0";
 					format-ethernet = "";
-					format-disconnected = "";
+					format-disconnected = " ";
 					tooltip = true;
 					tooltip-format-ethernet = ''
-						{ipaddr}/{cidr}
-						 {bandwidthDownBits}
-						 {bandwidthUpBits}'';
+{ipaddr}/{cidr}
+  {bandwidthDownBits}
+  {bandwidthUpBits}'';
 				};
 
 				"network#2" = {
 					interval = 2;
-					interface = "wlan0";
-					format = "";
-					format-wifi = "";
-					format-disconnected = "";
-					format-disabled = "";
+					interface = "wlp1s0";
+					format = " ";
+					format-wifi = " ";
+					format-disconnected = " ";
+					format-disabled = " ";
 					format-icons = [];
 					tooltip = true;
 					tooltip-format-wifi = ''
-						{essid} {frequency}Ghz
-						{ipaddr}/{cidr}
-						{signalStrength} 
-						{signaldBm} db
-						 {bandwidthDownBits}
-						 {bandwidthUpBits}'';
+{essid} ({frequency}Ghz)
+{signalStrength}  
+{bandwidthDownBits} Down
+{bandwidthUpBits} Up
+{ipaddr}/{cidr}
+{signaldBm} db'';
 					};
 
 				"pulseaudio" = {
 					format = "{volume}% {icon}";
 					format-muted = "Muted ";
 					format-icons = {
-						default = ["" "" ""];
+						default = [" " " " " "];
 					};
 					on-click = "pavucontrol";
 					scroll-step = 5.0;
@@ -102,13 +102,7 @@ in {
 						critical = 15;
 					};
 					format = "{capacity}% {icon}";
-					format-icons = [
-						""
-						""
-						""
-						""
-						""
-					];
+					format-icons = [ " " " " " " " " " " ];
 					tooltip = true;
 				};
 
@@ -117,9 +111,8 @@ in {
 					today-format = "<b><u>{%a}</u></b>";
 					tooltip = true;
 					tooltip-format = ''
-						<big>{:%a, %B %e %Y}</big>
-						<tt><small>{calendar}</small></tt>
-					'';
+<big>{:%a, %B %e %Y}</big>
+<tt><small>{calendar}</small></tt>'';
 				};
 			}];
 		};

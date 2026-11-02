@@ -8,6 +8,7 @@
 				"discord"
 				"discord-unwrapped"
 				"slack"
+				"spotify"
 				"terraform"
 			];
 
