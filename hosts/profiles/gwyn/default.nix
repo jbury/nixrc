@@ -9,6 +9,7 @@
 			hostname = "gwyn";
 
 			stateVersion = "26.05";
+			homeStateVersion = "26.11";
 		};
 	};
 }
